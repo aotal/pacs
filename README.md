@@ -77,7 +77,7 @@ Las dependencias se gestionan a través del fichero `requirements.txt`. Para ins
     ```bash
     baml-cli generate
     ``` 
-2.  Crea un fichero `.env` en la raíz del proyecto (`pacs/`) con las variables de entorno necesarias para tu cliente BAML (ej. `OPENAI_API_KEY`, `BAML_PROJECT_ID`, etc., según lo requiera tu configuración de BAML con Gemini).
+2.  Crea un fichero `.env` en la raíz del proyecto (`pacs/`) con las variables de entorno necesarias para tu cliente BAML (ej. `OPENAI_API_KEY`, `GEMINI_API_KEY`, etc., según lo requiera tu configuración de BAML con Gemini).
     ```env
     # Ejemplo de .env
     GEMINI_API_KEY="tu_clave_api_openai_o_gemini" 
