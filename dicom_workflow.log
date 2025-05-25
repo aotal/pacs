@@ -6505,3 +6505,136 @@ tenacity.RetryError: RetryError[<Future at 0x7fe9a3765ee0 state=finished raised 
 2025-05-23 21:23:34,931 - __main__ - WARNING - Algunos ficheros procesados pudieron no haberse enviado a PACS.
 2025-05-23 21:23:34,931 - __main__ - INFO - ===== FIN DEL WORKFLOW DE PROCESAMIENTO DICOM (CON BAML MAPEADO Y SOBRESCRITO) =====
 2025-05-23 21:23:34,933 - __main__ - INFO - Aplicación finalizada.
+2025-05-25 10:53:54,478 - root - INFO - Logging configurado. Nivel: INFO. Archivo de log: /home/aotal/pacs/dicom_workflow.log
+2025-05-25 10:53:57,425 - baml_classification - INFO - Variables de entorno (.env) cargadas para BAML.
+2025-05-25 10:53:57,730 - baml_classification - INFO - Variables de entorno BAML reseteadas/aplicadas al cliente.
+2025-05-25 10:53:57,897 - pacs_operations - WARNING - No se pudo importar StoragePresentationContexts. Los contextos de almacenamiento se añadirán explícitamente.
+2025-05-25 10:53:57,898 - __main__ - INFO - Iniciando aplicación desde: main.py
+2025-05-25 10:53:57,898 - __main__ - INFO - ===== INICIO DEL WORKFLOW DE PROCESAMIENTO DICOM (CON BAML MAPEADO Y SOBRESCRITO) =====
+2025-05-25 10:53:57,898 - __main__ - INFO - Cargando datos de calibración para LUT Kerma desde: /home/aotal/pacs/data/linearizacion.csv
+2025-05-25 10:53:57,902 - dicom_processing_pipeline - INFO - Datos de calibración para LUT Kerma cargados desde /home/aotal/pacs/data/linearizacion.csv: 6 puntos.
+2025-05-25 10:53:57,902 - __main__ - INFO - Cálculo y almacenamiento de parámetros de linealización física está DESACTIVADO.
+2025-05-25 10:53:57,903 - __main__ - INFO - Se encontraron 2 ficheros para procesar en /home/aotal/pacs/input_dicom_files.
+2025-05-25 10:53:57,903 - __main__ - INFO - --- Iniciando procesamiento para: Img3__SN1510CG__KVP=70__mAs=13.0__IE=835.dcm ---
+2025-05-25 10:53:57,903 - dicom_processing_pipeline - INFO - Leyendo y (si es necesario) descomprimiendo: Img3__SN1510CG__KVP=70__mAs=13.0__IE=835.dcm
+2025-05-25 10:53:57,934 - dicom_processing_pipeline - INFO - Archivo DICOM leído y pixel_array (para BAML) obtenido de: Img3__SN1510CG__KVP=70__mAs=13.0__IE=835.dcm
+2025-05-25 10:53:57,934 - __main__ - INFO - Enviando imagen Img3__SN1510CG__KVP=70__mAs=13.0__IE=835.dcm para clasificación BAML...
+2025-05-25 10:53:59,282 - baml_classification - INFO - Pixel array convertido a PNG base64 exitosamente.
+2025-05-25 10:53:59,284 - baml_classification - INFO - Intentando clasificación BAML (con tenacity)...
+2025-05-25 10:53:59,284 - __main__ - INFO - --- Iniciando procesamiento para: Img3__SN1510CG__KVP=70__mAs=13.0__IE=835.dcm:Zone.Identifier ---
+2025-05-25 10:53:59,295 - dicom_processing_pipeline - INFO - Leyendo y (si es necesario) descomprimiendo: Img3__SN1510CG__KVP=70__mAs=13.0__IE=835.dcm:Zone.Identifier
+2025-05-25 10:53:59,296 - dicom_processing_pipeline - ERROR - Atributo no encontrado procesando Img3__SN1510CG__KVP=70__mAs=13.0__IE=835.dcm:Zone.Identifier: 'FileMetaDataset' object has no attribute 'TransferSyntaxUID'
+2025-05-25 10:53:59,296 - __main__ - ERROR - No se pudo leer o obtener píxeles de Img3__SN1510CG__KVP=70__mAs=13.0__IE=835.dcm:Zone.Identifier. Omitiendo.
+2025-05-25 10:54:01,944 - baml_classification - INFO - Clasificación BAML recibida (desde .value): Type2
+2025-05-25 10:54:01,945 - baml_classification - INFO - Clasificación BAML original: 'Type2', Mapeada a: 'MTF'
+2025-05-25 10:54:01,945 - __main__ - INFO - Clasificación BAML (mapeada) para Img3__SN1510CG__KVP=70__mAs=13.0__IE=835.dcm: 'MTF'
+2025-05-25 10:54:01,945 - __main__ - INFO - Linealización física omitida para Img3__SN1510CG__KVP=70__mAs=13.0__IE=835.dcm (desactivada o datos insuficientes).
+2025-05-25 10:54:01,945 - __main__ - INFO - Aplicando modificaciones finales y LUT Kerma a Img3__SN1510CG__KVP=70__mAs=13.0__IE=835.dcm...
+2025-05-25 10:54:01,946 - dicom_processing_pipeline - INFO - Procesando dataset para PACS: 1.2.826.0.1.3680043.8.498.42044900197124354928246201361539914993
+2025-05-25 10:54:01,946 - dicom_processing_pipeline - INFO - [1.2.826.0.1.3680043.8.498.42044900197124354928246201361539914993] PatientID establecido/actualizado a: SN1510CG
+2025-05-25 10:54:01,946 - dicom_processing_pipeline - INFO - [1.2.826.0.1.3680043.8.498.42044900197124354928246201361539914993] PatientName establecido/actualizado a: DiDiDR02_Portable
+2025-05-25 10:54:01,946 - dicom_processing_pipeline - INFO - [1.2.826.0.1.3680043.8.498.42044900197124354928246201361539914993] Estableciendo (sobrescribiendo) 'ImageComments' a: 'MTF'
+2025-05-25 10:54:01,946 - dicom_processing_pipeline - INFO - [1.2.826.0.1.3680043.8.498.42044900197124354928246201361539914993] 'ImageComments' después de actualizar. Valor: 'MTF'
+2025-05-25 10:54:01,946 - dicom_processing_pipeline - INFO - Aplicando Kerma LUT al dataset SOPInstanceUID: 1.2.826.0.1.3680043.8.498.42044900197124354928246201361539914993
+2025-05-25 10:54:01,947 - dicom_processing_pipeline - INFO - [1.2.826.0.1.3680043.8.498.42044900197124354928246201361539914993] PhotometricInterpretation es MONOCHROME1. Considera si MONOCHROME2 es más apropiado para Kerma (GSDF).
+2025-05-25 10:54:01,948 - dicom_processing_pipeline - INFO - [1.2.826.0.1.3680043.8.498.42044900197124354928246201361539914993] LUT Kerma aplicada.
+2025-05-25 10:54:01,948 - dicom_processing_pipeline - INFO - [1.2.826.0.1.3680043.8.498.42044900197124354928246201361539914993] Forzando ImageType a un valor conocido y válido.
+2025-05-25 10:54:01,948 - dicom_processing_pipeline - INFO - [1.2.826.0.1.3680043.8.498.42044900197124354928246201361539914993] ImageType (0008,0008) recreado con valor: ['DERIVED', 'PRIMARY', 'IMG_PROC_FINAL']
+2025-05-25 10:54:01,948 - dicom_processing_pipeline - INFO - [1.2.826.0.1.3680043.8.498.42044900197124354928246201361539914993] SpecificCharacterSet no presente. Establecido a 'ISO_IR 192'.
+2025-05-25 10:54:01,978 - dicom_processing_pipeline - INFO - [1.2.826.0.1.3680043.8.498.42044900197124354928246201361539914993] Archivo DICOM procesado y guardado como: /home/aotal/pacs/output_processed_dicom/Img26_SN1510CG_KVP70_mAs13.02_IE835.dcm
+2025-05-25 10:54:01,978 - __main__ - INFO - Fichero Img3__SN1510CG__KVP=70__mAs=13.0__IE=835.dcm procesado y guardado como: Img26_SN1510CG_KVP70_mAs13.02_IE835.dcm
+2025-05-25 10:54:01,979 - __main__ - INFO - ÉXITO en procesamiento de Img3__SN1510CG__KVP=70__mAs=13.0__IE=835.dcm -> Img26_SN1510CG_KVP70_mAs13.02_IE835.dcm
+2025-05-25 10:54:01,979 - __main__ - WARNING - FALLO/OMISIÓN: Img3__SN1510CG__KVP=70__mAs=13.0__IE=835.dcm:Zone.Identifier no generó fichero de salida.
+2025-05-25 10:54:01,979 - __main__ - INFO - Se procesaron 1 ficheros con éxito. Iniciando envío a PACS...
+2025-05-25 10:54:01,979 - pacs_operations - INFO - Iniciando envío de 1 archivos desde /home/aotal/pacs/output_processed_dicom al PACS (DCM4CHEE@jupyter.arnau.scs.es:11112).
+2025-05-25 10:54:02,563 - pacs_operations - INFO - Intentando asociar con PACS (DCM4CHEE@jupyter.arnau.scs.es:11112) para enviar: Img26_SN1510CG_KVP70_mAs13.02_IE835.dcm
+2025-05-25 10:54:02,564 - pynetdicom.association - INFO - Requesting Association
+2025-05-25 10:54:02,603 - pynetdicom.transport - ERROR - Association request failed: unable to connect to remote
+2025-05-25 10:54:02,603 - pynetdicom.transport - ERROR - TCP Initialisation Error: [Errno -2] Name or service not known
+2025-05-25 10:54:02,603 - pynetdicom.association - INFO - Aborting Association
+2025-05-25 10:54:02,703 - pacs_operations - ERROR - No se pudo establecer asociación con PACS (DCM4CHEE@jupyter.arnau.scs.es:11112) para Img26_SN1510CG_KVP70_mAs13.02_IE835.dcm.
+2025-05-25 10:54:02,704 - pacs_operations - ERROR -   Detalles de la primitiva A-ASSOCIATE-RJ (si es un rechazo): None
+2025-05-25 10:54:02,704 - pacs_operations - INFO - Resultado del envío masivo a PACS desde /home/aotal/pacs/output_processed_dicom: 0 de 1 exitosos, 1 de 1 fallidos.
+2025-05-25 10:54:02,704 - __main__ - WARNING - Algunos ficheros procesados pudieron no haberse enviado a PACS.
+2025-05-25 10:54:02,704 - __main__ - INFO - ===== FIN DEL WORKFLOW DE PROCESAMIENTO DICOM (CON BAML MAPEADO Y SOBRESCRITO) =====
+2025-05-25 10:54:02,705 - __main__ - INFO - Aplicación finalizada.
+2025-05-25 10:54:41,265 - root - INFO - Logging configurado. Nivel: INFO. Archivo de log: /home/aotal/pacs/dicom_workflow.log
+2025-05-25 10:54:42,323 - baml_classification - INFO - Variables de entorno (.env) cargadas para BAML.
+2025-05-25 10:54:42,606 - baml_classification - INFO - Variables de entorno BAML reseteadas/aplicadas al cliente.
+2025-05-25 10:54:42,662 - pacs_operations - WARNING - No se pudo importar StoragePresentationContexts. Los contextos de almacenamiento se añadirán explícitamente.
+2025-05-25 10:54:42,662 - __main__ - INFO - Iniciando aplicación desde: main.py
+2025-05-25 10:54:42,662 - __main__ - INFO - ===== INICIO DEL WORKFLOW DE PROCESAMIENTO DICOM (CON BAML MAPEADO Y SOBRESCRITO) =====
+2025-05-25 10:54:42,662 - __main__ - INFO - Cargando datos de calibración para LUT Kerma desde: /home/aotal/pacs/data/linearizacion.csv
+2025-05-25 10:54:42,666 - dicom_processing_pipeline - INFO - Datos de calibración para LUT Kerma cargados desde /home/aotal/pacs/data/linearizacion.csv: 6 puntos.
+2025-05-25 10:54:42,666 - __main__ - INFO - Cálculo y almacenamiento de parámetros de linealización física está DESACTIVADO.
+2025-05-25 10:54:42,667 - __main__ - INFO - Se encontraron 2 ficheros para procesar en /home/aotal/pacs/input_dicom_files.
+2025-05-25 10:54:42,667 - __main__ - INFO - --- Iniciando procesamiento para: Img3__SN1510CG__KVP=70__mAs=13.0__IE=835.dcm ---
+2025-05-25 10:54:42,667 - dicom_processing_pipeline - INFO - Leyendo y (si es necesario) descomprimiendo: Img3__SN1510CG__KVP=70__mAs=13.0__IE=835.dcm
+2025-05-25 10:54:42,677 - dicom_processing_pipeline - INFO - Archivo DICOM leído y pixel_array (para BAML) obtenido de: Img3__SN1510CG__KVP=70__mAs=13.0__IE=835.dcm
+2025-05-25 10:54:42,678 - __main__ - INFO - Enviando imagen Img3__SN1510CG__KVP=70__mAs=13.0__IE=835.dcm para clasificación BAML...
+2025-05-25 10:54:43,919 - baml_classification - INFO - Pixel array convertido a PNG base64 exitosamente.
+2025-05-25 10:54:43,921 - baml_classification - INFO - Intentando clasificación BAML (con tenacity)...
+2025-05-25 10:54:43,921 - __main__ - INFO - --- Iniciando procesamiento para: Img3__SN1510CG__KVP=70__mAs=13.0__IE=835.dcm:Zone.Identifier ---
+2025-05-25 10:54:43,930 - dicom_processing_pipeline - INFO - Leyendo y (si es necesario) descomprimiendo: Img3__SN1510CG__KVP=70__mAs=13.0__IE=835.dcm:Zone.Identifier
+2025-05-25 10:54:43,931 - dicom_processing_pipeline - ERROR - Atributo no encontrado procesando Img3__SN1510CG__KVP=70__mAs=13.0__IE=835.dcm:Zone.Identifier: 'FileMetaDataset' object has no attribute 'TransferSyntaxUID'
+2025-05-25 10:54:43,931 - __main__ - ERROR - No se pudo leer o obtener píxeles de Img3__SN1510CG__KVP=70__mAs=13.0__IE=835.dcm:Zone.Identifier. Omitiendo.
+2025-05-25 10:54:54,016 - baml_classification - ERROR - Error ejecutando clasificación BAML con tenacity en executor.
+Traceback (most recent call last):
+  File "/home/aotal/pacs/baml_classification.py", line 175, in obtener_clasificacion_baml
+    clasificacion_final = await loop.run_in_executor(None, _clasificar_con_baml_tenacity, imagen_base64)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aotal/miniconda3/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aotal/pacs/.venv/lib/python3.12/site-packages/tenacity/__init__.py", line 338, in wrapped_f
+    return copy(f, *args, **kw)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/aotal/pacs/.venv/lib/python3.12/site-packages/tenacity/__init__.py", line 477, in __call__
+    do = self.iter(retry_state=retry_state)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aotal/pacs/.venv/lib/python3.12/site-packages/tenacity/__init__.py", line 378, in iter
+    result = action(retry_state)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/aotal/pacs/.venv/lib/python3.12/site-packages/tenacity/__init__.py", line 400, in <lambda>
+    self._add_action_func(lambda rs: rs.outcome.result())
+                                     ^^^^^^^^^^^^^^^^^^^
+  File "/home/aotal/miniconda3/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/aotal/miniconda3/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/home/aotal/pacs/.venv/lib/python3.12/site-packages/tenacity/__init__.py", line 480, in __call__
+    result = fn(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/aotal/pacs/baml_classification.py", line 124, in _clasificar_con_baml_tenacity
+    result = b.ClassifyImage(img=baml_input_image) # Esta es la llamada que puede fallar
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aotal/pacs/baml_client/sync_client.py", line 126, in ClassifyImage
+    return cast(types.ImageClass, raw.cast_to(types, types, partial_types, False))
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+baml_py.BamlClientError: Something went wrong with the LLM client Gemini: reqwest::Error { kind: Request, url: "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent", source: hyper_util::client::legacy::Error(Connect, TimedOut) }
+2025-05-25 10:54:54,022 - __main__ - INFO - Clasificación BAML (mapeada) para Img3__SN1510CG__KVP=70__mAs=13.0__IE=835.dcm: 'ErrorBAMLExecutorGeneral'
+2025-05-25 10:54:54,022 - __main__ - WARNING - Clasificación BAML para Img3__SN1510CG__KVP=70__mAs=13.0__IE=835.dcm indicó problema o era inválida: 'ErrorBAMLExecutorGeneral'. Usando 'ClasificacionFallida'.
+2025-05-25 10:54:54,022 - __main__ - INFO - Linealización física omitida para Img3__SN1510CG__KVP=70__mAs=13.0__IE=835.dcm (desactivada o datos insuficientes).
+2025-05-25 10:54:54,022 - __main__ - INFO - Aplicando modificaciones finales y LUT Kerma a Img3__SN1510CG__KVP=70__mAs=13.0__IE=835.dcm...
+2025-05-25 10:54:54,022 - dicom_processing_pipeline - INFO - Procesando dataset para PACS: 1.2.826.0.1.3680043.8.498.42044900197124354928246201361539914993
+2025-05-25 10:54:54,023 - dicom_processing_pipeline - INFO - [1.2.826.0.1.3680043.8.498.42044900197124354928246201361539914993] PatientID establecido/actualizado a: SN1510CG
+2025-05-25 10:54:54,023 - dicom_processing_pipeline - INFO - [1.2.826.0.1.3680043.8.498.42044900197124354928246201361539914993] PatientName establecido/actualizado a: DiDiDR02_Portable
+2025-05-25 10:54:54,023 - dicom_processing_pipeline - WARNING - [1.2.826.0.1.3680043.8.498.42044900197124354928246201361539914993] Clasificación BAML mapeada fue 'ClasificacionFallida' (error o placeholder). No se actualizará 'ImageComments'.
+2025-05-25 10:54:54,023 - dicom_processing_pipeline - INFO - [1.2.826.0.1.3680043.8.498.42044900197124354928246201361539914993] No se escribió ningún valor de clasificación BAML en 'ImageComments'.
+2025-05-25 10:54:54,023 - dicom_processing_pipeline - INFO - Aplicando Kerma LUT al dataset SOPInstanceUID: 1.2.826.0.1.3680043.8.498.42044900197124354928246201361539914993
+2025-05-25 10:54:54,026 - dicom_processing_pipeline - INFO - [1.2.826.0.1.3680043.8.498.42044900197124354928246201361539914993] PhotometricInterpretation es MONOCHROME1. Considera si MONOCHROME2 es más apropiado para Kerma (GSDF).
+2025-05-25 10:54:54,026 - dicom_processing_pipeline - INFO - [1.2.826.0.1.3680043.8.498.42044900197124354928246201361539914993] LUT Kerma aplicada.
+2025-05-25 10:54:54,026 - dicom_processing_pipeline - INFO - [1.2.826.0.1.3680043.8.498.42044900197124354928246201361539914993] Forzando ImageType a un valor conocido y válido.
+2025-05-25 10:54:54,026 - dicom_processing_pipeline - INFO - [1.2.826.0.1.3680043.8.498.42044900197124354928246201361539914993] ImageType (0008,0008) recreado con valor: ['DERIVED', 'PRIMARY', 'IMG_PROC_FINAL']
+2025-05-25 10:54:54,026 - dicom_processing_pipeline - INFO - [1.2.826.0.1.3680043.8.498.42044900197124354928246201361539914993] SpecificCharacterSet no presente. Establecido a 'ISO_IR 192'.
+2025-05-25 10:54:54,055 - dicom_processing_pipeline - INFO - [1.2.826.0.1.3680043.8.498.42044900197124354928246201361539914993] Archivo DICOM procesado y guardado como: /home/aotal/pacs/output_processed_dicom/Img26_SN1510CG_KVP70_mAs13.02_IE835.dcm
+2025-05-25 10:54:54,055 - __main__ - INFO - Fichero Img3__SN1510CG__KVP=70__mAs=13.0__IE=835.dcm procesado y guardado como: Img26_SN1510CG_KVP70_mAs13.02_IE835.dcm
+2025-05-25 10:54:54,055 - __main__ - INFO - ÉXITO en procesamiento de Img3__SN1510CG__KVP=70__mAs=13.0__IE=835.dcm -> Img26_SN1510CG_KVP70_mAs13.02_IE835.dcm
+2025-05-25 10:54:54,055 - __main__ - WARNING - FALLO/OMISIÓN: Img3__SN1510CG__KVP=70__mAs=13.0__IE=835.dcm:Zone.Identifier no generó fichero de salida.
+2025-05-25 10:54:54,056 - __main__ - INFO - Se procesaron 1 ficheros con éxito. Iniciando envío a PACS...
+2025-05-25 10:54:54,056 - pacs_operations - INFO - Iniciando envío de 1 archivos desde /home/aotal/pacs/output_processed_dicom al PACS (DCM4CHEE@jupyter.arnau.scs.es:11112).
+2025-05-25 10:54:54,060 - pacs_operations - INFO - Intentando asociar con PACS (DCM4CHEE@jupyter.arnau.scs.es:11112) para enviar: Img26_SN1510CG_KVP70_mAs13.02_IE835.dcm
+2025-05-25 10:54:54,061 - pynetdicom.association - INFO - Requesting Association
+2025-05-25 10:56:25,962 - __main__ - INFO - Proceso interrumpido por el usuario.
+2025-05-25 10:56:25,971 - __main__ - INFO - Aplicación finalizada.

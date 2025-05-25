@@ -73,13 +73,14 @@ Las dependencias se gestionan a través del fichero `requirements.txt`. Para ins
     ```
 
 ### 3.3. Configuración del Cliente BAML
-1.  Asegúrate de que los directorios `baml_client/` y `baml_src/` estén presentes y contengan el código generado por BAML.
+1.  Asegúrate de que los directorios `baml_client/` y `baml_src/` estén presentes y contengan el código generado por BAML. Si se hace algún cambio en los ficheros de `baml_src/` para actualizar `baml_client/` ejecutamos:
+    ```bash
+    baml-cli generate
+    ``` 
 2.  Crea un fichero `.env` en la raíz del proyecto (`pacs/`) con las variables de entorno necesarias para tu cliente BAML (ej. `OPENAI_API_KEY`, `BAML_PROJECT_ID`, etc., según lo requiera tu configuración de BAML con Gemini).
     ```env
     # Ejemplo de .env
-    BAML_PROJECT_ID="tu_id_proyecto_baml"
-    OPENAI_API_KEY="tu_clave_api_openai_o_gemini" 
-    # u otras variables que tu reset_baml_env_vars necesite.
+    GEMINI_API_KEY="tu_clave_api_openai_o_gemini" 
     ```
 
 ## 4. Configuración del Pipeline
