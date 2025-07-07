@@ -21,7 +21,7 @@ KERMA_SCALING_FACTOR = 100.0 # Factor de escalado para los valores de Kerma en l
 
 # --- Configuración del PACS ---
 # Reemplaza estos valores con los de tu entorno PACS real
-PACS_IP = "jupyter.arnau.scs.es"  # Dirección IP o hostname de tu servidor PACS
+PACS_IP = "localhost"  # Dirección IP o hostname de tu servidor PACS
 PACS_PORT = 11112                  # Puerto del servidor PACS
 PACS_AET = "DCM4CHEE"              # AE Title del servidor PACS (destino)
 CLIENT_AET = "MYPYTHONSCU"         # AE Title de esta aplicación cliente (origen)
