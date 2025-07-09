@@ -94,10 +94,9 @@ async def process_single_dicom_file(
 
     output_dicom_filepath = dicom_processing_pipeline.process_and_prepare_dicom_for_pacs(
         ds=ds, 
-        clasificacion_baml_mapeada=clasificacion_a_guardar_final, # Nombre de parámetro consistente
-        pixel_values_lut_calib=pixel_values_kerma_lut,
-        kerma_values_lut_calib=kerma_values_kerma_lut,
-        kerma_scaling_factor_lut=config.KERMA_SCALING_FACTOR,
+        clasificacion_baml_mapeada=clasificacion_a_guardar_final,
+        pixel_values_calib=pixel_values_kerma_lut,
+        kerma_values_calib=kerma_values_kerma_lut,
         output_base_dir=config.OUTPUT_PROCESSED_DICOM_DIR,
         original_filename=file_basename,
         linearization_slope_param=slope_linealizacion, 
@@ -119,7 +118,7 @@ async def main_orchestrator():
         return
     
     logger.info(f"Cargando datos de calibración para LUT Kerma desde: {config.PATH_LUT_CALIBRATION_CSV}")
-    pixel_cal_kerma, kerma_cal_kerma = dicom_processing_pipeline.load_kerma_calibration_data_for_lut(
+    pixel_cal_kerma, kerma_cal_kerma = dicom_processing_pipeline.load_calibration_data(
         str(config.PATH_LUT_CALIBRATION_CSV) )
     if pixel_cal_kerma is None or kerma_cal_kerma is None:
         logger.critical("No se pudieron cargar los datos de calibración para la LUT Kerma. Abortando workflow.")

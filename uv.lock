@@ -36,37 +36,6 @@ wheels = [
 ]
 
 [[package]]
-name = "pacs"
-version = "0.1.0"
-source = { virtual = "." }
-dependencies = [
-    { name = "baml-py" },
-    { name = "gdcm" },
-    { name = "numpy" },
-    { name = "pandas" },
-    { name = "pillow" },
-    { name = "pydantic" },
-    { name = "pydicom" },
-    { name = "pynetdicom" },
-    { name = "python-dotenv" },
-    { name = "tenacity" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "baml-py", specifier = ">=0.89.0" },
-    { name = "gdcm", specifier = ">=1.1" },
-    { name = "numpy", specifier = ">=2.2.6" },
-    { name = "pandas", specifier = ">=2.2.3" },
-    { name = "pillow", specifier = ">=11.2.1" },
-    { name = "pydantic", specifier = ">=2.11.5" },
-    { name = "pydicom", specifier = ">=2.4.4" },
-    { name = "pynetdicom", specifier = ">=2.1.1" },
-    { name = "python-dotenv", specifier = ">=1.1.0" },
-    { name = "tenacity", specifier = ">=9.1.2" },
-]
-
-[[package]]
 name = "numpy"
 version = "2.2.6"
 source = { registry = "https://pypi.org/simple" }
@@ -102,6 +71,37 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/76/95/bef5b37f29fc5e739947e9ce5179ad402875633308504a52d188302319c8/numpy-2.2.6-cp313-cp313t-musllinux_1_2_x86_64.whl", hash = "sha256:8e9ace4a37db23421249ed236fdcdd457d671e25146786dfc96835cd951aa7c1", size = 18385260, upload_time = "2025-05-17T21:43:05.189Z" },
     { url = "https://files.pythonhosted.org/packages/09/04/f2f83279d287407cf36a7a8053a5abe7be3622a4363337338f2585e4afda/numpy-2.2.6-cp313-cp313t-win32.whl", hash = "sha256:038613e9fb8c72b0a41f025a7e4c3f0b7a1b5d768ece4796b674c8f3fe13efff", size = 6377225, upload_time = "2025-05-17T21:43:16.254Z" },
     { url = "https://files.pythonhosted.org/packages/67/0e/35082d13c09c02c011cf21570543d202ad929d961c02a147493cb0c2bdf5/numpy-2.2.6-cp313-cp313t-win_amd64.whl", hash = "sha256:6031dd6dfecc0cf9f668681a37648373bddd6421fff6c66ec1624eed0180ee06", size = 12771374, upload_time = "2025-05-17T21:43:35.479Z" },
+]
+
+[[package]]
+name = "pacs"
+version = "0.1.0"
+source = { virtual = "." }
+dependencies = [
+    { name = "baml-py" },
+    { name = "gdcm" },
+    { name = "numpy" },
+    { name = "pandas" },
+    { name = "pillow" },
+    { name = "pydantic" },
+    { name = "pydicom" },
+    { name = "pynetdicom" },
+    { name = "python-dotenv" },
+    { name = "tenacity" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "baml-py", specifier = ">=0.89.0" },
+    { name = "gdcm", specifier = ">=1.1" },
+    { name = "numpy", specifier = ">=2.2.6" },
+    { name = "pandas", specifier = ">=2.2.3" },
+    { name = "pillow", specifier = ">=11.2.1" },
+    { name = "pydantic", specifier = ">=2.11.5" },
+    { name = "pydicom", specifier = ">=3.0.1" },
+    { name = "pynetdicom", specifier = ">=2.1.1" },
+    { name = "python-dotenv", specifier = ">=1.1.0" },
+    { name = "tenacity", specifier = ">=9.1.2" },
 ]
 
 [[package]]
@@ -238,23 +238,23 @@ wheels = [
 
 [[package]]
 name = "pydicom"
-version = "2.4.4"
+version = "3.0.1"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/25/98/0b530df4b0129f5651a006534168769a507e50c92657a22fb3e26bd2b0cf/pydicom-2.4.4.tar.gz", hash = "sha256:90b4801d851ce65be3df520e16bbfa3d6c767cf2a3a3b1c18f6780e6b670b87a", size = 2016625, upload_time = "2023-12-14T21:44:29.896Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/d7/6f/55ea163b344c91df2e03c007bebf94781f0817656e2c037d7c5bf86c3bfc/pydicom-3.0.1.tar.gz", hash = "sha256:7b8be344b5b62493c9452ba6f5a299f78f8a6ab79786c729b0613698209603ec", size = 2884731, upload_time = "2024-09-22T02:02:43.202Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/35/2a/8c0f6fe243e6b6793868c6834203a44cc8f3f25abad780e1c7b21e15594d/pydicom-2.4.4-py3-none-any.whl", hash = "sha256:f9f8e19b78525be57aa6384484298833e4d06ac1d6226c79459131ddb0bd7c42", size = 1771279, upload_time = "2023-12-14T21:44:27.232Z" },
+    { url = "https://files.pythonhosted.org/packages/27/a6/98651e752a49f341aa99aa3f6c8ba361728dfc064242884355419df63669/pydicom-3.0.1-py3-none-any.whl", hash = "sha256:db32f78b2641bd7972096b8289111ddab01fb221610de8d7afa835eb938adb41", size = 2376126, upload_time = "2024-09-22T02:02:41.616Z" },
 ]
 
 [[package]]
 name = "pynetdicom"
-version = "2.1.1"
+version = "3.0.3"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "pydicom" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/bf/0e/6209b1957aad95564a72c998dd42846c75b2073c763ec4bc5964917ba8d3/pynetdicom-2.1.1.tar.gz", hash = "sha256:9671fbaeefd7ed6491bb128e056d58862872b4b2335d4bbe44bbda9198cdbfea", size = 1567394, upload_time = "2024-07-28T01:36:29.396Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/e0/ff/300283a8afe36869025cbb5d11d520585ce764f1f5eb78577c59822e5bd7/pynetdicom-3.0.3.tar.gz", hash = "sha256:8ecb4bfc726dc0f7dfd7b7162be24f030124c00280be818d40b33f3629f620a9", size = 1816248, upload_time = "2025-07-04T02:40:27.918Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/be/39/626a2e5da38dc04d5296e61f083a13f7b055c82843a911a7138424aef285/pynetdicom-2.1.1-py3-none-any.whl", hash = "sha256:598910d65712327e478dfd59696703143e8f2531dfb409e60c3b8820d86bae4f", size = 1643138, upload_time = "2024-07-28T01:36:27.242Z" },
+    { url = "https://files.pythonhosted.org/packages/2f/1a/203e437365600be4519254b738ad92df58c37f6f07766595cadbff678ded/pynetdicom-3.0.3-py3-none-any.whl", hash = "sha256:1fb421b90bd3b1b2f87a0721a75237dfcb625a35e29bd5b58dc02452b1c67bd6", size = 1650391, upload_time = "2025-07-04T02:40:25.891Z" },
 ]
 
 [[package]]
