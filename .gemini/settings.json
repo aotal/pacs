@@ -1,0 +1,13 @@
+{
+  "contextFileName": "GEMINI.md",
+  "mcpServers": {
+    "context7": {
+      "command": "npx",
+      "args": ["-y", "@upstash/context7-mcp"]
+    },
+    "sequential-thinking": {
+      "command": "docker",
+      "args": ["run","--rm","-i","mcp/sequentialthinking"]
+      }
+  }
+}
