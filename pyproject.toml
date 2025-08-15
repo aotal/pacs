@@ -5,7 +5,9 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
+    "fastapi>=0.116.1",
     "gdcm>=1.1",
+    "joblib>=1.5.1",
     "numpy>=2.2.6",
     "pandas>=2.2.3",
     "pillow>=11.2.1",
@@ -13,8 +15,10 @@ dependencies = [
     "pydicom>=3.0.1",
     "pynetdicom>=2.1.1",
     "python-dotenv>=1.1.0",
+    "python-multipart>=0.0.20",
     "scikit-learn>=1.7.1",
     "tenacity>=9.1.2",
     "torch>=2.8.0",
     "torchvision>=0.23.0",
+    "uvicorn[standard]>=0.35.0",
 ]
