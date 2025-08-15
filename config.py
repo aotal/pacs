@@ -100,4 +100,19 @@ if __name__ == "__main__":
     else:
         logger_main_cfg.error("Algunas rutas configuradas en config.py no son válidas o no existen.")
 
+# Directorio de entrada donde se encuentran los ficheros DICOM originales.
+INPUT_DIR = BASE_PROJECT_DIR / "input_dicom"
+
+# Directorio de salida para los ficheros DICOM ya procesados (descomprimidos y renombrados).
+OUTPUT_DIR = BASE_PROJECT_DIR / "f1_descomprimidos"
+
+# --- Configuración de Logging ---
+# Nombre del fichero donde se guardarán los logs de la ejecución.
+LOG_FILENAME = "dicom_workflow.log"
+
+# Nivel de logging: INFO muestra mensajes de progreso, ERROR solo muestra errores.
+LOG_LEVEL = logging.INFO
+
+# Formato de los mensajes en el fichero de log.
+LOG_FORMAT = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
 # --- FIN DE config.py ---
