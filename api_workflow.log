@@ -66,3 +66,1205 @@ pip install python-multipart
 2025-08-15 21:24:10,769 - api_main - INFO - DEBUG: Loading ResNet50 feature extractor...
 2025-08-15 21:24:10,769 - api_main - INFO - DEBUG: Using DUMMY ResNet50. Model loaded instantly.
 2025-08-15 21:24:10,773 - dicom_processing_pipeline - INFO - Datos de calibración cargados desde /app/data/linearizacion.csv: 6 puntos.
+2025-08-16 09:25:19,289 - root - INFO - Logging configurado. Nivel: INFO. Archivo de log: /home/aotal/github/pacs/api_workflow.log
+2025-08-16 09:25:21,482 - dicom_processing_pipeline - INFO - Datos de calibración cargados desde /home/aotal/github/pacs/data/linearizacion.csv: 6 puntos.
+2025-08-16 09:26:25,193 - api_main - INFO - Phase 1: Decompressing 1.3.46.670589.30.41.0.1.128635482625724.1743414241600.1
+2025-08-16 09:26:25,195 - api_main - ERROR - Error in /decompress endpoint: Unable to decompress as the plugins for the 'JPEG Lossless, Non-Hierarchical, First-Order Prediction (Process 14 [Selection Value 1])' decoder are all missing dependencies:
+    gdcm - requires gdcm>=3.0.10
+    pylibjpeg - requires pylibjpeg>=2.0 and pylibjpeg-libjpeg>=2.1
+Traceback (most recent call last):
+  File "/home/aotal/github/pacs/api_main.py", line 167, in decompress_dicom_endpoint
+    output_path = await run_phase_1_decompress(input_path, temp_dir)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aotal/github/pacs/api_main.py", line 93, in run_phase_1_decompress
+    ds.decompress()
+  File "/home/aotal/github/pacs/.venv/lib/python3.12/site-packages/pydicom/dataset.py", line 2097, in decompress
+    decompress(
+  File "/home/aotal/github/pacs/.venv/lib/python3.12/site-packages/pydicom/pixels/utils.py", line 565, in decompress
+    raise RuntimeError(
+RuntimeError: Unable to decompress as the plugins for the 'JPEG Lossless, Non-Hierarchical, First-Order Prediction (Process 14 [Selection Value 1])' decoder are all missing dependencies:
+    gdcm - requires gdcm>=3.0.10
+    pylibjpeg - requires pylibjpeg>=2.0 and pylibjpeg-libjpeg>=2.1
+2025-08-16 09:27:51,282 - api_main - INFO - Phase 1: Decompressing 1.3.46.670589.30.41.0.1.128635484509658.1741347330967.1
+2025-08-16 09:27:51,285 - api_main - ERROR - Error in /decompress endpoint: Unable to decompress as the plugins for the 'JPEG Lossless, Non-Hierarchical, First-Order Prediction (Process 14 [Selection Value 1])' decoder are all missing dependencies:
+    gdcm - requires gdcm>=3.0.10
+    pylibjpeg - requires pylibjpeg>=2.0 and pylibjpeg-libjpeg>=2.1
+Traceback (most recent call last):
+  File "/home/aotal/github/pacs/api_main.py", line 167, in decompress_dicom_endpoint
+    output_path = await run_phase_1_decompress(input_path, temp_dir)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aotal/github/pacs/api_main.py", line 93, in run_phase_1_decompress
+    ds.decompress()
+  File "/home/aotal/github/pacs/.venv/lib/python3.12/site-packages/pydicom/dataset.py", line 2097, in decompress
+    decompress(
+  File "/home/aotal/github/pacs/.venv/lib/python3.12/site-packages/pydicom/pixels/utils.py", line 565, in decompress
+    raise RuntimeError(
+RuntimeError: Unable to decompress as the plugins for the 'JPEG Lossless, Non-Hierarchical, First-Order Prediction (Process 14 [Selection Value 1])' decoder are all missing dependencies:
+    gdcm - requires gdcm>=3.0.10
+    pylibjpeg - requires pylibjpeg>=2.0 and pylibjpeg-libjpeg>=2.1
+2025-08-16 09:29:39,504 - root - INFO - Logging configurado. Nivel: INFO. Archivo de log: /home/aotal/github/pacs/api_workflow.log
+2025-08-16 09:29:40,817 - dicom_processing_pipeline - INFO - Datos de calibración cargados desde /home/aotal/github/pacs/data/linearizacion.csv: 6 puntos.
+2025-08-16 09:30:02,965 - api_main - INFO - Phase 1: Decompressing 1.3.46.670589.30.41.0.1.128635484509658.1741347330967.1
+2025-08-16 09:30:03,379 - api_main - INFO - Phase 1: Saved to temp_api_processing/e8746227-d720-4d03-a39f-fd6902f873b6/Img_decompressed_SN1510CG_KVP70_mAs0.99_IE63_1.2.826.0.1.3680043.8.498.45927915835595752775843984352730859987.dcm
+2025-08-16 09:56:43,627 - root - INFO - Logging configurado. Nivel: INFO. Archivo de log: /home/aotal/github/pacs/api_workflow.log
+2025-08-16 09:56:46,361 - dicom_processing_pipeline - INFO - Datos de calibración cargados desde /home/aotal/github/pacs/data/linearizacion.csv: 6 puntos.
+2025-08-16 09:57:32,555 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741347331267.1
+2025-08-16 09:57:33,058 - api_main - INFO - Fase 1: Guardado en temp_api_processing/ba115880-236a-4bf4-9f61-ce0ebdc982b6/Img_decompressed_SN1510CG_KVP70_mAs1.49_IE95_1.2.826.0.1.3680043.8.498.16541981428948111432418642404610279888.dcm
+2025-08-16 09:58:43,719 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741347331267.1
+2025-08-16 09:58:44,280 - api_main - INFO - Fase 1: Guardado en temp_api_processing/ce3c71d6-08bd-4bef-82ac-74e940611ab2/Img_decompressed_SN1510CG_KVP70_mAs1.49_IE95_1.2.826.0.1.3680043.8.498.63006622780005994270699937185115525229.dcm
+2025-08-16 09:58:44,291 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741347331499.1
+2025-08-16 09:58:44,717 - api_main - INFO - Fase 1: Guardado en temp_api_processing/ce3c71d6-08bd-4bef-82ac-74e940611ab2/Img_decompressed_SN1510CG_KVP70_mAs2.99_IE192_1.2.826.0.1.3680043.8.498.36109633175273253564900919602811844574.dcm
+2025-08-16 10:03:34,262 - root - INFO - Logging configurado. Nivel: INFO. Archivo de log: /home/aotal/github/pacs/api_workflow.log
+2025-08-16 10:03:35,740 - dicom_processing_pipeline - INFO - Datos de calibración cargados desde /home/aotal/github/pacs/data/linearizacion.csv: 6 puntos.
+2025-08-16 10:04:25,459 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741347331726.1
+2025-08-16 10:04:26,014 - api_main - INFO - Fase 1: Guardado en temp_api_processing/ee95dc1a-14e6-4cbf-b140-124f25385e35/Img_decompressed_SN1510CG_KVP70_mAs4.48_IE289_1.2.826.0.1.3680043.8.498.94812007550048575380621693620545702084.dcm
+2025-08-16 10:04:26,026 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741347337715.1
+2025-08-16 10:04:26,443 - api_main - INFO - Fase 1: Guardado en temp_api_processing/ee95dc1a-14e6-4cbf-b140-124f25385e35/Img_decompressed_SN1510CG_KVP70_mAs3.78_IE186_1.2.826.0.1.3680043.8.498.33266442996882530735542742008713237905.dcm
+2025-08-16 10:04:26,453 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741347336643.1
+2025-08-16 10:04:26,866 - api_main - INFO - Fase 1: Guardado en temp_api_processing/ee95dc1a-14e6-4cbf-b140-124f25385e35/Img_decompressed_SN1510CG_KVP70_mAs13.02_IE835_1.2.826.0.1.3680043.8.498.67433535883006932692393108975129015722.dcm
+2025-08-16 10:04:26,871 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN1510CG_KVP70_mAs4.48_IE289_1.2.826.0.1.3680043.8.498.94812007550048575380621693620545702084.dcm
+2025-08-16 10:04:27,228 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-16 10:04:27,231 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN1510CG_KVP70_mAs3.78_IE186_1.2.826.0.1.3680043.8.498.33266442996882530735542742008713237905.dcm
+2025-08-16 10:04:27,444 - api_main - INFO - Fase 2: Clase predicha 'TOR'
+2025-08-16 10:04:27,448 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN1510CG_KVP70_mAs13.02_IE835_1.2.826.0.1.3680043.8.498.67433535883006932692393108975129015722.dcm
+2025-08-16 10:04:27,650 - api_main - INFO - Fase 2: Clase predicha 'MTF'
+2025-08-17 13:48:19,892 - root - INFO - Logging configurado. Nivel: INFO. Archivo de log: /home/aotal/github/pacs/api_workflow.log
+2025-08-17 13:48:21,913 - dicom_processing_pipeline - INFO - Datos de calibración cargados desde /home/aotal/github/pacs/data/linearizacion.csv: 6 puntos.
+2025-08-17 16:32:33,208 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741347331267.1
+2025-08-17 16:32:33,631 - api_main - INFO - Fase 1: Guardado en temp_api_processing/5f45c91b-34c0-47b4-adf8-8b66870190a1/Img_decompressed_SN1510CG_KVP70_mAs1.49_IE95_1.2.826.0.1.3680043.8.498.78407653512131069169807306425875581373.dcm
+2025-08-17 16:32:33,638 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741347338375.1
+2025-08-17 16:32:34,030 - api_main - INFO - Fase 1: Guardado en temp_api_processing/5f45c91b-34c0-47b4-adf8-8b66870190a1/Img_decompressed_SN1510CG_KVP70_mAs2.79_IE179_1.2.826.0.1.3680043.8.498.14255693601006805320172395011615918542.dcm
+2025-08-17 16:32:34,034 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN1510CG_KVP70_mAs1.49_IE95_1.2.826.0.1.3680043.8.498.78407653512131069169807306425875581373.dcm
+2025-08-17 16:32:34,352 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 16:32:34,353 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN1510CG_KVP70_mAs2.79_IE179_1.2.826.0.1.3680043.8.498.14255693601006805320172395011615918542.dcm
+2025-08-17 16:32:34,530 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 16:32:53,490 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741347331267.1
+2025-08-17 16:32:53,885 - api_main - INFO - Fase 1: Guardado en temp_api_processing/ce9d1d06-309d-4fbb-840d-07df1a750ce1/Img_decompressed_SN1510CG_KVP70_mAs1.49_IE95_1.2.826.0.1.3680043.8.498.84060977312273126693548916055147900503.dcm
+2025-08-17 16:32:53,895 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741347338375.1
+2025-08-17 16:32:54,289 - api_main - INFO - Fase 1: Guardado en temp_api_processing/ce9d1d06-309d-4fbb-840d-07df1a750ce1/Img_decompressed_SN1510CG_KVP70_mAs2.79_IE179_1.2.826.0.1.3680043.8.498.69116280864707562802327465038586236151.dcm
+2025-08-17 16:32:54,296 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741347334149.1
+2025-08-17 16:32:54,663 - api_main - INFO - Fase 1: Guardado en temp_api_processing/ce9d1d06-309d-4fbb-840d-07df1a750ce1/Img_decompressed_SN1510CG_KVP70_mAs2.99_IE192_1.2.826.0.1.3680043.8.498.43243229792239366586643156033677645503.dcm
+2025-08-17 16:32:54,664 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN1510CG_KVP70_mAs1.49_IE95_1.2.826.0.1.3680043.8.498.84060977312273126693548916055147900503.dcm
+2025-08-17 16:32:54,883 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 16:32:54,883 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN1510CG_KVP70_mAs2.79_IE179_1.2.826.0.1.3680043.8.498.69116280864707562802327465038586236151.dcm
+2025-08-17 16:32:55,050 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 16:32:55,050 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN1510CG_KVP70_mAs2.99_IE192_1.2.826.0.1.3680043.8.498.43243229792239366586643156033677645503.dcm
+2025-08-17 16:32:55,211 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 16:33:08,541 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741347331267.1
+2025-08-17 16:33:08,895 - api_main - INFO - Fase 1: Guardado en temp_api_processing/15769b2c-012b-487d-9914-36c48530e104/Img_decompressed_SN1510CG_KVP70_mAs1.49_IE95_1.2.826.0.1.3680043.8.498.93231514288766959616749081499442019689.dcm
+2025-08-17 16:33:08,905 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741347338375.1
+2025-08-17 16:33:09,273 - api_main - INFO - Fase 1: Guardado en temp_api_processing/15769b2c-012b-487d-9914-36c48530e104/Img_decompressed_SN1510CG_KVP70_mAs2.79_IE179_1.2.826.0.1.3680043.8.498.74950360960100073625870275184149152497.dcm
+2025-08-17 16:33:09,280 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741347334149.1
+2025-08-17 16:33:09,648 - api_main - INFO - Fase 1: Guardado en temp_api_processing/15769b2c-012b-487d-9914-36c48530e104/Img_decompressed_SN1510CG_KVP70_mAs2.99_IE192_1.2.826.0.1.3680043.8.498.75728351944661134764573650924446011316.dcm
+2025-08-17 16:33:09,654 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741347334387.1
+2025-08-17 16:33:10,026 - api_main - INFO - Fase 1: Guardado en temp_api_processing/15769b2c-012b-487d-9914-36c48530e104/Img_decompressed_SN1510CG_KVP70_mAs2.99_IE192_1.2.826.0.1.3680043.8.498.26551528476120579746154998176348047834.dcm
+2025-08-17 16:33:10,027 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN1510CG_KVP70_mAs1.49_IE95_1.2.826.0.1.3680043.8.498.93231514288766959616749081499442019689.dcm
+2025-08-17 16:33:10,234 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 16:33:10,235 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN1510CG_KVP70_mAs2.79_IE179_1.2.826.0.1.3680043.8.498.74950360960100073625870275184149152497.dcm
+2025-08-17 16:33:10,409 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 16:33:10,410 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN1510CG_KVP70_mAs2.99_IE192_1.2.826.0.1.3680043.8.498.75728351944661134764573650924446011316.dcm
+2025-08-17 16:33:10,571 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 16:33:10,571 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN1510CG_KVP70_mAs2.99_IE192_1.2.826.0.1.3680043.8.498.26551528476120579746154998176348047834.dcm
+2025-08-17 16:33:10,748 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 16:34:42,822 - api_main - INFO - Fase 1: Descomprimiendo Img24_SN2024H1_KVP70_mAs13.02_IE729_1.2.826.0.1.3680043.8.498.41782212586768428967752213762265273949.dcm
+2025-08-17 16:34:42,887 - api_main - INFO - Fase 1: Guardado en temp_api_processing/a7134400-6ff1-4752-8865-ff37e8cb9d16/Img_decompressed_SN2024H1_KVP70_mAs13.02_IE729_1.2.826.0.1.3680043.8.498.41782212586768428967752213762265273949.dcm
+2025-08-17 16:34:42,905 - api_main - INFO - Fase 1: Descomprimiendo Img1_SN2136FD_KVP70_mAs3.18_IE138_1.2.826.0.1.3680043.8.498.90595783857895423883470467125337217974.dcm
+2025-08-17 16:34:42,926 - api_main - INFO - Fase 1: Guardado en temp_api_processing/a7134400-6ff1-4752-8865-ff37e8cb9d16/Img_decompressed_SN2136FD_KVP70_mAs3.18_IE138_1.2.826.0.1.3680043.8.498.90595783857895423883470467125337217974.dcm
+2025-08-17 16:34:42,949 - api_main - INFO - Fase 1: Descomprimiendo Img4_SN201033_KVP70_mAs7.98_IE463_1.2.826.0.1.3680043.8.498.72589703865129119687331628209826882780.dcm
+2025-08-17 16:34:42,976 - api_main - INFO - Fase 1: Guardado en temp_api_processing/a7134400-6ff1-4752-8865-ff37e8cb9d16/Img_decompressed_SN201033_KVP70_mAs7.98_IE463_1.2.826.0.1.3680043.8.498.72589703865129119687331628209826882780.dcm
+2025-08-17 16:34:42,976 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs13.02_IE729_1.2.826.0.1.3680043.8.498.41782212586768428967752213762265273949.dcm
+2025-08-17 16:34:43,229 - api_main - INFO - Fase 2: Clase predicha 'MTF'
+2025-08-17 16:34:43,229 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2136FD_KVP70_mAs3.18_IE138_1.2.826.0.1.3680043.8.498.90595783857895423883470467125337217974.dcm
+2025-08-17 16:34:43,492 - api_main - INFO - Fase 2: Clase predicha 'TOR'
+2025-08-17 16:34:43,492 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN201033_KVP70_mAs7.98_IE463_1.2.826.0.1.3680043.8.498.72589703865129119687331628209826882780.dcm
+2025-08-17 16:34:43,662 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 16:47:55,939 - root - INFO - Logging configurado. Nivel: INFO. Archivo de log: /home/aotal/github/pacs/api_workflow.log
+2025-08-17 16:47:57,687 - dicom_processing_pipeline - INFO - Datos de calibración cargados desde /home/aotal/github/pacs/data/linearizacion.csv: 6 puntos.
+2025-08-17 17:04:59,869 - root - INFO - Logging configurado. Nivel: INFO. Archivo de log: /home/aotal/github/pacs/api_workflow.log
+2025-08-17 17:05:01,653 - dicom_processing_pipeline - INFO - Datos de calibración cargados desde /home/aotal/github/pacs/data/linearizacion.csv: 6 puntos.
+2025-08-17 17:05:27,564 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348778426.1
+2025-08-17 17:05:28,087 - api_main - INFO - Fase 1: Guardado en temp_api_processing/7b7461c6-ae66-4f6b-a084-5108ca89cd55/Img_decompressed_SN2024H1_KVP70_mAs2.99_IE168_1.2.826.0.1.3680043.8.498.59936657874357522500477116487026015856.dcm
+2025-08-17 17:05:28,093 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348778878.1
+2025-08-17 17:05:28,546 - api_main - INFO - Fase 1: Guardado en temp_api_processing/7b7461c6-ae66-4f6b-a084-5108ca89cd55/Img_decompressed_SN2024H1_KVP70_mAs5.59_IE317_1.2.826.0.1.3680043.8.498.54711549041279582400820946257604859706.dcm
+2025-08-17 17:05:28,556 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348779104.1
+2025-08-17 17:05:28,989 - api_main - INFO - Fase 1: Guardado en temp_api_processing/7b7461c6-ae66-4f6b-a084-5108ca89cd55/Img_decompressed_SN2024H1_KVP70_mAs13.02_IE728_1.2.826.0.1.3680043.8.498.90815994838299055422895763614152881976.dcm
+2025-08-17 17:05:28,990 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs2.99_IE168_1.2.826.0.1.3680043.8.498.59936657874357522500477116487026015856.dcm
+2025-08-17 17:05:29,326 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 17:05:29,327 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs5.59_IE317_1.2.826.0.1.3680043.8.498.54711549041279582400820946257604859706.dcm
+2025-08-17 17:05:29,525 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 17:05:29,525 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs13.02_IE728_1.2.826.0.1.3680043.8.498.90815994838299055422895763614152881976.dcm
+2025-08-17 17:05:29,704 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 17:11:45,900 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348778426 - copia.1
+2025-08-17 17:11:46,345 - api_main - INFO - Fase 1: Guardado en temp_api_processing/138da95f-311c-4496-a3aa-0cc6f029c3a4/Img_decompressed_SN2024H1_KVP70_mAs2.99_IE168_1.2.826.0.1.3680043.8.498.93135667529788192860080171141526697167.dcm
+2025-08-17 17:11:46,355 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348778426.1
+2025-08-17 17:11:46,793 - api_main - INFO - Fase 1: Guardado en temp_api_processing/138da95f-311c-4496-a3aa-0cc6f029c3a4/Img_decompressed_SN2024H1_KVP70_mAs2.99_IE168_1.2.826.0.1.3680043.8.498.62671926271388287328813372522969361184.dcm
+2025-08-17 17:11:46,804 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348778649 - copia.1
+2025-08-17 17:11:47,244 - api_main - INFO - Fase 1: Guardado en temp_api_processing/138da95f-311c-4496-a3aa-0cc6f029c3a4/Img_decompressed_SN2024H1_KVP70_mAs4.48_IE252_1.2.826.0.1.3680043.8.498.99381348946264532498838506774161821222.dcm
+2025-08-17 17:11:47,245 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs2.99_IE168_1.2.826.0.1.3680043.8.498.93135667529788192860080171141526697167.dcm
+2025-08-17 17:11:47,496 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 17:11:47,496 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs2.99_IE168_1.2.826.0.1.3680043.8.498.62671926271388287328813372522969361184.dcm
+2025-08-17 17:11:47,686 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 17:11:47,687 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs4.48_IE252_1.2.826.0.1.3680043.8.498.99381348946264532498838506774161821222.dcm
+2025-08-17 17:11:47,872 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 17:16:31,386 - root - INFO - Logging configurado. Nivel: INFO. Archivo de log: /home/aotal/github/pacs/api_workflow.log
+2025-08-17 17:16:32,803 - dicom_processing_pipeline - INFO - Datos de calibración cargados desde /home/aotal/github/pacs/data/linearizacion.csv: 6 puntos.
+2025-08-17 17:17:22,099 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348778202.1
+2025-08-17 17:17:22,628 - api_main - INFO - Fase 1: Guardado en temp_api_processing/5a6318af-5025-4f8a-abe6-a2a03f155134/Img_decompressed_SN2024H1_KVP70_mAs1.49_IE83_1.2.826.0.1.3680043.8.498.3189146492241776281141439536110562750.dcm
+2025-08-17 17:17:22,638 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348778426 - copia.1
+2025-08-17 17:17:23,110 - api_main - INFO - Fase 1: Guardado en temp_api_processing/5a6318af-5025-4f8a-abe6-a2a03f155134/Img_decompressed_SN2024H1_KVP70_mAs2.99_IE168_1.2.826.0.1.3680043.8.498.81340981701211988748134140899579446569.dcm
+2025-08-17 17:17:23,119 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348778426.1
+2025-08-17 17:17:23,588 - api_main - INFO - Fase 1: Guardado en temp_api_processing/5a6318af-5025-4f8a-abe6-a2a03f155134/Img_decompressed_SN2024H1_KVP70_mAs2.99_IE168_1.2.826.0.1.3680043.8.498.21999803214176711585980353497188094511.dcm
+2025-08-17 17:17:23,593 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs1.49_IE83_1.2.826.0.1.3680043.8.498.3189146492241776281141439536110562750.dcm
+2025-08-17 17:17:23,843 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 17:17:23,843 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs2.99_IE168_1.2.826.0.1.3680043.8.498.81340981701211988748134140899579446569.dcm
+2025-08-17 17:17:24,028 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 17:17:24,029 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs2.99_IE168_1.2.826.0.1.3680043.8.498.21999803214176711585980353497188094511.dcm
+2025-08-17 17:17:24,212 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 17:22:44,889 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348777817 - copia.1
+2025-08-17 17:22:45,372 - api_main - INFO - Fase 1: Guardado en temp_api_processing/f551db95-17f8-4263-a043-c4620753ce5a/Img_decompressed_SN2024H1_KVP70_mAs0.99_IE56_1.2.826.0.1.3680043.8.498.35703411945836534969162248618615965169.dcm
+2025-08-17 17:22:45,379 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348777817.1
+2025-08-17 17:22:45,810 - api_main - INFO - Fase 1: Guardado en temp_api_processing/f551db95-17f8-4263-a043-c4620753ce5a/Img_decompressed_SN2024H1_KVP70_mAs0.99_IE56_1.2.826.0.1.3680043.8.498.20294495577927943451951394894750572983.dcm
+2025-08-17 17:22:45,818 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348778202 - copia.1
+2025-08-17 17:22:46,262 - api_main - INFO - Fase 1: Guardado en temp_api_processing/f551db95-17f8-4263-a043-c4620753ce5a/Img_decompressed_SN2024H1_KVP70_mAs1.49_IE83_1.2.826.0.1.3680043.8.498.38299796934522376876284961861875739123.dcm
+2025-08-17 17:22:46,262 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs0.99_IE56_1.2.826.0.1.3680043.8.498.35703411945836534969162248618615965169.dcm
+2025-08-17 17:22:46,533 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 17:22:46,533 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs0.99_IE56_1.2.826.0.1.3680043.8.498.20294495577927943451951394894750572983.dcm
+2025-08-17 17:22:46,722 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 17:22:46,722 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs1.49_IE83_1.2.826.0.1.3680043.8.498.38299796934522376876284961861875739123.dcm
+2025-08-17 17:22:46,904 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 17:23:13,628 - root - INFO - Logging configurado. Nivel: INFO. Archivo de log: /home/aotal/github/pacs/api_workflow.log
+2025-08-17 17:23:15,036 - dicom_processing_pipeline - INFO - Datos de calibración cargados desde /home/aotal/github/pacs/data/linearizacion.csv: 6 puntos.
+2025-08-17 17:23:24,187 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348778202 - copia.1
+2025-08-17 17:23:24,702 - api_main - INFO - Fase 1: Guardado en temp_api_processing/7e16e283-0585-442d-b6a0-f7ba1c721480/Img_decompressed_SN2024H1_KVP70_mAs1.49_IE83_1.2.826.0.1.3680043.8.498.17332749042056685250221687884301008548.dcm
+2025-08-17 17:23:24,714 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348778202.1
+2025-08-17 17:23:25,185 - api_main - INFO - Fase 1: Guardado en temp_api_processing/7e16e283-0585-442d-b6a0-f7ba1c721480/Img_decompressed_SN2024H1_KVP70_mAs1.49_IE83_1.2.826.0.1.3680043.8.498.75452656030308364466093016592251944603.dcm
+2025-08-17 17:23:25,195 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348778426 - copia.1
+2025-08-17 17:23:25,661 - api_main - INFO - Fase 1: Guardado en temp_api_processing/7e16e283-0585-442d-b6a0-f7ba1c721480/Img_decompressed_SN2024H1_KVP70_mAs2.99_IE168_1.2.826.0.1.3680043.8.498.99263965787779386610723458565862539768.dcm
+2025-08-17 17:23:25,666 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs1.49_IE83_1.2.826.0.1.3680043.8.498.17332749042056685250221687884301008548.dcm
+2025-08-17 17:23:25,922 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 17:23:25,922 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs1.49_IE83_1.2.826.0.1.3680043.8.498.75452656030308364466093016592251944603.dcm
+2025-08-17 17:23:26,107 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 17:23:26,107 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs2.99_IE168_1.2.826.0.1.3680043.8.498.99263965787779386610723458565862539768.dcm
+2025-08-17 17:23:26,290 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 17:29:13,369 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348777817 - copia.1
+2025-08-17 17:29:13,818 - api_main - INFO - Fase 1: Guardado en temp_api_processing/3e27d657-616b-4a92-9f4d-c4bc92ee6930/Img_decompressed_SN2024H1_KVP70_mAs0.99_IE56_1.2.826.0.1.3680043.8.498.12750413410139135706735750890318634494.dcm
+2025-08-17 17:29:13,829 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348777817.1
+2025-08-17 17:29:14,276 - api_main - INFO - Fase 1: Guardado en temp_api_processing/3e27d657-616b-4a92-9f4d-c4bc92ee6930/Img_decompressed_SN2024H1_KVP70_mAs0.99_IE56_1.2.826.0.1.3680043.8.498.40402696089425973387080812496078895390.dcm
+2025-08-17 17:29:14,285 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348778202 - copia.1
+2025-08-17 17:29:16,210 - api_main - INFO - Fase 1: Guardado en temp_api_processing/3e27d657-616b-4a92-9f4d-c4bc92ee6930/Img_decompressed_SN2024H1_KVP70_mAs1.49_IE83_1.2.826.0.1.3680043.8.498.61270015791661693398848054295524937351.dcm
+2025-08-17 17:29:16,210 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs0.99_IE56_1.2.826.0.1.3680043.8.498.12750413410139135706735750890318634494.dcm
+2025-08-17 17:29:16,463 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 17:29:16,463 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs0.99_IE56_1.2.826.0.1.3680043.8.498.40402696089425973387080812496078895390.dcm
+2025-08-17 17:29:16,652 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 17:29:16,652 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs1.49_IE83_1.2.826.0.1.3680043.8.498.61270015791661693398848054295524937351.dcm
+2025-08-17 17:29:16,851 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 17:32:26,117 - root - INFO - Logging configurado. Nivel: INFO. Archivo de log: /home/aotal/github/pacs/api_workflow.log
+2025-08-17 17:32:27,571 - dicom_processing_pipeline - INFO - Datos de calibración cargados desde /home/aotal/github/pacs/data/linearizacion.csv: 6 puntos.
+2025-08-17 17:33:03,005 - root - INFO - Logging configurado. Nivel: INFO. Archivo de log: /home/aotal/github/pacs/api_workflow.log
+2025-08-17 17:33:04,338 - dicom_processing_pipeline - INFO - Datos de calibración cargados desde /home/aotal/github/pacs/data/linearizacion.csv: 6 puntos.
+2025-08-17 17:33:23,502 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348778426.1
+2025-08-17 17:33:23,998 - api_main - INFO - Fase 1: Guardado en temp_api_processing/6af9e96a-28c3-40ec-bf43-af8941d6216b/Img_decompressed_SN2024H1_KVP70_mAs2.99_IE168_1.2.826.0.1.3680043.8.498.8938862073633887094328872693638985681.dcm
+2025-08-17 17:33:24,008 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348778649 - copia.1
+2025-08-17 17:33:24,460 - api_main - INFO - Fase 1: Guardado en temp_api_processing/6af9e96a-28c3-40ec-bf43-af8941d6216b/Img_decompressed_SN2024H1_KVP70_mAs4.48_IE252_1.2.826.0.1.3680043.8.498.99701375198338843417500491394628187761.dcm
+2025-08-17 17:33:24,470 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348778649.1
+2025-08-17 17:33:24,938 - api_main - INFO - Fase 1: Guardado en temp_api_processing/6af9e96a-28c3-40ec-bf43-af8941d6216b/Img_decompressed_SN2024H1_KVP70_mAs4.48_IE252_1.2.826.0.1.3680043.8.498.30307221814785201519784476517594254839.dcm
+2025-08-17 17:33:24,942 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs2.99_IE168_1.2.826.0.1.3680043.8.498.8938862073633887094328872693638985681.dcm
+2025-08-17 17:33:25,211 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 17:33:25,211 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs4.48_IE252_1.2.826.0.1.3680043.8.498.99701375198338843417500491394628187761.dcm
+2025-08-17 17:33:25,407 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 17:33:25,407 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs4.48_IE252_1.2.826.0.1.3680043.8.498.30307221814785201519784476517594254839.dcm
+2025-08-17 17:33:25,584 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 19:01:13,406 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348777817 - copia.1
+2025-08-17 19:01:13,944 - api_main - INFO - Fase 1: Guardado en temp_api_processing/6248ad51-7fe5-4a9b-a863-9dd7afe0d454/Img_decompressed_SN2024H1_KVP70_mAs0.99_IE56_1.2.826.0.1.3680043.8.498.18637216759184642759530221224857561531.dcm
+2025-08-17 19:01:13,961 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348777817.1
+2025-08-17 19:01:14,498 - api_main - INFO - Fase 1: Guardado en temp_api_processing/6248ad51-7fe5-4a9b-a863-9dd7afe0d454/Img_decompressed_SN2024H1_KVP70_mAs0.99_IE56_1.2.826.0.1.3680043.8.498.35891138905463219042565622682218565698.dcm
+2025-08-17 19:01:14,516 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348778202 - copia.1
+2025-08-17 19:01:15,077 - api_main - INFO - Fase 1: Guardado en temp_api_processing/6248ad51-7fe5-4a9b-a863-9dd7afe0d454/Img_decompressed_SN2024H1_KVP70_mAs1.49_IE83_1.2.826.0.1.3680043.8.498.10574780942839192338864645353042218824.dcm
+2025-08-17 19:01:15,078 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs0.99_IE56_1.2.826.0.1.3680043.8.498.18637216759184642759530221224857561531.dcm
+2025-08-17 19:01:15,436 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 19:01:15,437 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs0.99_IE56_1.2.826.0.1.3680043.8.498.35891138905463219042565622682218565698.dcm
+2025-08-17 19:01:15,661 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 19:01:15,662 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs1.49_IE83_1.2.826.0.1.3680043.8.498.10574780942839192338864645353042218824.dcm
+2025-08-17 19:01:15,920 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 19:01:57,626 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348777817 - copia.1
+2025-08-17 19:01:58,351 - api_main - INFO - Fase 1: Guardado en temp_api_processing/60e1c862-94c5-4680-9bd3-7630ace4e45e/Img_decompressed_SN2024H1_KVP70_mAs0.99_IE56_1.2.826.0.1.3680043.8.498.37906037319603091197043265888440455579.dcm
+2025-08-17 19:01:58,364 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348777817.1
+2025-08-17 19:01:58,886 - api_main - INFO - Fase 1: Guardado en temp_api_processing/60e1c862-94c5-4680-9bd3-7630ace4e45e/Img_decompressed_SN2024H1_KVP70_mAs0.99_IE56_1.2.826.0.1.3680043.8.498.79107924990066224283308862212156800529.dcm
+2025-08-17 19:01:58,898 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348778202 - copia.1
+2025-08-17 19:01:59,397 - api_main - INFO - Fase 1: Guardado en temp_api_processing/60e1c862-94c5-4680-9bd3-7630ace4e45e/Img_decompressed_SN2024H1_KVP70_mAs1.49_IE83_1.2.826.0.1.3680043.8.498.32876454675717332813474370152244888304.dcm
+2025-08-17 19:01:59,412 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348778202.1
+2025-08-17 19:01:59,924 - api_main - INFO - Fase 1: Guardado en temp_api_processing/60e1c862-94c5-4680-9bd3-7630ace4e45e/Img_decompressed_SN2024H1_KVP70_mAs1.49_IE83_1.2.826.0.1.3680043.8.498.91908127332061619475837156939771532009.dcm
+2025-08-17 19:01:59,937 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348778426 - copia.1
+2025-08-17 19:02:00,434 - api_main - INFO - Fase 1: Guardado en temp_api_processing/60e1c862-94c5-4680-9bd3-7630ace4e45e/Img_decompressed_SN2024H1_KVP70_mAs2.99_IE168_1.2.826.0.1.3680043.8.498.56353264340771505429018238847020212293.dcm
+2025-08-17 19:02:00,447 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348778426.1
+2025-08-17 19:02:00,979 - api_main - INFO - Fase 1: Guardado en temp_api_processing/60e1c862-94c5-4680-9bd3-7630ace4e45e/Img_decompressed_SN2024H1_KVP70_mAs2.99_IE168_1.2.826.0.1.3680043.8.498.88691245651476993448263816011083617879.dcm
+2025-08-17 19:02:00,991 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348778649 - copia.1
+2025-08-17 19:02:01,506 - api_main - INFO - Fase 1: Guardado en temp_api_processing/60e1c862-94c5-4680-9bd3-7630ace4e45e/Img_decompressed_SN2024H1_KVP70_mAs4.48_IE252_1.2.826.0.1.3680043.8.498.71746108376309176274293221145583061137.dcm
+2025-08-17 19:02:01,520 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348778649.1
+2025-08-17 19:02:02,004 - api_main - INFO - Fase 1: Guardado en temp_api_processing/60e1c862-94c5-4680-9bd3-7630ace4e45e/Img_decompressed_SN2024H1_KVP70_mAs4.48_IE252_1.2.826.0.1.3680043.8.498.46227542432765594462936480521292804590.dcm
+2025-08-17 19:02:02,019 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348778878.1
+2025-08-17 19:02:02,508 - api_main - INFO - Fase 1: Guardado en temp_api_processing/60e1c862-94c5-4680-9bd3-7630ace4e45e/Img_decompressed_SN2024H1_KVP70_mAs5.59_IE317_1.2.826.0.1.3680043.8.498.7564823689947123812312221929049488156.dcm
+2025-08-17 19:02:02,522 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348779104.1
+2025-08-17 19:02:03,008 - api_main - INFO - Fase 1: Guardado en temp_api_processing/60e1c862-94c5-4680-9bd3-7630ace4e45e/Img_decompressed_SN2024H1_KVP70_mAs13.02_IE728_1.2.826.0.1.3680043.8.498.6699073575409683403631599313218938266.dcm
+2025-08-17 19:02:03,022 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348779313.1
+2025-08-17 19:02:03,541 - api_main - INFO - Fase 1: Guardado en temp_api_processing/60e1c862-94c5-4680-9bd3-7630ace4e45e/Img_decompressed_SN2024H1_KVP70_mAs30.02_IE1678_1.2.826.0.1.3680043.8.498.17049867383782142744500541920178384691.dcm
+2025-08-17 19:02:03,561 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348779544.1
+2025-08-17 19:02:04,090 - api_main - INFO - Fase 1: Guardado en temp_api_processing/60e1c862-94c5-4680-9bd3-7630ace4e45e/Img_decompressed_SN2024H1_KVP70_mAs80.02_IE4440_1.2.826.0.1.3680043.8.498.45773627298668732251096707345621307785.dcm
+2025-08-17 19:02:04,101 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348779742.1
+2025-08-17 19:02:04,602 - api_main - INFO - Fase 1: Guardado en temp_api_processing/60e1c862-94c5-4680-9bd3-7630ace4e45e/Img_decompressed_SN2024H1_KVP70_mAs1.49_IE84_1.2.826.0.1.3680043.8.498.869374072852187645464113843291791081.dcm
+2025-08-17 19:02:04,612 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348779965.1
+2025-08-17 19:02:05,132 - api_main - INFO - Fase 1: Guardado en temp_api_processing/60e1c862-94c5-4680-9bd3-7630ace4e45e/Img_decompressed_SN2024H1_KVP70_mAs1.49_IE84_1.2.826.0.1.3680043.8.498.9370875314576344350690582087046305997.dcm
+2025-08-17 19:02:05,142 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348780168.1
+2025-08-17 19:02:05,653 - api_main - INFO - Fase 1: Guardado en temp_api_processing/60e1c862-94c5-4680-9bd3-7630ace4e45e/Img_decompressed_SN2024H1_KVP70_mAs1.49_IE84_1.2.826.0.1.3680043.8.498.4720633504114353159990369318593977657.dcm
+2025-08-17 19:02:05,666 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348780400.1
+2025-08-17 19:02:06,173 - api_main - INFO - Fase 1: Guardado en temp_api_processing/60e1c862-94c5-4680-9bd3-7630ace4e45e/Img_decompressed_SN2024H1_KVP70_mAs1.49_IE84_1.2.826.0.1.3680043.8.498.77287389029421108889679281927329956435.dcm
+2025-08-17 19:02:06,184 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348780602.1
+2025-08-17 19:02:06,691 - api_main - INFO - Fase 1: Guardado en temp_api_processing/60e1c862-94c5-4680-9bd3-7630ace4e45e/Img_decompressed_SN2024H1_KVP70_mAs1.49_IE84_1.2.826.0.1.3680043.8.498.73034267131809502755375994646962194763.dcm
+2025-08-17 19:02:06,702 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348780827.1
+2025-08-17 19:02:07,205 - api_main - INFO - Fase 1: Guardado en temp_api_processing/60e1c862-94c5-4680-9bd3-7630ace4e45e/Img_decompressed_SN2024H1_KVP70_mAs2.99_IE168_1.2.826.0.1.3680043.8.498.15314748038203192596538883217974928246.dcm
+2025-08-17 19:02:07,218 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348781060.1
+2025-08-17 19:02:07,737 - api_main - INFO - Fase 1: Guardado en temp_api_processing/60e1c862-94c5-4680-9bd3-7630ace4e45e/Img_decompressed_SN2024H1_KVP70_mAs2.99_IE168_1.2.826.0.1.3680043.8.498.96622853590492598379646754862196018299.dcm
+2025-08-17 19:02:07,751 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348781293.1
+2025-08-17 19:02:08,256 - api_main - INFO - Fase 1: Guardado en temp_api_processing/60e1c862-94c5-4680-9bd3-7630ace4e45e/Img_decompressed_SN2024H1_KVP70_mAs2.99_IE168_1.2.826.0.1.3680043.8.498.3995420703558977759186534546445117380.dcm
+2025-08-17 19:02:08,268 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348781526.1
+2025-08-17 19:02:08,789 - api_main - INFO - Fase 1: Guardado en temp_api_processing/60e1c862-94c5-4680-9bd3-7630ace4e45e/Img_decompressed_SN2024H1_KVP70_mAs2.99_IE168_1.2.826.0.1.3680043.8.498.24462567046176825543088484948612198889.dcm
+2025-08-17 19:02:08,802 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348781774.1
+2025-08-17 19:02:09,297 - api_main - INFO - Fase 1: Guardado en temp_api_processing/60e1c862-94c5-4680-9bd3-7630ace4e45e/Img_decompressed_SN2024H1_KVP70_mAs2.99_IE168_1.2.826.0.1.3680043.8.498.757974404275070942719494667469185449.dcm
+2025-08-17 19:02:09,312 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348782010.1
+2025-08-17 19:02:09,871 - api_main - INFO - Fase 1: Guardado en temp_api_processing/60e1c862-94c5-4680-9bd3-7630ace4e45e/Img_decompressed_SN2024H1_KVP70_mAs5.59_IE317_1.2.826.0.1.3680043.8.498.44524219994148512467827627435400319507.dcm
+2025-08-17 19:02:09,886 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348782240.1
+2025-08-17 19:02:10,404 - api_main - INFO - Fase 1: Guardado en temp_api_processing/60e1c862-94c5-4680-9bd3-7630ace4e45e/Img_decompressed_SN2024H1_KVP70_mAs5.59_IE317_1.2.826.0.1.3680043.8.498.15184573881861651551725344848340228539.dcm
+2025-08-17 19:02:10,418 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348782474.1
+2025-08-17 19:02:10,945 - api_main - INFO - Fase 1: Guardado en temp_api_processing/60e1c862-94c5-4680-9bd3-7630ace4e45e/Img_decompressed_SN2024H1_KVP70_mAs5.59_IE317_1.2.826.0.1.3680043.8.498.93983528233177122941075985318798630870.dcm
+2025-08-17 19:02:10,958 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348782710.1
+2025-08-17 19:02:11,473 - api_main - INFO - Fase 1: Guardado en temp_api_processing/60e1c862-94c5-4680-9bd3-7630ace4e45e/Img_decompressed_SN2024H1_KVP70_mAs5.59_IE318_1.2.826.0.1.3680043.8.498.78818593463013176066926220285255810378.dcm
+2025-08-17 19:02:11,486 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348782939.1
+2025-08-17 19:02:11,989 - api_main - INFO - Fase 1: Guardado en temp_api_processing/60e1c862-94c5-4680-9bd3-7630ace4e45e/Img_decompressed_SN2024H1_KVP70_mAs5.59_IE317_1.2.826.0.1.3680043.8.498.8684798128268329414526056777718331635.dcm
+2025-08-17 19:02:12,001 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348783146.1
+2025-08-17 19:02:12,513 - api_main - INFO - Fase 1: Guardado en temp_api_processing/60e1c862-94c5-4680-9bd3-7630ace4e45e/Img_decompressed_SN2024H1_KVP70_mAs13.02_IE729_1.2.826.0.1.3680043.8.498.94691428356648449465413291118960033920.dcm
+2025-08-17 19:02:12,526 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348783380.1
+2025-08-17 19:02:13,059 - api_main - INFO - Fase 1: Guardado en temp_api_processing/60e1c862-94c5-4680-9bd3-7630ace4e45e/Img_decompressed_SN2024H1_KVP70_mAs13.02_IE729_1.2.826.0.1.3680043.8.498.79298907708264600643986519132330949125.dcm
+2025-08-17 19:02:13,073 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348783617.1
+2025-08-17 19:02:13,588 - api_main - INFO - Fase 1: Guardado en temp_api_processing/60e1c862-94c5-4680-9bd3-7630ace4e45e/Img_decompressed_SN2024H1_KVP70_mAs13.02_IE729_1.2.826.0.1.3680043.8.498.67749797944947254809071157940907315015.dcm
+2025-08-17 19:02:13,606 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348783851.1
+2025-08-17 19:02:14,143 - api_main - INFO - Fase 1: Guardado en temp_api_processing/60e1c862-94c5-4680-9bd3-7630ace4e45e/Img_decompressed_SN2024H1_KVP70_mAs13.02_IE729_1.2.826.0.1.3680043.8.498.38661308384521405312725552780671385765.dcm
+2025-08-17 19:02:14,156 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348784123.1
+2025-08-17 19:02:14,696 - api_main - INFO - Fase 1: Guardado en temp_api_processing/60e1c862-94c5-4680-9bd3-7630ace4e45e/Img_decompressed_SN2024H1_KVP70_mAs13.02_IE729_1.2.826.0.1.3680043.8.498.60006371710042687012546926581670547678.dcm
+2025-08-17 19:02:14,707 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348784368.1
+2025-08-17 19:02:15,277 - api_main - INFO - Fase 1: Guardado en temp_api_processing/60e1c862-94c5-4680-9bd3-7630ace4e45e/Img_decompressed_SN2024H1_KVP70_mAs3.78_IE159_1.2.826.0.1.3680043.8.498.97947632340293834969629411386173714345.dcm
+2025-08-17 19:02:15,290 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348784594.1
+2025-08-17 19:02:15,805 - api_main - INFO - Fase 1: Guardado en temp_api_processing/60e1c862-94c5-4680-9bd3-7630ace4e45e/Img_decompressed_SN2024H1_KVP70_mAs3.78_IE159_1.2.826.0.1.3680043.8.498.18293640212966491360623686983836327092.dcm
+2025-08-17 19:02:15,818 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348784829.1
+2025-08-17 19:02:16,374 - api_main - INFO - Fase 1: Guardado en temp_api_processing/60e1c862-94c5-4680-9bd3-7630ace4e45e/Img_decompressed_SN2024H1_KVP70_mAs3.78_IE159_1.2.826.0.1.3680043.8.498.90981088609188087935101308597425723824.dcm
+2025-08-17 19:02:16,391 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348785055.1
+2025-08-17 19:02:16,981 - api_main - INFO - Fase 1: Guardado en temp_api_processing/60e1c862-94c5-4680-9bd3-7630ace4e45e/Img_decompressed_SN2024H1_KVP70_mAs3.78_IE158_1.2.826.0.1.3680043.8.498.18610286839117771438107151662126098468.dcm
+2025-08-17 19:02:17,002 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348785263.1
+2025-08-17 19:02:17,588 - api_main - INFO - Fase 1: Guardado en temp_api_processing/60e1c862-94c5-4680-9bd3-7630ace4e45e/Img_decompressed_SN2024H1_KVP70_mAs3.78_IE159_1.2.826.0.1.3680043.8.498.54205854043029731671224653804667537710.dcm
+2025-08-17 19:02:17,608 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348785499.1
+2025-08-17 19:02:18,331 - api_main - INFO - Fase 1: Guardado en temp_api_processing/60e1c862-94c5-4680-9bd3-7630ace4e45e/Img_decompressed_SN2024H1_KVP70_mAs2.79_IE157_1.2.826.0.1.3680043.8.498.52861259274630853926701366607393954795.dcm
+2025-08-17 19:02:18,331 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs0.99_IE56_1.2.826.0.1.3680043.8.498.37906037319603091197043265888440455579.dcm
+2025-08-17 19:02:18,867 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 19:02:18,867 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs0.99_IE56_1.2.826.0.1.3680043.8.498.79107924990066224283308862212156800529.dcm
+2025-08-17 19:02:19,108 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 19:02:19,109 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs1.49_IE83_1.2.826.0.1.3680043.8.498.32876454675717332813474370152244888304.dcm
+2025-08-17 19:02:19,346 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 19:02:19,347 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs1.49_IE83_1.2.826.0.1.3680043.8.498.91908127332061619475837156939771532009.dcm
+2025-08-17 19:02:19,584 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 19:02:19,585 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs2.99_IE168_1.2.826.0.1.3680043.8.498.56353264340771505429018238847020212293.dcm
+2025-08-17 19:02:19,837 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 19:02:19,838 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs2.99_IE168_1.2.826.0.1.3680043.8.498.88691245651476993448263816011083617879.dcm
+2025-08-17 19:02:20,048 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 19:02:20,048 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs4.48_IE252_1.2.826.0.1.3680043.8.498.71746108376309176274293221145583061137.dcm
+2025-08-17 19:02:20,274 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 19:02:20,274 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs4.48_IE252_1.2.826.0.1.3680043.8.498.46227542432765594462936480521292804590.dcm
+2025-08-17 19:02:20,473 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 19:02:20,474 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs5.59_IE317_1.2.826.0.1.3680043.8.498.7564823689947123812312221929049488156.dcm
+2025-08-17 19:02:20,697 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 19:02:20,697 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs13.02_IE728_1.2.826.0.1.3680043.8.498.6699073575409683403631599313218938266.dcm
+2025-08-17 19:02:21,004 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 19:02:21,004 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs30.02_IE1678_1.2.826.0.1.3680043.8.498.17049867383782142744500541920178384691.dcm
+2025-08-17 19:02:21,249 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 19:02:21,249 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs80.02_IE4440_1.2.826.0.1.3680043.8.498.45773627298668732251096707345621307785.dcm
+2025-08-17 19:02:21,585 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 19:02:21,585 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs1.49_IE84_1.2.826.0.1.3680043.8.498.869374072852187645464113843291791081.dcm
+2025-08-17 19:02:21,909 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 19:02:21,909 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs1.49_IE84_1.2.826.0.1.3680043.8.498.9370875314576344350690582087046305997.dcm
+2025-08-17 19:02:22,147 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 19:02:22,148 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs1.49_IE84_1.2.826.0.1.3680043.8.498.4720633504114353159990369318593977657.dcm
+2025-08-17 19:02:22,409 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 19:02:22,409 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs1.49_IE84_1.2.826.0.1.3680043.8.498.77287389029421108889679281927329956435.dcm
+2025-08-17 19:02:22,671 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 19:02:22,671 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs1.49_IE84_1.2.826.0.1.3680043.8.498.73034267131809502755375994646962194763.dcm
+2025-08-17 19:02:23,018 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 19:02:23,019 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs2.99_IE168_1.2.826.0.1.3680043.8.498.15314748038203192596538883217974928246.dcm
+2025-08-17 19:02:23,405 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 19:02:23,406 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs2.99_IE168_1.2.826.0.1.3680043.8.498.96622853590492598379646754862196018299.dcm
+2025-08-17 19:02:23,632 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 19:02:23,632 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs2.99_IE168_1.2.826.0.1.3680043.8.498.3995420703558977759186534546445117380.dcm
+2025-08-17 19:02:23,879 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 19:02:23,879 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs2.99_IE168_1.2.826.0.1.3680043.8.498.24462567046176825543088484948612198889.dcm
+2025-08-17 19:02:24,122 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 19:02:24,123 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs2.99_IE168_1.2.826.0.1.3680043.8.498.757974404275070942719494667469185449.dcm
+2025-08-17 19:02:24,386 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 19:02:24,387 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs5.59_IE317_1.2.826.0.1.3680043.8.498.44524219994148512467827627435400319507.dcm
+2025-08-17 19:02:24,678 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 19:02:24,679 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs5.59_IE317_1.2.826.0.1.3680043.8.498.15184573881861651551725344848340228539.dcm
+2025-08-17 19:02:24,923 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 19:02:24,923 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs5.59_IE317_1.2.826.0.1.3680043.8.498.93983528233177122941075985318798630870.dcm
+2025-08-17 19:02:25,199 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 19:02:25,199 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs5.59_IE318_1.2.826.0.1.3680043.8.498.78818593463013176066926220285255810378.dcm
+2025-08-17 19:02:25,442 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 19:02:25,443 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs5.59_IE317_1.2.826.0.1.3680043.8.498.8684798128268329414526056777718331635.dcm
+2025-08-17 19:02:25,682 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 19:02:25,682 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs13.02_IE729_1.2.826.0.1.3680043.8.498.94691428356648449465413291118960033920.dcm
+2025-08-17 19:02:25,902 - api_main - INFO - Fase 2: Clase predicha 'MTF'
+2025-08-17 19:02:25,903 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs13.02_IE729_1.2.826.0.1.3680043.8.498.79298907708264600643986519132330949125.dcm
+2025-08-17 19:02:26,114 - api_main - INFO - Fase 2: Clase predicha 'MTF'
+2025-08-17 19:02:26,115 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs13.02_IE729_1.2.826.0.1.3680043.8.498.67749797944947254809071157940907315015.dcm
+2025-08-17 19:02:26,336 - api_main - INFO - Fase 2: Clase predicha 'MTF'
+2025-08-17 19:02:26,336 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs13.02_IE729_1.2.826.0.1.3680043.8.498.38661308384521405312725552780671385765.dcm
+2025-08-17 19:02:26,560 - api_main - INFO - Fase 2: Clase predicha 'MTF'
+2025-08-17 19:02:26,561 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs13.02_IE729_1.2.826.0.1.3680043.8.498.60006371710042687012546926581670547678.dcm
+2025-08-17 19:02:26,831 - api_main - INFO - Fase 2: Clase predicha 'MTF'
+2025-08-17 19:02:26,831 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs3.78_IE159_1.2.826.0.1.3680043.8.498.97947632340293834969629411386173714345.dcm
+2025-08-17 19:02:27,091 - api_main - INFO - Fase 2: Clase predicha 'TOR'
+2025-08-17 19:02:27,092 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs3.78_IE159_1.2.826.0.1.3680043.8.498.18293640212966491360623686983836327092.dcm
+2025-08-17 19:02:27,453 - api_main - INFO - Fase 2: Clase predicha 'TOR'
+2025-08-17 19:02:27,454 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs3.78_IE159_1.2.826.0.1.3680043.8.498.90981088609188087935101308597425723824.dcm
+2025-08-17 19:02:27,686 - api_main - INFO - Fase 2: Clase predicha 'TOR'
+2025-08-17 19:02:27,687 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs3.78_IE158_1.2.826.0.1.3680043.8.498.18610286839117771438107151662126098468.dcm
+2025-08-17 19:02:27,934 - api_main - INFO - Fase 2: Clase predicha 'TOR'
+2025-08-17 19:02:27,934 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs3.78_IE159_1.2.826.0.1.3680043.8.498.54205854043029731671224653804667537710.dcm
+2025-08-17 19:02:28,161 - api_main - INFO - Fase 2: Clase predicha 'TOR'
+2025-08-17 19:02:28,161 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs2.79_IE157_1.2.826.0.1.3680043.8.498.52861259274630853926701366607393954795.dcm
+2025-08-17 19:02:28,370 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:10:17,711 - root - INFO - Logging configurado. Nivel: INFO. Archivo de log: /home/aotal/github/pacs/api_workflow.log
+2025-08-17 22:10:20,033 - dicom_processing_pipeline - INFO - Datos de calibración cargados desde /home/aotal/github/pacs/data/linearizacion.csv: 6 puntos.
+2025-08-17 22:17:38,080 - root - INFO - Logging configurado. Nivel: INFO. Archivo de log: /home/aotal/github/pacs/api_workflow.log
+2025-08-17 22:17:39,651 - dicom_processing_pipeline - INFO - Datos de calibración cargados desde /home/aotal/github/pacs/data/linearizacion.csv: 6 puntos.
+2025-08-17 22:18:38,709 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635483504446.1748858302825.1
+2025-08-17 22:18:39,068 - api_main - INFO - Fase 1: Guardado en temp_api_processing/3a7926db-fc58-4a6a-90b8-c3a14c66de23/Img_decompressed_SN201033_KVP70_mAs0.98_IE58_1.2.826.0.1.3680043.8.498.14767235765984591879137362263864007386.dcm
+2025-08-17 22:18:39,074 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635483504446.1748858302938.1
+2025-08-17 22:18:39,407 - api_main - INFO - Fase 1: Guardado en temp_api_processing/3a7926db-fc58-4a6a-90b8-c3a14c66de23/Img_decompressed_SN201033_KVP70_mAs1.98_IE116_1.2.826.0.1.3680043.8.498.68891081820329874476941274198465324148.dcm
+2025-08-17 22:18:39,414 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635483504446.1748858303031.1
+2025-08-17 22:18:39,784 - api_main - INFO - Fase 1: Guardado en temp_api_processing/3a7926db-fc58-4a6a-90b8-c3a14c66de23/Img_decompressed_SN201033_KVP70_mAs3.99_IE232_1.2.826.0.1.3680043.8.498.7027171459959147943489903971558603242.dcm
+2025-08-17 22:18:39,788 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN201033_KVP70_mAs0.98_IE58_1.2.826.0.1.3680043.8.498.14767235765984591879137362263864007386.dcm
+2025-08-17 22:18:40,076 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:18:40,076 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN201033_KVP70_mAs1.98_IE116_1.2.826.0.1.3680043.8.498.68891081820329874476941274198465324148.dcm
+2025-08-17 22:18:40,247 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:18:40,247 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN201033_KVP70_mAs3.99_IE232_1.2.826.0.1.3680043.8.498.7027171459959147943489903971558603242.dcm
+2025-08-17 22:18:40,406 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:24:16,997 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635482625724.1743414238593.1
+2025-08-17 22:24:17,436 - api_main - INFO - Fase 1: Guardado en temp_api_processing/fff07b37-c00f-46ac-ac88-8e01547153b8/Img_decompressed_SN1938BX_KVP70_mAs0.99_IE46_1.2.826.0.1.3680043.8.498.10100576408733661101853634766342400625.dcm
+2025-08-17 22:24:17,440 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635482625724.1743414238699.1
+2025-08-17 22:24:17,888 - api_main - INFO - Fase 1: Guardado en temp_api_processing/fff07b37-c00f-46ac-ac88-8e01547153b8/Img_decompressed_SN1938BX_KVP70_mAs1.99_IE93_1.2.826.0.1.3680043.8.498.23755303761357409803992179580961627178.dcm
+2025-08-17 22:24:17,893 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635482625724.1743414238792.1
+2025-08-17 22:24:18,332 - api_main - INFO - Fase 1: Guardado en temp_api_processing/fff07b37-c00f-46ac-ac88-8e01547153b8/Img_decompressed_SN1938BX_KVP70_mAs3.19_IE149_1.2.826.0.1.3680043.8.498.69189034388573076584327875173467603502.dcm
+2025-08-17 22:24:18,337 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635482625724.1743414238878.1
+2025-08-17 22:24:18,798 - api_main - INFO - Fase 1: Guardado en temp_api_processing/fff07b37-c00f-46ac-ac88-8e01547153b8/Img_decompressed_SN1938BX_KVP70_mAs4.99_IE233_1.2.826.0.1.3680043.8.498.30901848399964496805200294241816659680.dcm
+2025-08-17 22:24:18,807 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635482625724.1743414238968.1
+2025-08-17 22:24:19,253 - api_main - INFO - Fase 1: Guardado en temp_api_processing/fff07b37-c00f-46ac-ac88-8e01547153b8/Img_decompressed_SN1938BX_KVP70_mAs10.02_IE468_1.2.826.0.1.3680043.8.498.84627093141940013037571890288900218960.dcm
+2025-08-17 22:24:19,253 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN1938BX_KVP70_mAs0.99_IE46_1.2.826.0.1.3680043.8.498.10100576408733661101853634766342400625.dcm
+2025-08-17 22:24:19,498 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:24:19,502 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN1938BX_KVP70_mAs1.99_IE93_1.2.826.0.1.3680043.8.498.23755303761357409803992179580961627178.dcm
+2025-08-17 22:24:19,705 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:24:19,706 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN1938BX_KVP70_mAs3.19_IE149_1.2.826.0.1.3680043.8.498.69189034388573076584327875173467603502.dcm
+2025-08-17 22:24:19,929 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:24:19,932 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN1938BX_KVP70_mAs4.99_IE233_1.2.826.0.1.3680043.8.498.30901848399964496805200294241816659680.dcm
+2025-08-17 22:24:20,145 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:24:20,147 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN1938BX_KVP70_mAs10.02_IE468_1.2.826.0.1.3680043.8.498.84627093141940013037571890288900218960.dcm
+2025-08-17 22:24:20,372 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:27:50,113 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635483504446.1748858303124.1
+2025-08-17 22:27:50,447 - api_main - INFO - Fase 1: Guardado en temp_api_processing/1029f3b5-c65b-4c9b-97a1-7412cbc06462/Img_decompressed_SN201033_KVP70_mAs7.98_IE463_1.2.826.0.1.3680043.8.498.9812375100714361113049890083397537839.dcm
+2025-08-17 22:27:50,451 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635483504446.1748858303214.1
+2025-08-17 22:27:50,760 - api_main - INFO - Fase 1: Guardado en temp_api_processing/1029f3b5-c65b-4c9b-97a1-7412cbc06462/Img_decompressed_SN201033_KVP70_mAs15.97_IE931_1.2.826.0.1.3680043.8.498.54522997806923069444623128604297258933.dcm
+2025-08-17 22:27:50,767 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635483504446.1748858303304.1
+2025-08-17 22:27:51,089 - api_main - INFO - Fase 1: Guardado en temp_api_processing/1029f3b5-c65b-4c9b-97a1-7412cbc06462/Img_decompressed_SN201033_KVP70_mAs31.97_IE1864_1.2.826.0.1.3680043.8.498.14658675174928175065635274706623257098.dcm
+2025-08-17 22:27:51,097 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635483504446.1748858303398.1
+2025-08-17 22:27:51,429 - api_main - INFO - Fase 1: Guardado en temp_api_processing/1029f3b5-c65b-4c9b-97a1-7412cbc06462/Img_decompressed_SN201033_KVP70_mAs39.97_IE2329_1.2.826.0.1.3680043.8.498.88238540017785303594271626938806474260.dcm
+2025-08-17 22:27:51,429 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN201033_KVP70_mAs7.98_IE463_1.2.826.0.1.3680043.8.498.9812375100714361113049890083397537839.dcm
+2025-08-17 22:27:51,633 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:27:51,633 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN201033_KVP70_mAs15.97_IE931_1.2.826.0.1.3680043.8.498.54522997806923069444623128604297258933.dcm
+2025-08-17 22:27:51,812 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:27:51,813 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN201033_KVP70_mAs31.97_IE1864_1.2.826.0.1.3680043.8.498.14658675174928175065635274706623257098.dcm
+2025-08-17 22:27:51,969 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:27:51,969 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN201033_KVP70_mAs39.97_IE2329_1.2.826.0.1.3680043.8.498.88238540017785303594271626938806474260.dcm
+2025-08-17 22:27:52,125 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:28:17,828 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635483504446.1748858305570.1
+2025-08-17 22:28:18,207 - api_main - INFO - Fase 1: Guardado en temp_api_processing/3bb66bba-a4f4-46ab-b392-da98503cce52/Img_decompressed_SN201033_KVP70_mAs3.19_IE165_1.2.826.0.1.3680043.8.498.18147500755522993427115732092883574494.dcm
+2025-08-17 22:28:18,212 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635483504446.1748858305664.1
+2025-08-17 22:28:18,528 - api_main - INFO - Fase 1: Guardado en temp_api_processing/3bb66bba-a4f4-46ab-b392-da98503cce52/Img_decompressed_SN201033_KVP70_mAs3.19_IE165_1.2.826.0.1.3680043.8.498.56663329193309972866474168096957810638.dcm
+2025-08-17 22:28:18,533 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635483504446.1748858305763.1
+2025-08-17 22:28:18,843 - api_main - INFO - Fase 1: Guardado en temp_api_processing/3bb66bba-a4f4-46ab-b392-da98503cce52/Img_decompressed_SN201033_KVP70_mAs3.19_IE165_1.2.826.0.1.3680043.8.498.77008628817797990175390476691281778336.dcm
+2025-08-17 22:28:18,850 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635483504446.1748858305854.1
+2025-08-17 22:28:19,161 - api_main - INFO - Fase 1: Guardado en temp_api_processing/3bb66bba-a4f4-46ab-b392-da98503cce52/Img_decompressed_SN201033_KVP70_mAs3.19_IE165_1.2.826.0.1.3680043.8.498.30914279977586574576330561961619778934.dcm
+2025-08-17 22:28:19,162 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN201033_KVP70_mAs3.19_IE165_1.2.826.0.1.3680043.8.498.18147500755522993427115732092883574494.dcm
+2025-08-17 22:28:19,378 - api_main - INFO - Fase 2: Clase predicha 'TOR'
+2025-08-17 22:28:19,378 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN201033_KVP70_mAs3.19_IE165_1.2.826.0.1.3680043.8.498.56663329193309972866474168096957810638.dcm
+2025-08-17 22:28:19,536 - api_main - INFO - Fase 2: Clase predicha 'TOR'
+2025-08-17 22:28:19,536 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN201033_KVP70_mAs3.19_IE165_1.2.826.0.1.3680043.8.498.77008628817797990175390476691281778336.dcm
+2025-08-17 22:28:19,689 - api_main - INFO - Fase 2: Clase predicha 'TOR'
+2025-08-17 22:28:19,689 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN201033_KVP70_mAs3.19_IE165_1.2.826.0.1.3680043.8.498.30914279977586574576330561961619778934.dcm
+2025-08-17 22:28:19,844 - api_main - INFO - Fase 2: Clase predicha 'TOR'
+2025-08-17 22:31:29,128 - root - INFO - Logging configurado. Nivel: INFO. Archivo de log: /home/aotal/github/pacs/api_workflow.log
+2025-08-17 22:31:30,621 - dicom_processing_pipeline - INFO - Datos de calibración cargados desde /home/aotal/github/pacs/data/linearizacion.csv: 6 puntos.
+2025-08-17 22:32:05,688 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348778649 - copia.1
+2025-08-17 22:32:06,179 - api_main - INFO - Fase 1: Guardado en temp_api_processing/a1d79b62-b6e7-4988-b4b0-29d2a033641a/Img_decompressed_SN2024H1_KVP70_mAs4.48_IE252_1.2.826.0.1.3680043.8.498.49272722374733018050714402656435337326.dcm
+2025-08-17 22:32:06,184 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs4.48_IE252_1.2.826.0.1.3680043.8.498.49272722374733018050714402656435337326.dcm
+2025-08-17 22:32:06,468 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:32:06,606 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.49272722374733018050714402656435337326. Realizando normalización manual min/max.
+2025-08-17 22:32:06,727 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348778649.1
+2025-08-17 22:32:07,171 - api_main - INFO - Fase 1: Guardado en temp_api_processing/a1d79b62-b6e7-4988-b4b0-29d2a033641a/Img_decompressed_SN2024H1_KVP70_mAs4.48_IE252_1.2.826.0.1.3680043.8.498.39076668085628761987020498591751708925.dcm
+2025-08-17 22:32:07,171 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs4.48_IE252_1.2.826.0.1.3680043.8.498.39076668085628761987020498591751708925.dcm
+2025-08-17 22:32:07,350 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:32:07,453 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.39076668085628761987020498591751708925. Realizando normalización manual min/max.
+2025-08-17 22:32:07,537 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348778878.1
+2025-08-17 22:32:07,979 - api_main - INFO - Fase 1: Guardado en temp_api_processing/a1d79b62-b6e7-4988-b4b0-29d2a033641a/Img_decompressed_SN2024H1_KVP70_mAs5.59_IE317_1.2.826.0.1.3680043.8.498.21042802383764517234806797055631710684.dcm
+2025-08-17 22:32:07,980 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs5.59_IE317_1.2.826.0.1.3680043.8.498.21042802383764517234806797055631710684.dcm
+2025-08-17 22:32:08,164 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:32:08,311 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.21042802383764517234806797055631710684. Realizando normalización manual min/max.
+2025-08-17 22:32:08,421 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348779104.1
+2025-08-17 22:32:08,893 - api_main - INFO - Fase 1: Guardado en temp_api_processing/a1d79b62-b6e7-4988-b4b0-29d2a033641a/Img_decompressed_SN2024H1_KVP70_mAs13.02_IE728_1.2.826.0.1.3680043.8.498.99950427437992451704493530582268448459.dcm
+2025-08-17 22:32:08,893 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs13.02_IE728_1.2.826.0.1.3680043.8.498.99950427437992451704493530582268448459.dcm
+2025-08-17 22:32:09,080 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:32:09,183 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.99950427437992451704493530582268448459. Realizando normalización manual min/max.
+2025-08-17 22:32:29,568 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348777817 - copia.1
+2025-08-17 22:32:30,043 - api_main - INFO - Fase 1: Guardado en temp_api_processing/32fc2035-80c9-49a8-a2ec-0c42bfd966c3/Img_decompressed_SN2024H1_KVP70_mAs0.99_IE56_1.2.826.0.1.3680043.8.498.26887151149129593817598555936772448070.dcm
+2025-08-17 22:32:30,043 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs0.99_IE56_1.2.826.0.1.3680043.8.498.26887151149129593817598555936772448070.dcm
+2025-08-17 22:32:30,289 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:32:30,411 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.26887151149129593817598555936772448070. Realizando normalización manual min/max.
+2025-08-17 22:32:30,518 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348777817.1
+2025-08-17 22:32:30,964 - api_main - INFO - Fase 1: Guardado en temp_api_processing/32fc2035-80c9-49a8-a2ec-0c42bfd966c3/Img_decompressed_SN2024H1_KVP70_mAs0.99_IE56_1.2.826.0.1.3680043.8.498.75447689297389543738720753839211331342.dcm
+2025-08-17 22:32:30,965 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs0.99_IE56_1.2.826.0.1.3680043.8.498.75447689297389543738720753839211331342.dcm
+2025-08-17 22:32:31,152 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:32:31,254 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.75447689297389543738720753839211331342. Realizando normalización manual min/max.
+2025-08-17 22:32:31,348 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348778202 - copia.1
+2025-08-17 22:32:31,793 - api_main - INFO - Fase 1: Guardado en temp_api_processing/32fc2035-80c9-49a8-a2ec-0c42bfd966c3/Img_decompressed_SN2024H1_KVP70_mAs1.49_IE83_1.2.826.0.1.3680043.8.498.26132147911255958549778974731642640083.dcm
+2025-08-17 22:32:31,793 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs1.49_IE83_1.2.826.0.1.3680043.8.498.26132147911255958549778974731642640083.dcm
+2025-08-17 22:32:31,976 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:32:32,087 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.26132147911255958549778974731642640083. Realizando normalización manual min/max.
+2025-08-17 22:32:32,183 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348778202.1
+2025-08-17 22:32:32,658 - api_main - INFO - Fase 1: Guardado en temp_api_processing/32fc2035-80c9-49a8-a2ec-0c42bfd966c3/Img_decompressed_SN2024H1_KVP70_mAs1.49_IE83_1.2.826.0.1.3680043.8.498.24959531402527621777565333995406609236.dcm
+2025-08-17 22:32:32,658 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs1.49_IE83_1.2.826.0.1.3680043.8.498.24959531402527621777565333995406609236.dcm
+2025-08-17 22:32:32,911 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:32:33,021 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.24959531402527621777565333995406609236. Realizando normalización manual min/max.
+2025-08-17 22:32:33,132 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348778426 - copia.1
+2025-08-17 22:32:33,582 - api_main - INFO - Fase 1: Guardado en temp_api_processing/32fc2035-80c9-49a8-a2ec-0c42bfd966c3/Img_decompressed_SN2024H1_KVP70_mAs2.99_IE168_1.2.826.0.1.3680043.8.498.27648542799336956496369628536805867002.dcm
+2025-08-17 22:32:33,582 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs2.99_IE168_1.2.826.0.1.3680043.8.498.27648542799336956496369628536805867002.dcm
+2025-08-17 22:32:33,763 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:32:33,865 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.27648542799336956496369628536805867002. Realizando normalización manual min/max.
+2025-08-17 22:32:33,955 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348778426.1
+2025-08-17 22:32:34,393 - api_main - INFO - Fase 1: Guardado en temp_api_processing/32fc2035-80c9-49a8-a2ec-0c42bfd966c3/Img_decompressed_SN2024H1_KVP70_mAs2.99_IE168_1.2.826.0.1.3680043.8.498.63462632503789252348942607294870774242.dcm
+2025-08-17 22:32:34,393 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs2.99_IE168_1.2.826.0.1.3680043.8.498.63462632503789252348942607294870774242.dcm
+2025-08-17 22:32:34,578 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:32:34,682 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.63462632503789252348942607294870774242. Realizando normalización manual min/max.
+2025-08-17 22:32:34,777 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348778649 - copia.1
+2025-08-17 22:32:35,238 - api_main - INFO - Fase 1: Guardado en temp_api_processing/32fc2035-80c9-49a8-a2ec-0c42bfd966c3/Img_decompressed_SN2024H1_KVP70_mAs4.48_IE252_1.2.826.0.1.3680043.8.498.4192866540861004974640955952420994583.dcm
+2025-08-17 22:32:35,238 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs4.48_IE252_1.2.826.0.1.3680043.8.498.4192866540861004974640955952420994583.dcm
+2025-08-17 22:32:35,467 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:32:35,622 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.4192866540861004974640955952420994583. Realizando normalización manual min/max.
+2025-08-17 22:32:35,750 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348778649.1
+2025-08-17 22:32:36,239 - api_main - INFO - Fase 1: Guardado en temp_api_processing/32fc2035-80c9-49a8-a2ec-0c42bfd966c3/Img_decompressed_SN2024H1_KVP70_mAs4.48_IE252_1.2.826.0.1.3680043.8.498.63773333523763663548106327031977975771.dcm
+2025-08-17 22:32:36,239 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs4.48_IE252_1.2.826.0.1.3680043.8.498.63773333523763663548106327031977975771.dcm
+2025-08-17 22:32:36,464 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:32:36,572 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.63773333523763663548106327031977975771. Realizando normalización manual min/max.
+2025-08-17 22:32:36,672 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348778878.1
+2025-08-17 22:32:37,137 - api_main - INFO - Fase 1: Guardado en temp_api_processing/32fc2035-80c9-49a8-a2ec-0c42bfd966c3/Img_decompressed_SN2024H1_KVP70_mAs5.59_IE317_1.2.826.0.1.3680043.8.498.80910242234641955605604051932739634870.dcm
+2025-08-17 22:32:37,138 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs5.59_IE317_1.2.826.0.1.3680043.8.498.80910242234641955605604051932739634870.dcm
+2025-08-17 22:32:37,387 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:32:37,510 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.80910242234641955605604051932739634870. Realizando normalización manual min/max.
+2025-08-17 22:32:37,637 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348779104.1
+2025-08-17 22:32:38,077 - api_main - INFO - Fase 1: Guardado en temp_api_processing/32fc2035-80c9-49a8-a2ec-0c42bfd966c3/Img_decompressed_SN2024H1_KVP70_mAs13.02_IE728_1.2.826.0.1.3680043.8.498.55700241077394004433481665939999881753.dcm
+2025-08-17 22:32:38,077 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs13.02_IE728_1.2.826.0.1.3680043.8.498.55700241077394004433481665939999881753.dcm
+2025-08-17 22:32:38,266 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:32:38,370 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.55700241077394004433481665939999881753. Realizando normalización manual min/max.
+2025-08-17 22:32:38,468 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348779313.1
+2025-08-17 22:32:38,926 - api_main - INFO - Fase 1: Guardado en temp_api_processing/32fc2035-80c9-49a8-a2ec-0c42bfd966c3/Img_decompressed_SN2024H1_KVP70_mAs30.02_IE1678_1.2.826.0.1.3680043.8.498.11442151501394745504033954503939191215.dcm
+2025-08-17 22:32:38,926 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs30.02_IE1678_1.2.826.0.1.3680043.8.498.11442151501394745504033954503939191215.dcm
+2025-08-17 22:32:39,104 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:32:39,209 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.11442151501394745504033954503939191215. Realizando normalización manual min/max.
+2025-08-17 22:32:39,319 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348779544.1
+2025-08-17 22:32:39,808 - api_main - INFO - Fase 1: Guardado en temp_api_processing/32fc2035-80c9-49a8-a2ec-0c42bfd966c3/Img_decompressed_SN2024H1_KVP70_mAs80.02_IE4440_1.2.826.0.1.3680043.8.498.64697046705975493445211785479651392320.dcm
+2025-08-17 22:32:39,809 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs80.02_IE4440_1.2.826.0.1.3680043.8.498.64697046705975493445211785479651392320.dcm
+2025-08-17 22:32:39,991 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:32:40,095 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.64697046705975493445211785479651392320. Realizando normalización manual min/max.
+2025-08-17 22:32:40,188 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348779742.1
+2025-08-17 22:32:40,638 - api_main - INFO - Fase 1: Guardado en temp_api_processing/32fc2035-80c9-49a8-a2ec-0c42bfd966c3/Img_decompressed_SN2024H1_KVP70_mAs1.49_IE84_1.2.826.0.1.3680043.8.498.89245178879876771066609482275876257879.dcm
+2025-08-17 22:32:40,638 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs1.49_IE84_1.2.826.0.1.3680043.8.498.89245178879876771066609482275876257879.dcm
+2025-08-17 22:32:40,819 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:32:40,919 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.89245178879876771066609482275876257879. Realizando normalización manual min/max.
+2025-08-17 22:32:41,009 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348779965.1
+2025-08-17 22:32:41,541 - api_main - INFO - Fase 1: Guardado en temp_api_processing/32fc2035-80c9-49a8-a2ec-0c42bfd966c3/Img_decompressed_SN2024H1_KVP70_mAs1.49_IE84_1.2.826.0.1.3680043.8.498.59585247477986914409536299235408435809.dcm
+2025-08-17 22:32:41,542 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs1.49_IE84_1.2.826.0.1.3680043.8.498.59585247477986914409536299235408435809.dcm
+2025-08-17 22:32:41,811 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:32:41,925 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.59585247477986914409536299235408435809. Realizando normalización manual min/max.
+2025-08-17 22:32:42,039 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348780168.1
+2025-08-17 22:32:42,498 - api_main - INFO - Fase 1: Guardado en temp_api_processing/32fc2035-80c9-49a8-a2ec-0c42bfd966c3/Img_decompressed_SN2024H1_KVP70_mAs1.49_IE84_1.2.826.0.1.3680043.8.498.55758608692868597574061522382934959313.dcm
+2025-08-17 22:32:42,498 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs1.49_IE84_1.2.826.0.1.3680043.8.498.55758608692868597574061522382934959313.dcm
+2025-08-17 22:32:42,682 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:32:42,785 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.55758608692868597574061522382934959313. Realizando normalización manual min/max.
+2025-08-17 22:32:42,879 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348780400.1
+2025-08-17 22:32:43,320 - api_main - INFO - Fase 1: Guardado en temp_api_processing/32fc2035-80c9-49a8-a2ec-0c42bfd966c3/Img_decompressed_SN2024H1_KVP70_mAs1.49_IE84_1.2.826.0.1.3680043.8.498.11973492315285206759762946777379466491.dcm
+2025-08-17 22:32:43,320 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs1.49_IE84_1.2.826.0.1.3680043.8.498.11973492315285206759762946777379466491.dcm
+2025-08-17 22:32:43,539 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:32:43,648 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.11973492315285206759762946777379466491. Realizando normalización manual min/max.
+2025-08-17 22:32:43,759 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348780602.1
+2025-08-17 22:32:44,210 - api_main - INFO - Fase 1: Guardado en temp_api_processing/32fc2035-80c9-49a8-a2ec-0c42bfd966c3/Img_decompressed_SN2024H1_KVP70_mAs1.49_IE84_1.2.826.0.1.3680043.8.498.27263576757014669599501918471597796978.dcm
+2025-08-17 22:32:44,211 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs1.49_IE84_1.2.826.0.1.3680043.8.498.27263576757014669599501918471597796978.dcm
+2025-08-17 22:32:44,433 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:32:44,538 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.27263576757014669599501918471597796978. Realizando normalización manual min/max.
+2025-08-17 22:32:44,646 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348780827.1
+2025-08-17 22:32:45,113 - api_main - INFO - Fase 1: Guardado en temp_api_processing/32fc2035-80c9-49a8-a2ec-0c42bfd966c3/Img_decompressed_SN2024H1_KVP70_mAs2.99_IE168_1.2.826.0.1.3680043.8.498.39800554672922346359243446220012470547.dcm
+2025-08-17 22:32:45,114 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs2.99_IE168_1.2.826.0.1.3680043.8.498.39800554672922346359243446220012470547.dcm
+2025-08-17 22:32:45,298 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:32:45,409 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.39800554672922346359243446220012470547. Realizando normalización manual min/max.
+2025-08-17 22:32:45,511 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348781060.1
+2025-08-17 22:32:45,969 - api_main - INFO - Fase 1: Guardado en temp_api_processing/32fc2035-80c9-49a8-a2ec-0c42bfd966c3/Img_decompressed_SN2024H1_KVP70_mAs2.99_IE168_1.2.826.0.1.3680043.8.498.4050528157344459159872563444509570907.dcm
+2025-08-17 22:32:45,970 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs2.99_IE168_1.2.826.0.1.3680043.8.498.4050528157344459159872563444509570907.dcm
+2025-08-17 22:32:46,160 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:32:46,262 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.4050528157344459159872563444509570907. Realizando normalización manual min/max.
+2025-08-17 22:32:46,363 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348781293.1
+2025-08-17 22:32:46,812 - api_main - INFO - Fase 1: Guardado en temp_api_processing/32fc2035-80c9-49a8-a2ec-0c42bfd966c3/Img_decompressed_SN2024H1_KVP70_mAs2.99_IE168_1.2.826.0.1.3680043.8.498.290069343808401058896146995954294112.dcm
+2025-08-17 22:32:46,812 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs2.99_IE168_1.2.826.0.1.3680043.8.498.290069343808401058896146995954294112.dcm
+2025-08-17 22:32:46,994 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:32:47,103 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.290069343808401058896146995954294112. Realizando normalización manual min/max.
+2025-08-17 22:32:47,207 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348781526.1
+2025-08-17 22:32:47,676 - api_main - INFO - Fase 1: Guardado en temp_api_processing/32fc2035-80c9-49a8-a2ec-0c42bfd966c3/Img_decompressed_SN2024H1_KVP70_mAs2.99_IE168_1.2.826.0.1.3680043.8.498.92903005614219682404917698553041717014.dcm
+2025-08-17 22:32:47,676 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs2.99_IE168_1.2.826.0.1.3680043.8.498.92903005614219682404917698553041717014.dcm
+2025-08-17 22:32:47,948 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:32:48,065 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.92903005614219682404917698553041717014. Realizando normalización manual min/max.
+2025-08-17 22:32:48,189 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348781774.1
+2025-08-17 22:32:48,644 - api_main - INFO - Fase 1: Guardado en temp_api_processing/32fc2035-80c9-49a8-a2ec-0c42bfd966c3/Img_decompressed_SN2024H1_KVP70_mAs2.99_IE168_1.2.826.0.1.3680043.8.498.64545362955848751912717230309326157310.dcm
+2025-08-17 22:32:48,645 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs2.99_IE168_1.2.826.0.1.3680043.8.498.64545362955848751912717230309326157310.dcm
+2025-08-17 22:32:48,829 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:32:48,931 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.64545362955848751912717230309326157310. Realizando normalización manual min/max.
+2025-08-17 22:32:49,046 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348782010.1
+2025-08-17 22:32:49,496 - api_main - INFO - Fase 1: Guardado en temp_api_processing/32fc2035-80c9-49a8-a2ec-0c42bfd966c3/Img_decompressed_SN2024H1_KVP70_mAs5.59_IE317_1.2.826.0.1.3680043.8.498.73838939005853933232043286609229345585.dcm
+2025-08-17 22:32:49,496 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs5.59_IE317_1.2.826.0.1.3680043.8.498.73838939005853933232043286609229345585.dcm
+2025-08-17 22:32:49,697 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:32:49,822 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.73838939005853933232043286609229345585. Realizando normalización manual min/max.
+2025-08-17 22:32:49,978 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348782240.1
+2025-08-17 22:32:50,435 - api_main - INFO - Fase 1: Guardado en temp_api_processing/32fc2035-80c9-49a8-a2ec-0c42bfd966c3/Img_decompressed_SN2024H1_KVP70_mAs5.59_IE317_1.2.826.0.1.3680043.8.498.85282250444515301939165001873723838806.dcm
+2025-08-17 22:32:50,435 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs5.59_IE317_1.2.826.0.1.3680043.8.498.85282250444515301939165001873723838806.dcm
+2025-08-17 22:32:50,632 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:32:50,734 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.85282250444515301939165001873723838806. Realizando normalización manual min/max.
+2025-08-17 22:32:50,848 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348782474.1
+2025-08-17 22:32:51,291 - api_main - INFO - Fase 1: Guardado en temp_api_processing/32fc2035-80c9-49a8-a2ec-0c42bfd966c3/Img_decompressed_SN2024H1_KVP70_mAs5.59_IE317_1.2.826.0.1.3680043.8.498.28858351701980285724703099322314436807.dcm
+2025-08-17 22:32:51,292 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs5.59_IE317_1.2.826.0.1.3680043.8.498.28858351701980285724703099322314436807.dcm
+2025-08-17 22:32:51,463 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:32:51,566 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.28858351701980285724703099322314436807. Realizando normalización manual min/max.
+2025-08-17 22:32:51,701 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348782710.1
+2025-08-17 22:32:52,154 - api_main - INFO - Fase 1: Guardado en temp_api_processing/32fc2035-80c9-49a8-a2ec-0c42bfd966c3/Img_decompressed_SN2024H1_KVP70_mAs5.59_IE318_1.2.826.0.1.3680043.8.498.12582397394185808411800998732321362734.dcm
+2025-08-17 22:32:52,154 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs5.59_IE318_1.2.826.0.1.3680043.8.498.12582397394185808411800998732321362734.dcm
+2025-08-17 22:32:52,337 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:32:52,444 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.12582397394185808411800998732321362734. Realizando normalización manual min/max.
+2025-08-17 22:32:52,570 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348782939.1
+2025-08-17 22:32:53,017 - api_main - INFO - Fase 1: Guardado en temp_api_processing/32fc2035-80c9-49a8-a2ec-0c42bfd966c3/Img_decompressed_SN2024H1_KVP70_mAs5.59_IE317_1.2.826.0.1.3680043.8.498.13372136684813764422059144113389067009.dcm
+2025-08-17 22:32:53,017 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs5.59_IE317_1.2.826.0.1.3680043.8.498.13372136684813764422059144113389067009.dcm
+2025-08-17 22:32:53,199 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:32:53,300 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.13372136684813764422059144113389067009. Realizando normalización manual min/max.
+2025-08-17 22:32:53,413 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348783146.1
+2025-08-17 22:32:53,896 - api_main - INFO - Fase 1: Guardado en temp_api_processing/32fc2035-80c9-49a8-a2ec-0c42bfd966c3/Img_decompressed_SN2024H1_KVP70_mAs13.02_IE729_1.2.826.0.1.3680043.8.498.19869671660120770685773021094877222189.dcm
+2025-08-17 22:32:53,896 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs13.02_IE729_1.2.826.0.1.3680043.8.498.19869671660120770685773021094877222189.dcm
+2025-08-17 22:32:54,245 - api_main - INFO - Fase 2: Clase predicha 'MTF'
+2025-08-17 22:32:54,366 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.19869671660120770685773021094877222189. Realizando normalización manual min/max.
+2025-08-17 22:32:54,519 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348783380.1
+2025-08-17 22:32:54,973 - api_main - INFO - Fase 1: Guardado en temp_api_processing/32fc2035-80c9-49a8-a2ec-0c42bfd966c3/Img_decompressed_SN2024H1_KVP70_mAs13.02_IE729_1.2.826.0.1.3680043.8.498.95273149637871601176266679516831014225.dcm
+2025-08-17 22:32:54,973 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs13.02_IE729_1.2.826.0.1.3680043.8.498.95273149637871601176266679516831014225.dcm
+2025-08-17 22:32:55,170 - api_main - INFO - Fase 2: Clase predicha 'MTF'
+2025-08-17 22:32:55,272 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.95273149637871601176266679516831014225. Realizando normalización manual min/max.
+2025-08-17 22:32:55,378 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348783617.1
+2025-08-17 22:32:55,822 - api_main - INFO - Fase 1: Guardado en temp_api_processing/32fc2035-80c9-49a8-a2ec-0c42bfd966c3/Img_decompressed_SN2024H1_KVP70_mAs13.02_IE729_1.2.826.0.1.3680043.8.498.13726246042481047155098897293274434384.dcm
+2025-08-17 22:32:55,823 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs13.02_IE729_1.2.826.0.1.3680043.8.498.13726246042481047155098897293274434384.dcm
+2025-08-17 22:32:55,998 - api_main - INFO - Fase 2: Clase predicha 'MTF'
+2025-08-17 22:32:56,100 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.13726246042481047155098897293274434384. Realizando normalización manual min/max.
+2025-08-17 22:32:56,213 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348783851.1
+2025-08-17 22:32:56,658 - api_main - INFO - Fase 1: Guardado en temp_api_processing/32fc2035-80c9-49a8-a2ec-0c42bfd966c3/Img_decompressed_SN2024H1_KVP70_mAs13.02_IE729_1.2.826.0.1.3680043.8.498.36979958431199504423376567124444214428.dcm
+2025-08-17 22:32:56,658 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs13.02_IE729_1.2.826.0.1.3680043.8.498.36979958431199504423376567124444214428.dcm
+2025-08-17 22:32:56,846 - api_main - INFO - Fase 2: Clase predicha 'MTF'
+2025-08-17 22:32:56,948 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.36979958431199504423376567124444214428. Realizando normalización manual min/max.
+2025-08-17 22:32:57,064 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348784123.1
+2025-08-17 22:32:57,505 - api_main - INFO - Fase 1: Guardado en temp_api_processing/32fc2035-80c9-49a8-a2ec-0c42bfd966c3/Img_decompressed_SN2024H1_KVP70_mAs13.02_IE729_1.2.826.0.1.3680043.8.498.58005464957131488453092914702444670907.dcm
+2025-08-17 22:32:57,505 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs13.02_IE729_1.2.826.0.1.3680043.8.498.58005464957131488453092914702444670907.dcm
+2025-08-17 22:32:57,698 - api_main - INFO - Fase 2: Clase predicha 'MTF'
+2025-08-17 22:32:57,801 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.58005464957131488453092914702444670907. Realizando normalización manual min/max.
+2025-08-17 22:32:57,920 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348784368.1
+2025-08-17 22:32:58,406 - api_main - INFO - Fase 1: Guardado en temp_api_processing/32fc2035-80c9-49a8-a2ec-0c42bfd966c3/Img_decompressed_SN2024H1_KVP70_mAs3.78_IE159_1.2.826.0.1.3680043.8.498.69188046585536564052235932940663009458.dcm
+2025-08-17 22:32:58,407 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs3.78_IE159_1.2.826.0.1.3680043.8.498.69188046585536564052235932940663009458.dcm
+2025-08-17 22:32:58,779 - api_main - INFO - Fase 2: Clase predicha 'TOR'
+2025-08-17 22:32:58,907 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.69188046585536564052235932940663009458. Realizando normalización manual min/max.
+2025-08-17 22:32:59,060 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348784594.1
+2025-08-17 22:32:59,520 - api_main - INFO - Fase 1: Guardado en temp_api_processing/32fc2035-80c9-49a8-a2ec-0c42bfd966c3/Img_decompressed_SN2024H1_KVP70_mAs3.78_IE159_1.2.826.0.1.3680043.8.498.3200918904692146715201678729669325859.dcm
+2025-08-17 22:32:59,520 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs3.78_IE159_1.2.826.0.1.3680043.8.498.3200918904692146715201678729669325859.dcm
+2025-08-17 22:32:59,712 - api_main - INFO - Fase 2: Clase predicha 'TOR'
+2025-08-17 22:32:59,813 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.3200918904692146715201678729669325859. Realizando normalización manual min/max.
+2025-08-17 22:32:59,938 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348784829.1
+2025-08-17 22:33:00,379 - api_main - INFO - Fase 1: Guardado en temp_api_processing/32fc2035-80c9-49a8-a2ec-0c42bfd966c3/Img_decompressed_SN2024H1_KVP70_mAs3.78_IE159_1.2.826.0.1.3680043.8.498.43454106924636478580287825752471549873.dcm
+2025-08-17 22:33:00,380 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs3.78_IE159_1.2.826.0.1.3680043.8.498.43454106924636478580287825752471549873.dcm
+2025-08-17 22:33:00,586 - api_main - INFO - Fase 2: Clase predicha 'TOR'
+2025-08-17 22:33:00,690 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.43454106924636478580287825752471549873. Realizando normalización manual min/max.
+2025-08-17 22:33:00,838 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348785055.1
+2025-08-17 22:33:01,277 - api_main - INFO - Fase 1: Guardado en temp_api_processing/32fc2035-80c9-49a8-a2ec-0c42bfd966c3/Img_decompressed_SN2024H1_KVP70_mAs3.78_IE158_1.2.826.0.1.3680043.8.498.43591550798412403488664630162955278514.dcm
+2025-08-17 22:33:01,278 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs3.78_IE158_1.2.826.0.1.3680043.8.498.43591550798412403488664630162955278514.dcm
+2025-08-17 22:33:01,483 - api_main - INFO - Fase 2: Clase predicha 'TOR'
+2025-08-17 22:33:01,586 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.43591550798412403488664630162955278514. Realizando normalización manual min/max.
+2025-08-17 22:33:01,708 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348785263.1
+2025-08-17 22:33:02,145 - api_main - INFO - Fase 1: Guardado en temp_api_processing/32fc2035-80c9-49a8-a2ec-0c42bfd966c3/Img_decompressed_SN2024H1_KVP70_mAs3.78_IE159_1.2.826.0.1.3680043.8.498.66283891570922746738385684956934121933.dcm
+2025-08-17 22:33:02,146 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs3.78_IE159_1.2.826.0.1.3680043.8.498.66283891570922746738385684956934121933.dcm
+2025-08-17 22:33:02,321 - api_main - INFO - Fase 2: Clase predicha 'TOR'
+2025-08-17 22:33:02,422 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.66283891570922746738385684956934121933. Realizando normalización manual min/max.
+2025-08-17 22:33:02,539 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348785499.1
+2025-08-17 22:33:03,043 - api_main - INFO - Fase 1: Guardado en temp_api_processing/32fc2035-80c9-49a8-a2ec-0c42bfd966c3/Img_decompressed_SN2024H1_KVP70_mAs2.79_IE157_1.2.826.0.1.3680043.8.498.60333369899894444675571336757779758960.dcm
+2025-08-17 22:33:03,043 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs2.79_IE157_1.2.826.0.1.3680043.8.498.60333369899894444675571336757779758960.dcm
+2025-08-17 22:33:03,401 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:33:03,538 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.60333369899894444675571336757779758960. Realizando normalización manual min/max.
+2025-08-17 22:33:58,632 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348777817 - copia.1
+2025-08-17 22:33:59,114 - api_main - INFO - Fase 1: Guardado en temp_api_processing/cccce15b-71b7-4634-9e34-410fc80f20ad/Img_decompressed_SN2024H1_KVP70_mAs0.99_IE56_1.2.826.0.1.3680043.8.498.5352079815092817660183110426293691930.dcm
+2025-08-17 22:33:59,114 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs0.99_IE56_1.2.826.0.1.3680043.8.498.5352079815092817660183110426293691930.dcm
+2025-08-17 22:33:59,343 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:33:59,455 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.5352079815092817660183110426293691930. Realizando normalización manual min/max.
+2025-08-17 22:33:59,571 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348777817.1
+2025-08-17 22:34:00,033 - api_main - INFO - Fase 1: Guardado en temp_api_processing/cccce15b-71b7-4634-9e34-410fc80f20ad/Img_decompressed_SN2024H1_KVP70_mAs0.99_IE56_1.2.826.0.1.3680043.8.498.14399546395764835140665288227425070096.dcm
+2025-08-17 22:34:00,033 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs0.99_IE56_1.2.826.0.1.3680043.8.498.14399546395764835140665288227425070096.dcm
+2025-08-17 22:34:00,318 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:34:00,465 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.14399546395764835140665288227425070096. Realizando normalización manual min/max.
+2025-08-17 22:34:00,583 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348778202 - copia.1
+2025-08-17 22:34:01,076 - api_main - INFO - Fase 1: Guardado en temp_api_processing/cccce15b-71b7-4634-9e34-410fc80f20ad/Img_decompressed_SN2024H1_KVP70_mAs1.49_IE83_1.2.826.0.1.3680043.8.498.5273462670853927099436101959502207640.dcm
+2025-08-17 22:34:01,077 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs1.49_IE83_1.2.826.0.1.3680043.8.498.5273462670853927099436101959502207640.dcm
+2025-08-17 22:34:01,327 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:34:01,463 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.5273462670853927099436101959502207640. Realizando normalización manual min/max.
+2025-08-17 22:34:01,566 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348778202.1
+2025-08-17 22:34:02,066 - api_main - INFO - Fase 1: Guardado en temp_api_processing/cccce15b-71b7-4634-9e34-410fc80f20ad/Img_decompressed_SN2024H1_KVP70_mAs1.49_IE83_1.2.826.0.1.3680043.8.498.47360109956544066519611921987780744100.dcm
+2025-08-17 22:34:02,066 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs1.49_IE83_1.2.826.0.1.3680043.8.498.47360109956544066519611921987780744100.dcm
+2025-08-17 22:34:02,324 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:34:02,438 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.47360109956544066519611921987780744100. Realizando normalización manual min/max.
+2025-08-17 22:34:02,551 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348778426 - copia.1
+2025-08-17 22:34:03,015 - api_main - INFO - Fase 1: Guardado en temp_api_processing/cccce15b-71b7-4634-9e34-410fc80f20ad/Img_decompressed_SN2024H1_KVP70_mAs2.99_IE168_1.2.826.0.1.3680043.8.498.68362285692843810957347236743129089600.dcm
+2025-08-17 22:34:03,015 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs2.99_IE168_1.2.826.0.1.3680043.8.498.68362285692843810957347236743129089600.dcm
+2025-08-17 22:34:03,197 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:34:03,297 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.68362285692843810957347236743129089600. Realizando normalización manual min/max.
+2025-08-17 22:34:03,385 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348778426.1
+2025-08-17 22:34:03,821 - api_main - INFO - Fase 1: Guardado en temp_api_processing/cccce15b-71b7-4634-9e34-410fc80f20ad/Img_decompressed_SN2024H1_KVP70_mAs2.99_IE168_1.2.826.0.1.3680043.8.498.23648885474015920955434923108316228073.dcm
+2025-08-17 22:34:03,822 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs2.99_IE168_1.2.826.0.1.3680043.8.498.23648885474015920955434923108316228073.dcm
+2025-08-17 22:34:04,017 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:34:04,143 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.23648885474015920955434923108316228073. Realizando normalización manual min/max.
+2025-08-17 22:34:04,247 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348778649 - copia.1
+2025-08-17 22:34:04,698 - api_main - INFO - Fase 1: Guardado en temp_api_processing/cccce15b-71b7-4634-9e34-410fc80f20ad/Img_decompressed_SN2024H1_KVP70_mAs4.48_IE252_1.2.826.0.1.3680043.8.498.92316404230821194070586950131874354289.dcm
+2025-08-17 22:34:04,698 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs4.48_IE252_1.2.826.0.1.3680043.8.498.92316404230821194070586950131874354289.dcm
+2025-08-17 22:34:04,870 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:34:04,968 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.92316404230821194070586950131874354289. Realizando normalización manual min/max.
+2025-08-17 22:34:05,056 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348778649.1
+2025-08-17 22:34:05,514 - api_main - INFO - Fase 1: Guardado en temp_api_processing/cccce15b-71b7-4634-9e34-410fc80f20ad/Img_decompressed_SN2024H1_KVP70_mAs4.48_IE252_1.2.826.0.1.3680043.8.498.13397602322497530276110848454475476257.dcm
+2025-08-17 22:34:05,515 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs4.48_IE252_1.2.826.0.1.3680043.8.498.13397602322497530276110848454475476257.dcm
+2025-08-17 22:34:05,717 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:34:05,825 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.13397602322497530276110848454475476257. Realizando normalización manual min/max.
+2025-08-17 22:34:05,941 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348778878.1
+2025-08-17 22:34:06,415 - api_main - INFO - Fase 1: Guardado en temp_api_processing/cccce15b-71b7-4634-9e34-410fc80f20ad/Img_decompressed_SN2024H1_KVP70_mAs5.59_IE317_1.2.826.0.1.3680043.8.498.52496642863850825313431821804972976591.dcm
+2025-08-17 22:34:06,415 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs5.59_IE317_1.2.826.0.1.3680043.8.498.52496642863850825313431821804972976591.dcm
+2025-08-17 22:34:06,693 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:34:06,811 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.52496642863850825313431821804972976591. Realizando normalización manual min/max.
+2025-08-17 22:34:06,907 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348779104.1
+2025-08-17 22:34:07,368 - api_main - INFO - Fase 1: Guardado en temp_api_processing/cccce15b-71b7-4634-9e34-410fc80f20ad/Img_decompressed_SN2024H1_KVP70_mAs13.02_IE728_1.2.826.0.1.3680043.8.498.59754771514412116486007536317949596359.dcm
+2025-08-17 22:34:07,368 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs13.02_IE728_1.2.826.0.1.3680043.8.498.59754771514412116486007536317949596359.dcm
+2025-08-17 22:34:07,543 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:34:07,644 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.59754771514412116486007536317949596359. Realizando normalización manual min/max.
+2025-08-17 22:34:07,735 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348779313.1
+2025-08-17 22:34:08,210 - api_main - INFO - Fase 1: Guardado en temp_api_processing/cccce15b-71b7-4634-9e34-410fc80f20ad/Img_decompressed_SN2024H1_KVP70_mAs30.02_IE1678_1.2.826.0.1.3680043.8.498.46363085236745333270875426698983632239.dcm
+2025-08-17 22:34:08,210 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs30.02_IE1678_1.2.826.0.1.3680043.8.498.46363085236745333270875426698983632239.dcm
+2025-08-17 22:34:08,439 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:34:08,553 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.46363085236745333270875426698983632239. Realizando normalización manual min/max.
+2025-08-17 22:34:08,658 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348779544.1
+2025-08-17 22:34:09,121 - api_main - INFO - Fase 1: Guardado en temp_api_processing/cccce15b-71b7-4634-9e34-410fc80f20ad/Img_decompressed_SN2024H1_KVP70_mAs80.02_IE4440_1.2.826.0.1.3680043.8.498.81548410814225241485065001883163625471.dcm
+2025-08-17 22:34:09,122 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs80.02_IE4440_1.2.826.0.1.3680043.8.498.81548410814225241485065001883163625471.dcm
+2025-08-17 22:34:09,302 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:34:09,400 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.81548410814225241485065001883163625471. Realizando normalización manual min/max.
+2025-08-17 22:34:09,492 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348779742.1
+2025-08-17 22:34:09,952 - api_main - INFO - Fase 1: Guardado en temp_api_processing/cccce15b-71b7-4634-9e34-410fc80f20ad/Img_decompressed_SN2024H1_KVP70_mAs1.49_IE84_1.2.826.0.1.3680043.8.498.33831123188388927594833290379944177621.dcm
+2025-08-17 22:34:09,953 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs1.49_IE84_1.2.826.0.1.3680043.8.498.33831123188388927594833290379944177621.dcm
+2025-08-17 22:34:10,182 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:34:10,307 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.33831123188388927594833290379944177621. Realizando normalización manual min/max.
+2025-08-17 22:34:10,412 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348779965.1
+2025-08-17 22:34:10,903 - api_main - INFO - Fase 1: Guardado en temp_api_processing/cccce15b-71b7-4634-9e34-410fc80f20ad/Img_decompressed_SN2024H1_KVP70_mAs1.49_IE84_1.2.826.0.1.3680043.8.498.80266507686820232705693650665994379414.dcm
+2025-08-17 22:34:10,903 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs1.49_IE84_1.2.826.0.1.3680043.8.498.80266507686820232705693650665994379414.dcm
+2025-08-17 22:34:11,083 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:34:11,192 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.80266507686820232705693650665994379414. Realizando normalización manual min/max.
+2025-08-17 22:34:11,282 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348780168.1
+2025-08-17 22:34:11,738 - api_main - INFO - Fase 1: Guardado en temp_api_processing/cccce15b-71b7-4634-9e34-410fc80f20ad/Img_decompressed_SN2024H1_KVP70_mAs1.49_IE84_1.2.826.0.1.3680043.8.498.11416809798077963245586566561830435843.dcm
+2025-08-17 22:34:11,738 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs1.49_IE84_1.2.826.0.1.3680043.8.498.11416809798077963245586566561830435843.dcm
+2025-08-17 22:34:11,921 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:34:12,022 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.11416809798077963245586566561830435843. Realizando normalización manual min/max.
+2025-08-17 22:34:12,121 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348780400.1
+2025-08-17 22:34:12,575 - api_main - INFO - Fase 1: Guardado en temp_api_processing/cccce15b-71b7-4634-9e34-410fc80f20ad/Img_decompressed_SN2024H1_KVP70_mAs1.49_IE84_1.2.826.0.1.3680043.8.498.33891758475505791491922787768258805208.dcm
+2025-08-17 22:34:12,575 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs1.49_IE84_1.2.826.0.1.3680043.8.498.33891758475505791491922787768258805208.dcm
+2025-08-17 22:34:12,743 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:34:12,846 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.33891758475505791491922787768258805208. Realizando normalización manual min/max.
+2025-08-17 22:34:12,933 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348780602.1
+2025-08-17 22:34:13,400 - api_main - INFO - Fase 1: Guardado en temp_api_processing/cccce15b-71b7-4634-9e34-410fc80f20ad/Img_decompressed_SN2024H1_KVP70_mAs1.49_IE84_1.2.826.0.1.3680043.8.498.42625908892567347761305024502800374252.dcm
+2025-08-17 22:34:13,400 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs1.49_IE84_1.2.826.0.1.3680043.8.498.42625908892567347761305024502800374252.dcm
+2025-08-17 22:34:13,579 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:34:13,680 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.42625908892567347761305024502800374252. Realizando normalización manual min/max.
+2025-08-17 22:34:13,767 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348780827.1
+2025-08-17 22:34:14,219 - api_main - INFO - Fase 1: Guardado en temp_api_processing/cccce15b-71b7-4634-9e34-410fc80f20ad/Img_decompressed_SN2024H1_KVP70_mAs2.99_IE168_1.2.826.0.1.3680043.8.498.70527212473785197507605368245435311677.dcm
+2025-08-17 22:34:14,219 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs2.99_IE168_1.2.826.0.1.3680043.8.498.70527212473785197507605368245435311677.dcm
+2025-08-17 22:34:14,468 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:34:14,582 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.70527212473785197507605368245435311677. Realizando normalización manual min/max.
+2025-08-17 22:34:14,696 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348781060.1
+2025-08-17 22:34:15,139 - api_main - INFO - Fase 1: Guardado en temp_api_processing/cccce15b-71b7-4634-9e34-410fc80f20ad/Img_decompressed_SN2024H1_KVP70_mAs2.99_IE168_1.2.826.0.1.3680043.8.498.85890637939856371628552058327442621818.dcm
+2025-08-17 22:34:15,140 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs2.99_IE168_1.2.826.0.1.3680043.8.498.85890637939856371628552058327442621818.dcm
+2025-08-17 22:34:15,316 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:34:15,416 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.85890637939856371628552058327442621818. Realizando normalización manual min/max.
+2025-08-17 22:34:15,505 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348781293.1
+2025-08-17 22:34:15,949 - api_main - INFO - Fase 1: Guardado en temp_api_processing/cccce15b-71b7-4634-9e34-410fc80f20ad/Img_decompressed_SN2024H1_KVP70_mAs2.99_IE168_1.2.826.0.1.3680043.8.498.58676693506657992330115515038389459686.dcm
+2025-08-17 22:34:15,950 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs2.99_IE168_1.2.826.0.1.3680043.8.498.58676693506657992330115515038389459686.dcm
+2025-08-17 22:34:16,117 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:34:16,216 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.58676693506657992330115515038389459686. Realizando normalización manual min/max.
+2025-08-17 22:34:16,307 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348781526.1
+2025-08-17 22:34:16,789 - api_main - INFO - Fase 1: Guardado en temp_api_processing/cccce15b-71b7-4634-9e34-410fc80f20ad/Img_decompressed_SN2024H1_KVP70_mAs2.99_IE168_1.2.826.0.1.3680043.8.498.6077032771482178662634940289346858411.dcm
+2025-08-17 22:34:16,790 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs2.99_IE168_1.2.826.0.1.3680043.8.498.6077032771482178662634940289346858411.dcm
+2025-08-17 22:34:17,136 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:34:17,260 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.6077032771482178662634940289346858411. Realizando normalización manual min/max.
+2025-08-17 22:34:17,397 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348781774.1
+2025-08-17 22:34:17,882 - api_main - INFO - Fase 1: Guardado en temp_api_processing/cccce15b-71b7-4634-9e34-410fc80f20ad/Img_decompressed_SN2024H1_KVP70_mAs2.99_IE168_1.2.826.0.1.3680043.8.498.43947184314358373927708712734693490586.dcm
+2025-08-17 22:34:17,882 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs2.99_IE168_1.2.826.0.1.3680043.8.498.43947184314358373927708712734693490586.dcm
+2025-08-17 22:34:18,058 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:34:18,158 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.43947184314358373927708712734693490586. Realizando normalización manual min/max.
+2025-08-17 22:34:18,262 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348782010.1
+2025-08-17 22:34:18,702 - api_main - INFO - Fase 1: Guardado en temp_api_processing/cccce15b-71b7-4634-9e34-410fc80f20ad/Img_decompressed_SN2024H1_KVP70_mAs5.59_IE317_1.2.826.0.1.3680043.8.498.27541171845318363866709566732586767300.dcm
+2025-08-17 22:34:18,702 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs5.59_IE317_1.2.826.0.1.3680043.8.498.27541171845318363866709566732586767300.dcm
+2025-08-17 22:34:18,899 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:34:18,999 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.27541171845318363866709566732586767300. Realizando normalización manual min/max.
+2025-08-17 22:34:19,134 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348782240.1
+2025-08-17 22:34:19,575 - api_main - INFO - Fase 1: Guardado en temp_api_processing/cccce15b-71b7-4634-9e34-410fc80f20ad/Img_decompressed_SN2024H1_KVP70_mAs5.59_IE317_1.2.826.0.1.3680043.8.498.19397981468583967836868970083009314039.dcm
+2025-08-17 22:34:19,575 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs5.59_IE317_1.2.826.0.1.3680043.8.498.19397981468583967836868970083009314039.dcm
+2025-08-17 22:34:19,755 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:34:19,856 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.19397981468583967836868970083009314039. Realizando normalización manual min/max.
+2025-08-17 22:34:19,962 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348782474.1
+2025-08-17 22:34:20,403 - api_main - INFO - Fase 1: Guardado en temp_api_processing/cccce15b-71b7-4634-9e34-410fc80f20ad/Img_decompressed_SN2024H1_KVP70_mAs5.59_IE317_1.2.826.0.1.3680043.8.498.82529493268215225382373748235382347578.dcm
+2025-08-17 22:34:20,403 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs5.59_IE317_1.2.826.0.1.3680043.8.498.82529493268215225382373748235382347578.dcm
+2025-08-17 22:34:20,594 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:34:20,702 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.82529493268215225382373748235382347578. Realizando normalización manual min/max.
+2025-08-17 22:34:20,814 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348782710.1
+2025-08-17 22:34:21,328 - api_main - INFO - Fase 1: Guardado en temp_api_processing/cccce15b-71b7-4634-9e34-410fc80f20ad/Img_decompressed_SN2024H1_KVP70_mAs5.59_IE318_1.2.826.0.1.3680043.8.498.54894706386885088224697574189761517697.dcm
+2025-08-17 22:34:21,329 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs5.59_IE318_1.2.826.0.1.3680043.8.498.54894706386885088224697574189761517697.dcm
+2025-08-17 22:34:21,623 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:34:21,757 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.54894706386885088224697574189761517697. Realizando normalización manual min/max.
+2025-08-17 22:34:21,869 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348782939.1
+2025-08-17 22:34:22,335 - api_main - INFO - Fase 1: Guardado en temp_api_processing/cccce15b-71b7-4634-9e34-410fc80f20ad/Img_decompressed_SN2024H1_KVP70_mAs5.59_IE317_1.2.826.0.1.3680043.8.498.11379867889548485260785157156097934754.dcm
+2025-08-17 22:34:22,336 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs5.59_IE317_1.2.826.0.1.3680043.8.498.11379867889548485260785157156097934754.dcm
+2025-08-17 22:34:22,543 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:34:22,654 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.11379867889548485260785157156097934754. Realizando normalización manual min/max.
+2025-08-17 22:34:22,753 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348783146.1
+2025-08-17 22:34:23,218 - api_main - INFO - Fase 1: Guardado en temp_api_processing/cccce15b-71b7-4634-9e34-410fc80f20ad/Img_decompressed_SN2024H1_KVP70_mAs13.02_IE729_1.2.826.0.1.3680043.8.498.69873376213082055383099117825612601670.dcm
+2025-08-17 22:34:23,219 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs13.02_IE729_1.2.826.0.1.3680043.8.498.69873376213082055383099117825612601670.dcm
+2025-08-17 22:34:23,422 - api_main - INFO - Fase 2: Clase predicha 'MTF'
+2025-08-17 22:34:23,546 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.69873376213082055383099117825612601670. Realizando normalización manual min/max.
+2025-08-17 22:34:23,679 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348783380.1
+2025-08-17 22:34:24,140 - api_main - INFO - Fase 1: Guardado en temp_api_processing/cccce15b-71b7-4634-9e34-410fc80f20ad/Img_decompressed_SN2024H1_KVP70_mAs13.02_IE729_1.2.826.0.1.3680043.8.498.15181802259842634189575176997297613833.dcm
+2025-08-17 22:34:24,140 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs13.02_IE729_1.2.826.0.1.3680043.8.498.15181802259842634189575176997297613833.dcm
+2025-08-17 22:34:24,344 - api_main - INFO - Fase 2: Clase predicha 'MTF'
+2025-08-17 22:34:24,456 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.15181802259842634189575176997297613833. Realizando normalización manual min/max.
+2025-08-17 22:34:24,587 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348783617.1
+2025-08-17 22:34:25,059 - api_main - INFO - Fase 1: Guardado en temp_api_processing/cccce15b-71b7-4634-9e34-410fc80f20ad/Img_decompressed_SN2024H1_KVP70_mAs13.02_IE729_1.2.826.0.1.3680043.8.498.88291108641082253849761649621194087442.dcm
+2025-08-17 22:34:25,060 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs13.02_IE729_1.2.826.0.1.3680043.8.498.88291108641082253849761649621194087442.dcm
+2025-08-17 22:34:25,262 - api_main - INFO - Fase 2: Clase predicha 'MTF'
+2025-08-17 22:34:25,375 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.88291108641082253849761649621194087442. Realizando normalización manual min/max.
+2025-08-17 22:34:25,492 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348783851.1
+2025-08-17 22:34:25,997 - api_main - INFO - Fase 1: Guardado en temp_api_processing/cccce15b-71b7-4634-9e34-410fc80f20ad/Img_decompressed_SN2024H1_KVP70_mAs13.02_IE729_1.2.826.0.1.3680043.8.498.8663744821699192844937285996412211919.dcm
+2025-08-17 22:34:25,997 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs13.02_IE729_1.2.826.0.1.3680043.8.498.8663744821699192844937285996412211919.dcm
+2025-08-17 22:34:26,357 - api_main - INFO - Fase 2: Clase predicha 'MTF'
+2025-08-17 22:34:26,491 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.8663744821699192844937285996412211919. Realizando normalización manual min/max.
+2025-08-17 22:34:26,624 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348784123.1
+2025-08-17 22:34:27,086 - api_main - INFO - Fase 1: Guardado en temp_api_processing/cccce15b-71b7-4634-9e34-410fc80f20ad/Img_decompressed_SN2024H1_KVP70_mAs13.02_IE729_1.2.826.0.1.3680043.8.498.90269049529793960210121823883752487739.dcm
+2025-08-17 22:34:27,087 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs13.02_IE729_1.2.826.0.1.3680043.8.498.90269049529793960210121823883752487739.dcm
+2025-08-17 22:34:27,282 - api_main - INFO - Fase 2: Clase predicha 'MTF'
+2025-08-17 22:34:27,395 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.90269049529793960210121823883752487739. Realizando normalización manual min/max.
+2025-08-17 22:34:27,493 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348784368.1
+2025-08-17 22:34:27,938 - api_main - INFO - Fase 1: Guardado en temp_api_processing/cccce15b-71b7-4634-9e34-410fc80f20ad/Img_decompressed_SN2024H1_KVP70_mAs3.78_IE159_1.2.826.0.1.3680043.8.498.52381578389716543244759643038780743534.dcm
+2025-08-17 22:34:27,938 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs3.78_IE159_1.2.826.0.1.3680043.8.498.52381578389716543244759643038780743534.dcm
+2025-08-17 22:34:28,108 - api_main - INFO - Fase 2: Clase predicha 'TOR'
+2025-08-17 22:34:28,214 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.52381578389716543244759643038780743534. Realizando normalización manual min/max.
+2025-08-17 22:34:28,329 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348784594.1
+2025-08-17 22:34:28,781 - api_main - INFO - Fase 1: Guardado en temp_api_processing/cccce15b-71b7-4634-9e34-410fc80f20ad/Img_decompressed_SN2024H1_KVP70_mAs3.78_IE159_1.2.826.0.1.3680043.8.498.76905990960054626309604506700857121882.dcm
+2025-08-17 22:34:28,781 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs3.78_IE159_1.2.826.0.1.3680043.8.498.76905990960054626309604506700857121882.dcm
+2025-08-17 22:34:28,965 - api_main - INFO - Fase 2: Clase predicha 'TOR'
+2025-08-17 22:34:29,070 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.76905990960054626309604506700857121882. Realizando normalización manual min/max.
+2025-08-17 22:34:29,163 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348784829.1
+2025-08-17 22:34:29,601 - api_main - INFO - Fase 1: Guardado en temp_api_processing/cccce15b-71b7-4634-9e34-410fc80f20ad/Img_decompressed_SN2024H1_KVP70_mAs3.78_IE159_1.2.826.0.1.3680043.8.498.99171290555842603062889677150621025897.dcm
+2025-08-17 22:34:29,601 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs3.78_IE159_1.2.826.0.1.3680043.8.498.99171290555842603062889677150621025897.dcm
+2025-08-17 22:34:29,778 - api_main - INFO - Fase 2: Clase predicha 'TOR'
+2025-08-17 22:34:29,883 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.99171290555842603062889677150621025897. Realizando normalización manual min/max.
+2025-08-17 22:34:29,973 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348785055.1
+2025-08-17 22:34:30,439 - api_main - INFO - Fase 1: Guardado en temp_api_processing/cccce15b-71b7-4634-9e34-410fc80f20ad/Img_decompressed_SN2024H1_KVP70_mAs3.78_IE158_1.2.826.0.1.3680043.8.498.56886183559857345883554264094194611766.dcm
+2025-08-17 22:34:30,439 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs3.78_IE158_1.2.826.0.1.3680043.8.498.56886183559857345883554264094194611766.dcm
+2025-08-17 22:34:30,719 - api_main - INFO - Fase 2: Clase predicha 'TOR'
+2025-08-17 22:34:30,849 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.56886183559857345883554264094194611766. Realizando normalización manual min/max.
+2025-08-17 22:34:30,959 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348785263.1
+2025-08-17 22:34:31,407 - api_main - INFO - Fase 1: Guardado en temp_api_processing/cccce15b-71b7-4634-9e34-410fc80f20ad/Img_decompressed_SN2024H1_KVP70_mAs3.78_IE159_1.2.826.0.1.3680043.8.498.69653150088482334347650595118942758292.dcm
+2025-08-17 22:34:31,407 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs3.78_IE159_1.2.826.0.1.3680043.8.498.69653150088482334347650595118942758292.dcm
+2025-08-17 22:34:31,582 - api_main - INFO - Fase 2: Clase predicha 'TOR'
+2025-08-17 22:34:31,688 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.69653150088482334347650595118942758292. Realizando normalización manual min/max.
+2025-08-17 22:34:31,786 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348785499.1
+2025-08-17 22:34:32,243 - api_main - INFO - Fase 1: Guardado en temp_api_processing/cccce15b-71b7-4634-9e34-410fc80f20ad/Img_decompressed_SN2024H1_KVP70_mAs2.79_IE157_1.2.826.0.1.3680043.8.498.96773013537734054253016284648996413139.dcm
+2025-08-17 22:34:32,243 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs2.79_IE157_1.2.826.0.1.3680043.8.498.96773013537734054253016284648996413139.dcm
+2025-08-17 22:34:32,423 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:34:32,527 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.96773013537734054253016284648996413139. Realizando normalización manual min/max.
+2025-08-17 22:35:18,969 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348777817 - copia.1
+2025-08-17 22:35:19,430 - api_main - INFO - Fase 1: Guardado en temp_api_processing/606e3600-2a03-48c8-845f-c7982df06df5/Img_decompressed_SN2024H1_KVP70_mAs0.99_IE56_1.2.826.0.1.3680043.8.498.92473456741258047904123301612373677452.dcm
+2025-08-17 22:35:19,431 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs0.99_IE56_1.2.826.0.1.3680043.8.498.92473456741258047904123301612373677452.dcm
+2025-08-17 22:35:19,672 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:35:19,784 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.92473456741258047904123301612373677452. Realizando normalización manual min/max.
+2025-08-17 22:35:19,878 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348777817.1
+2025-08-17 22:35:20,324 - api_main - INFO - Fase 1: Guardado en temp_api_processing/606e3600-2a03-48c8-845f-c7982df06df5/Img_decompressed_SN2024H1_KVP70_mAs0.99_IE56_1.2.826.0.1.3680043.8.498.17217214606577548251144882572653615144.dcm
+2025-08-17 22:35:20,325 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs0.99_IE56_1.2.826.0.1.3680043.8.498.17217214606577548251144882572653615144.dcm
+2025-08-17 22:35:20,501 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:35:20,604 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.17217214606577548251144882572653615144. Realizando normalización manual min/max.
+2025-08-17 22:35:20,695 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348778202 - copia.1
+2025-08-17 22:35:21,163 - api_main - INFO - Fase 1: Guardado en temp_api_processing/606e3600-2a03-48c8-845f-c7982df06df5/Img_decompressed_SN2024H1_KVP70_mAs1.49_IE83_1.2.826.0.1.3680043.8.498.4749523938034209481290822768358146681.dcm
+2025-08-17 22:35:21,163 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs1.49_IE83_1.2.826.0.1.3680043.8.498.4749523938034209481290822768358146681.dcm
+2025-08-17 22:35:21,408 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:35:21,529 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.4749523938034209481290822768358146681. Realizando normalización manual min/max.
+2025-08-17 22:35:21,625 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348778202.1
+2025-08-17 22:35:22,067 - api_main - INFO - Fase 1: Guardado en temp_api_processing/606e3600-2a03-48c8-845f-c7982df06df5/Img_decompressed_SN2024H1_KVP70_mAs1.49_IE83_1.2.826.0.1.3680043.8.498.13758929902964867262501420091906559933.dcm
+2025-08-17 22:35:22,067 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs1.49_IE83_1.2.826.0.1.3680043.8.498.13758929902964867262501420091906559933.dcm
+2025-08-17 22:35:22,253 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:35:22,356 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.13758929902964867262501420091906559933. Realizando normalización manual min/max.
+2025-08-17 22:35:22,445 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348778426 - copia.1
+2025-08-17 22:35:22,883 - api_main - INFO - Fase 1: Guardado en temp_api_processing/606e3600-2a03-48c8-845f-c7982df06df5/Img_decompressed_SN2024H1_KVP70_mAs2.99_IE168_1.2.826.0.1.3680043.8.498.78151120464358694420590327835065584253.dcm
+2025-08-17 22:35:22,883 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs2.99_IE168_1.2.826.0.1.3680043.8.498.78151120464358694420590327835065584253.dcm
+2025-08-17 22:35:23,068 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:35:23,170 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.78151120464358694420590327835065584253. Realizando normalización manual min/max.
+2025-08-17 22:35:23,261 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348778426.1
+2025-08-17 22:35:23,736 - api_main - INFO - Fase 1: Guardado en temp_api_processing/606e3600-2a03-48c8-845f-c7982df06df5/Img_decompressed_SN2024H1_KVP70_mAs2.99_IE168_1.2.826.0.1.3680043.8.498.14570010889223005891412309880976800024.dcm
+2025-08-17 22:35:23,736 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs2.99_IE168_1.2.826.0.1.3680043.8.498.14570010889223005891412309880976800024.dcm
+2025-08-17 22:35:23,980 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:35:24,092 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.14570010889223005891412309880976800024. Realizando normalización manual min/max.
+2025-08-17 22:35:24,188 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348778649 - copia.1
+2025-08-17 22:35:24,630 - api_main - INFO - Fase 1: Guardado en temp_api_processing/606e3600-2a03-48c8-845f-c7982df06df5/Img_decompressed_SN2024H1_KVP70_mAs4.48_IE252_1.2.826.0.1.3680043.8.498.4780827956904524259399300577949151128.dcm
+2025-08-17 22:35:24,631 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs4.48_IE252_1.2.826.0.1.3680043.8.498.4780827956904524259399300577949151128.dcm
+2025-08-17 22:35:24,818 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:35:24,919 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.4780827956904524259399300577949151128. Realizando normalización manual min/max.
+2025-08-17 22:35:25,010 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348778649.1
+2025-08-17 22:35:25,460 - api_main - INFO - Fase 1: Guardado en temp_api_processing/606e3600-2a03-48c8-845f-c7982df06df5/Img_decompressed_SN2024H1_KVP70_mAs4.48_IE252_1.2.826.0.1.3680043.8.498.37470773743571133001708614043317853081.dcm
+2025-08-17 22:35:25,461 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs4.48_IE252_1.2.826.0.1.3680043.8.498.37470773743571133001708614043317853081.dcm
+2025-08-17 22:35:25,640 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:35:25,746 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.37470773743571133001708614043317853081. Realizando normalización manual min/max.
+2025-08-17 22:35:25,840 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348778878.1
+2025-08-17 22:35:26,317 - api_main - INFO - Fase 1: Guardado en temp_api_processing/606e3600-2a03-48c8-845f-c7982df06df5/Img_decompressed_SN2024H1_KVP70_mAs5.59_IE317_1.2.826.0.1.3680043.8.498.64573947642381404760526402577727016708.dcm
+2025-08-17 22:35:26,317 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs5.59_IE317_1.2.826.0.1.3680043.8.498.64573947642381404760526402577727016708.dcm
+2025-08-17 22:35:26,559 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:35:26,683 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.64573947642381404760526402577727016708. Realizando normalización manual min/max.
+2025-08-17 22:35:26,789 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348779104.1
+2025-08-17 22:35:27,250 - api_main - INFO - Fase 1: Guardado en temp_api_processing/606e3600-2a03-48c8-845f-c7982df06df5/Img_decompressed_SN2024H1_KVP70_mAs13.02_IE728_1.2.826.0.1.3680043.8.498.32398540924081066532280935627984175816.dcm
+2025-08-17 22:35:27,250 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs13.02_IE728_1.2.826.0.1.3680043.8.498.32398540924081066532280935627984175816.dcm
+2025-08-17 22:35:27,434 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:35:27,543 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.32398540924081066532280935627984175816. Realizando normalización manual min/max.
+2025-08-17 22:35:27,646 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348779313.1
+2025-08-17 22:35:28,145 - api_main - INFO - Fase 1: Guardado en temp_api_processing/606e3600-2a03-48c8-845f-c7982df06df5/Img_decompressed_SN2024H1_KVP70_mAs30.02_IE1678_1.2.826.0.1.3680043.8.498.94214403841589435369402077130030955730.dcm
+2025-08-17 22:35:28,146 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs30.02_IE1678_1.2.826.0.1.3680043.8.498.94214403841589435369402077130030955730.dcm
+2025-08-17 22:35:28,376 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:35:28,509 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.94214403841589435369402077130030955730. Realizando normalización manual min/max.
+2025-08-17 22:35:28,616 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348779544.1
+2025-08-17 22:35:29,095 - api_main - INFO - Fase 1: Guardado en temp_api_processing/606e3600-2a03-48c8-845f-c7982df06df5/Img_decompressed_SN2024H1_KVP70_mAs80.02_IE4440_1.2.826.0.1.3680043.8.498.62807066595850600360111416208853793539.dcm
+2025-08-17 22:35:29,095 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs80.02_IE4440_1.2.826.0.1.3680043.8.498.62807066595850600360111416208853793539.dcm
+2025-08-17 22:35:29,287 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:35:29,399 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.62807066595850600360111416208853793539. Realizando normalización manual min/max.
+2025-08-17 22:35:29,490 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348779742.1
+2025-08-17 22:35:29,954 - api_main - INFO - Fase 1: Guardado en temp_api_processing/606e3600-2a03-48c8-845f-c7982df06df5/Img_decompressed_SN2024H1_KVP70_mAs1.49_IE84_1.2.826.0.1.3680043.8.498.6350231970423498511841712967337586519.dcm
+2025-08-17 22:35:29,954 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs1.49_IE84_1.2.826.0.1.3680043.8.498.6350231970423498511841712967337586519.dcm
+2025-08-17 22:35:30,151 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:35:30,269 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.6350231970423498511841712967337586519. Realizando normalización manual min/max.
+2025-08-17 22:35:30,369 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348779965.1
+2025-08-17 22:35:30,820 - api_main - INFO - Fase 1: Guardado en temp_api_processing/606e3600-2a03-48c8-845f-c7982df06df5/Img_decompressed_SN2024H1_KVP70_mAs1.49_IE84_1.2.826.0.1.3680043.8.498.23143691140076933416898216321295589363.dcm
+2025-08-17 22:35:30,821 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs1.49_IE84_1.2.826.0.1.3680043.8.498.23143691140076933416898216321295589363.dcm
+2025-08-17 22:35:31,011 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:35:31,134 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.23143691140076933416898216321295589363. Realizando normalización manual min/max.
+2025-08-17 22:35:31,236 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348780168.1
+2025-08-17 22:35:31,685 - api_main - INFO - Fase 1: Guardado en temp_api_processing/606e3600-2a03-48c8-845f-c7982df06df5/Img_decompressed_SN2024H1_KVP70_mAs1.49_IE84_1.2.826.0.1.3680043.8.498.61851372675964862632083248672251442026.dcm
+2025-08-17 22:35:31,686 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs1.49_IE84_1.2.826.0.1.3680043.8.498.61851372675964862632083248672251442026.dcm
+2025-08-17 22:35:31,868 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:35:31,991 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.61851372675964862632083248672251442026. Realizando normalización manual min/max.
+2025-08-17 22:35:32,085 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348780400.1
+2025-08-17 22:35:32,556 - api_main - INFO - Fase 1: Guardado en temp_api_processing/606e3600-2a03-48c8-845f-c7982df06df5/Img_decompressed_SN2024H1_KVP70_mAs1.49_IE84_1.2.826.0.1.3680043.8.498.50623541544852492534624560963968628064.dcm
+2025-08-17 22:35:32,557 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs1.49_IE84_1.2.826.0.1.3680043.8.498.50623541544852492534624560963968628064.dcm
+2025-08-17 22:35:32,845 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:35:32,996 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.50623541544852492534624560963968628064. Realizando normalización manual min/max.
+2025-08-17 22:35:33,100 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348780602.1
+2025-08-17 22:35:33,548 - api_main - INFO - Fase 1: Guardado en temp_api_processing/606e3600-2a03-48c8-845f-c7982df06df5/Img_decompressed_SN2024H1_KVP70_mAs1.49_IE84_1.2.826.0.1.3680043.8.498.2982431293336929236472641581261357701.dcm
+2025-08-17 22:35:33,548 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs1.49_IE84_1.2.826.0.1.3680043.8.498.2982431293336929236472641581261357701.dcm
+2025-08-17 22:35:33,735 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:35:33,864 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.2982431293336929236472641581261357701. Realizando normalización manual min/max.
+2025-08-17 22:35:33,966 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348780827.1
+2025-08-17 22:35:34,427 - api_main - INFO - Fase 1: Guardado en temp_api_processing/606e3600-2a03-48c8-845f-c7982df06df5/Img_decompressed_SN2024H1_KVP70_mAs2.99_IE168_1.2.826.0.1.3680043.8.498.47963052151479631111085599081034395623.dcm
+2025-08-17 22:35:34,427 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs2.99_IE168_1.2.826.0.1.3680043.8.498.47963052151479631111085599081034395623.dcm
+2025-08-17 22:35:34,694 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:35:34,814 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.47963052151479631111085599081034395623. Realizando normalización manual min/max.
+2025-08-17 22:35:34,925 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348781060.1
+2025-08-17 22:35:35,366 - api_main - INFO - Fase 1: Guardado en temp_api_processing/606e3600-2a03-48c8-845f-c7982df06df5/Img_decompressed_SN2024H1_KVP70_mAs2.99_IE168_1.2.826.0.1.3680043.8.498.72200040487387615797368829935955369444.dcm
+2025-08-17 22:35:35,367 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs2.99_IE168_1.2.826.0.1.3680043.8.498.72200040487387615797368829935955369444.dcm
+2025-08-17 22:35:35,584 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:35:35,697 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.72200040487387615797368829935955369444. Realizando normalización manual min/max.
+2025-08-17 22:35:35,789 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348781293.1
+2025-08-17 22:35:36,237 - api_main - INFO - Fase 1: Guardado en temp_api_processing/606e3600-2a03-48c8-845f-c7982df06df5/Img_decompressed_SN2024H1_KVP70_mAs2.99_IE168_1.2.826.0.1.3680043.8.498.63754329445218579051067794675969161181.dcm
+2025-08-17 22:35:36,238 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs2.99_IE168_1.2.826.0.1.3680043.8.498.63754329445218579051067794675969161181.dcm
+2025-08-17 22:35:36,431 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:35:36,538 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.63754329445218579051067794675969161181. Realizando normalización manual min/max.
+2025-08-17 22:35:36,640 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348781526.1
+2025-08-17 22:35:37,090 - api_main - INFO - Fase 1: Guardado en temp_api_processing/606e3600-2a03-48c8-845f-c7982df06df5/Img_decompressed_SN2024H1_KVP70_mAs2.99_IE168_1.2.826.0.1.3680043.8.498.20174992457330968661722846476464356656.dcm
+2025-08-17 22:35:37,090 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs2.99_IE168_1.2.826.0.1.3680043.8.498.20174992457330968661722846476464356656.dcm
+2025-08-17 22:35:37,276 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:35:37,380 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.20174992457330968661722846476464356656. Realizando normalización manual min/max.
+2025-08-17 22:35:37,467 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348781774.1
+2025-08-17 22:35:37,906 - api_main - INFO - Fase 1: Guardado en temp_api_processing/606e3600-2a03-48c8-845f-c7982df06df5/Img_decompressed_SN2024H1_KVP70_mAs2.99_IE168_1.2.826.0.1.3680043.8.498.79204265932310957090793155063513527162.dcm
+2025-08-17 22:35:37,906 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs2.99_IE168_1.2.826.0.1.3680043.8.498.79204265932310957090793155063513527162.dcm
+2025-08-17 22:35:38,093 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:35:38,197 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.79204265932310957090793155063513527162. Realizando normalización manual min/max.
+2025-08-17 22:35:38,284 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348782010.1
+2025-08-17 22:35:38,783 - api_main - INFO - Fase 1: Guardado en temp_api_processing/606e3600-2a03-48c8-845f-c7982df06df5/Img_decompressed_SN2024H1_KVP70_mAs5.59_IE317_1.2.826.0.1.3680043.8.498.38491776170695826257016082134640862355.dcm
+2025-08-17 22:35:38,784 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs5.59_IE317_1.2.826.0.1.3680043.8.498.38491776170695826257016082134640862355.dcm
+2025-08-17 22:35:39,029 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:35:39,173 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.38491776170695826257016082134640862355. Realizando normalización manual min/max.
+2025-08-17 22:35:39,276 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348782240.1
+2025-08-17 22:35:39,722 - api_main - INFO - Fase 1: Guardado en temp_api_processing/606e3600-2a03-48c8-845f-c7982df06df5/Img_decompressed_SN2024H1_KVP70_mAs5.59_IE317_1.2.826.0.1.3680043.8.498.80601802012314517532232240499451102560.dcm
+2025-08-17 22:35:39,723 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs5.59_IE317_1.2.826.0.1.3680043.8.498.80601802012314517532232240499451102560.dcm
+2025-08-17 22:35:39,914 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:35:40,031 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.80601802012314517532232240499451102560. Realizando normalización manual min/max.
+2025-08-17 22:35:40,121 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348782474.1
+2025-08-17 22:35:40,563 - api_main - INFO - Fase 1: Guardado en temp_api_processing/606e3600-2a03-48c8-845f-c7982df06df5/Img_decompressed_SN2024H1_KVP70_mAs5.59_IE317_1.2.826.0.1.3680043.8.498.27857737297196282344181123347110368941.dcm
+2025-08-17 22:35:40,564 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs5.59_IE317_1.2.826.0.1.3680043.8.498.27857737297196282344181123347110368941.dcm
+2025-08-17 22:35:40,743 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:35:40,859 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.27857737297196282344181123347110368941. Realizando normalización manual min/max.
+2025-08-17 22:35:40,951 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348782710.1
+2025-08-17 22:35:41,425 - api_main - INFO - Fase 1: Guardado en temp_api_processing/606e3600-2a03-48c8-845f-c7982df06df5/Img_decompressed_SN2024H1_KVP70_mAs5.59_IE318_1.2.826.0.1.3680043.8.498.68512180212557233410791027835349925219.dcm
+2025-08-17 22:35:41,426 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs5.59_IE318_1.2.826.0.1.3680043.8.498.68512180212557233410791027835349925219.dcm
+2025-08-17 22:35:41,610 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:35:41,725 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.68512180212557233410791027835349925219. Realizando normalización manual min/max.
+2025-08-17 22:35:41,815 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348782939.1
+2025-08-17 22:35:42,255 - api_main - INFO - Fase 1: Guardado en temp_api_processing/606e3600-2a03-48c8-845f-c7982df06df5/Img_decompressed_SN2024H1_KVP70_mAs5.59_IE317_1.2.826.0.1.3680043.8.498.71426015978105235170167652309920348053.dcm
+2025-08-17 22:35:42,255 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs5.59_IE317_1.2.826.0.1.3680043.8.498.71426015978105235170167652309920348053.dcm
+2025-08-17 22:35:42,431 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:35:42,541 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.71426015978105235170167652309920348053. Realizando normalización manual min/max.
+2025-08-17 22:35:42,629 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348783146.1
+2025-08-17 22:35:43,105 - api_main - INFO - Fase 1: Guardado en temp_api_processing/606e3600-2a03-48c8-845f-c7982df06df5/Img_decompressed_SN2024H1_KVP70_mAs13.02_IE729_1.2.826.0.1.3680043.8.498.14484669613955957169269275149455326630.dcm
+2025-08-17 22:35:43,105 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs13.02_IE729_1.2.826.0.1.3680043.8.498.14484669613955957169269275149455326630.dcm
+2025-08-17 22:35:43,335 - api_main - INFO - Fase 2: Clase predicha 'MTF'
+2025-08-17 22:35:43,450 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.14484669613955957169269275149455326630. Realizando normalización manual min/max.
+2025-08-17 22:35:43,554 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348783380.1
+2025-08-17 22:35:44,018 - api_main - INFO - Fase 1: Guardado en temp_api_processing/606e3600-2a03-48c8-845f-c7982df06df5/Img_decompressed_SN2024H1_KVP70_mAs13.02_IE729_1.2.826.0.1.3680043.8.498.58890822585211151838078342853247745729.dcm
+2025-08-17 22:35:44,018 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs13.02_IE729_1.2.826.0.1.3680043.8.498.58890822585211151838078342853247745729.dcm
+2025-08-17 22:35:44,227 - api_main - INFO - Fase 2: Clase predicha 'MTF'
+2025-08-17 22:35:44,346 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.58890822585211151838078342853247745729. Realizando normalización manual min/max.
+2025-08-17 22:35:44,439 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348783617.1
+2025-08-17 22:35:44,878 - api_main - INFO - Fase 1: Guardado en temp_api_processing/606e3600-2a03-48c8-845f-c7982df06df5/Img_decompressed_SN2024H1_KVP70_mAs13.02_IE729_1.2.826.0.1.3680043.8.498.89941494190365242976317154785110237640.dcm
+2025-08-17 22:35:44,878 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs13.02_IE729_1.2.826.0.1.3680043.8.498.89941494190365242976317154785110237640.dcm
+2025-08-17 22:35:45,072 - api_main - INFO - Fase 2: Clase predicha 'MTF'
+2025-08-17 22:35:45,180 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.89941494190365242976317154785110237640. Realizando normalización manual min/max.
+2025-08-17 22:35:45,281 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348783851.1
+2025-08-17 22:35:45,729 - api_main - INFO - Fase 1: Guardado en temp_api_processing/606e3600-2a03-48c8-845f-c7982df06df5/Img_decompressed_SN2024H1_KVP70_mAs13.02_IE729_1.2.826.0.1.3680043.8.498.80955188883393667268224494065034363502.dcm
+2025-08-17 22:35:45,729 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs13.02_IE729_1.2.826.0.1.3680043.8.498.80955188883393667268224494065034363502.dcm
+2025-08-17 22:35:45,917 - api_main - INFO - Fase 2: Clase predicha 'MTF'
+2025-08-17 22:35:46,027 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.80955188883393667268224494065034363502. Realizando normalización manual min/max.
+2025-08-17 22:35:46,121 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348784123.1
+2025-08-17 22:35:46,565 - api_main - INFO - Fase 1: Guardado en temp_api_processing/606e3600-2a03-48c8-845f-c7982df06df5/Img_decompressed_SN2024H1_KVP70_mAs13.02_IE729_1.2.826.0.1.3680043.8.498.81493649389493088651119878038244680473.dcm
+2025-08-17 22:35:46,565 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs13.02_IE729_1.2.826.0.1.3680043.8.498.81493649389493088651119878038244680473.dcm
+2025-08-17 22:35:46,752 - api_main - INFO - Fase 2: Clase predicha 'MTF'
+2025-08-17 22:35:46,864 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.81493649389493088651119878038244680473. Realizando normalización manual min/max.
+2025-08-17 22:35:46,963 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348784368.1
+2025-08-17 22:35:47,449 - api_main - INFO - Fase 1: Guardado en temp_api_processing/606e3600-2a03-48c8-845f-c7982df06df5/Img_decompressed_SN2024H1_KVP70_mAs3.78_IE159_1.2.826.0.1.3680043.8.498.32326575188635607156768033963697740198.dcm
+2025-08-17 22:35:47,449 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs3.78_IE159_1.2.826.0.1.3680043.8.498.32326575188635607156768033963697740198.dcm
+2025-08-17 22:35:47,737 - api_main - INFO - Fase 2: Clase predicha 'TOR'
+2025-08-17 22:35:47,877 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.32326575188635607156768033963697740198. Realizando normalización manual min/max.
+2025-08-17 22:35:47,990 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348784594.1
+2025-08-17 22:35:48,429 - api_main - INFO - Fase 1: Guardado en temp_api_processing/606e3600-2a03-48c8-845f-c7982df06df5/Img_decompressed_SN2024H1_KVP70_mAs3.78_IE159_1.2.826.0.1.3680043.8.498.44340363916568362558989365708359326233.dcm
+2025-08-17 22:35:48,430 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs3.78_IE159_1.2.826.0.1.3680043.8.498.44340363916568362558989365708359326233.dcm
+2025-08-17 22:35:48,603 - api_main - INFO - Fase 2: Clase predicha 'TOR'
+2025-08-17 22:35:48,709 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.44340363916568362558989365708359326233. Realizando normalización manual min/max.
+2025-08-17 22:35:48,804 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348784829.1
+2025-08-17 22:35:49,241 - api_main - INFO - Fase 1: Guardado en temp_api_processing/606e3600-2a03-48c8-845f-c7982df06df5/Img_decompressed_SN2024H1_KVP70_mAs3.78_IE159_1.2.826.0.1.3680043.8.498.66563494249482076409050756137701332925.dcm
+2025-08-17 22:35:49,242 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs3.78_IE159_1.2.826.0.1.3680043.8.498.66563494249482076409050756137701332925.dcm
+2025-08-17 22:35:49,415 - api_main - INFO - Fase 2: Clase predicha 'TOR'
+2025-08-17 22:35:49,527 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.66563494249482076409050756137701332925. Realizando normalización manual min/max.
+2025-08-17 22:35:49,620 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348785055.1
+2025-08-17 22:35:50,077 - api_main - INFO - Fase 1: Guardado en temp_api_processing/606e3600-2a03-48c8-845f-c7982df06df5/Img_decompressed_SN2024H1_KVP70_mAs3.78_IE158_1.2.826.0.1.3680043.8.498.67840297348810736126229803681613138020.dcm
+2025-08-17 22:35:50,077 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs3.78_IE158_1.2.826.0.1.3680043.8.498.67840297348810736126229803681613138020.dcm
+2025-08-17 22:35:50,305 - api_main - INFO - Fase 2: Clase predicha 'TOR'
+2025-08-17 22:35:50,424 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.67840297348810736126229803681613138020. Realizando normalización manual min/max.
+2025-08-17 22:35:50,537 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348785263.1
+2025-08-17 22:35:50,983 - api_main - INFO - Fase 1: Guardado en temp_api_processing/606e3600-2a03-48c8-845f-c7982df06df5/Img_decompressed_SN2024H1_KVP70_mAs3.78_IE159_1.2.826.0.1.3680043.8.498.9298883299488355724068694666023116359.dcm
+2025-08-17 22:35:50,983 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs3.78_IE159_1.2.826.0.1.3680043.8.498.9298883299488355724068694666023116359.dcm
+2025-08-17 22:35:51,160 - api_main - INFO - Fase 2: Clase predicha 'TOR'
+2025-08-17 22:35:51,268 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.9298883299488355724068694666023116359. Realizando normalización manual min/max.
+2025-08-17 22:35:51,363 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741348785499.1
+2025-08-17 22:35:51,842 - api_main - INFO - Fase 1: Guardado en temp_api_processing/606e3600-2a03-48c8-845f-c7982df06df5/Img_decompressed_SN2024H1_KVP70_mAs2.79_IE157_1.2.826.0.1.3680043.8.498.60202948254700796202522852459770349903.dcm
+2025-08-17 22:35:51,842 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN2024H1_KVP70_mAs2.79_IE157_1.2.826.0.1.3680043.8.498.60202948254700796202522852459770349903.dcm
+2025-08-17 22:35:52,090 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:35:52,211 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.60202948254700796202522852459770349903. Realizando normalización manual min/max.
+2025-08-17 22:40:39,148 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741347330967.1
+2025-08-17 22:40:39,748 - api_main - INFO - Fase 1: Guardado en temp_api_processing/56069e2e-b800-4139-acbd-ecc5963f9289/Img_decompressed_SN1510CG_KVP70_mAs0.99_IE63_1.2.826.0.1.3680043.8.498.6662000766931614048648298546448527332.dcm
+2025-08-17 22:40:39,748 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN1510CG_KVP70_mAs0.99_IE63_1.2.826.0.1.3680043.8.498.6662000766931614048648298546448527332.dcm
+2025-08-17 22:40:39,998 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:40:40,108 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.6662000766931614048648298546448527332. Realizando normalización manual min/max.
+2025-08-17 22:40:40,224 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741347331267.1
+2025-08-17 22:40:40,616 - api_main - INFO - Fase 1: Guardado en temp_api_processing/56069e2e-b800-4139-acbd-ecc5963f9289/Img_decompressed_SN1510CG_KVP70_mAs1.49_IE95_1.2.826.0.1.3680043.8.498.97782575214112367363669804780501284046.dcm
+2025-08-17 22:40:40,616 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN1510CG_KVP70_mAs1.49_IE95_1.2.826.0.1.3680043.8.498.97782575214112367363669804780501284046.dcm
+2025-08-17 22:40:40,812 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:40:40,913 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.97782575214112367363669804780501284046. Realizando normalización manual min/max.
+2025-08-17 22:40:41,010 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741347331499.1
+2025-08-17 22:40:41,409 - api_main - INFO - Fase 1: Guardado en temp_api_processing/56069e2e-b800-4139-acbd-ecc5963f9289/Img_decompressed_SN1510CG_KVP70_mAs2.99_IE192_1.2.826.0.1.3680043.8.498.91154867181777781335190860841467166909.dcm
+2025-08-17 22:40:41,409 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN1510CG_KVP70_mAs2.99_IE192_1.2.826.0.1.3680043.8.498.91154867181777781335190860841467166909.dcm
+2025-08-17 22:40:41,607 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:40:41,710 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.91154867181777781335190860841467166909. Realizando normalización manual min/max.
+2025-08-17 22:40:41,810 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741347331726.1
+2025-08-17 22:40:42,213 - api_main - INFO - Fase 1: Guardado en temp_api_processing/56069e2e-b800-4139-acbd-ecc5963f9289/Img_decompressed_SN1510CG_KVP70_mAs4.48_IE289_1.2.826.0.1.3680043.8.498.61813439839325992960585778311058658450.dcm
+2025-08-17 22:40:42,214 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN1510CG_KVP70_mAs4.48_IE289_1.2.826.0.1.3680043.8.498.61813439839325992960585778311058658450.dcm
+2025-08-17 22:40:42,456 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:40:42,559 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.61813439839325992960585778311058658450. Realizando normalización manual min/max.
+2025-08-17 22:40:42,670 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741347331925.1
+2025-08-17 22:40:43,082 - api_main - INFO - Fase 1: Guardado en temp_api_processing/56069e2e-b800-4139-acbd-ecc5963f9289/Img_decompressed_SN1510CG_KVP70_mAs5.59_IE365_1.2.826.0.1.3680043.8.498.22261418896180761256291027917467211543.dcm
+2025-08-17 22:40:43,082 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN1510CG_KVP70_mAs5.59_IE365_1.2.826.0.1.3680043.8.498.22261418896180761256291027917467211543.dcm
+2025-08-17 22:40:43,350 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:40:43,454 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.22261418896180761256291027917467211543. Realizando normalización manual min/max.
+2025-08-17 22:40:43,562 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741347332169.1
+2025-08-17 22:40:43,945 - api_main - INFO - Fase 1: Guardado en temp_api_processing/56069e2e-b800-4139-acbd-ecc5963f9289/Img_decompressed_SN1510CG_KVP70_mAs13.02_IE838_1.2.826.0.1.3680043.8.498.34936800662307836544724388927189460205.dcm
+2025-08-17 22:40:43,946 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN1510CG_KVP70_mAs13.02_IE838_1.2.826.0.1.3680043.8.498.34936800662307836544724388927189460205.dcm
+2025-08-17 22:40:44,157 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:40:44,262 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.34936800662307836544724388927189460205. Realizando normalización manual min/max.
+2025-08-17 22:40:44,407 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741347332388.1
+2025-08-17 22:40:44,841 - api_main - INFO - Fase 1: Guardado en temp_api_processing/56069e2e-b800-4139-acbd-ecc5963f9289/Img_decompressed_SN1510CG_KVP70_mAs30.02_IE1929_1.2.826.0.1.3680043.8.498.61992715785396327223281749961985443332.dcm
+2025-08-17 22:40:44,841 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN1510CG_KVP70_mAs30.02_IE1929_1.2.826.0.1.3680043.8.498.61992715785396327223281749961985443332.dcm
+2025-08-17 22:40:45,037 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:40:45,139 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.61992715785396327223281749961985443332. Realizando normalización manual min/max.
+2025-08-17 22:40:45,254 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741347332606.1
+2025-08-17 22:40:45,664 - api_main - INFO - Fase 1: Guardado en temp_api_processing/56069e2e-b800-4139-acbd-ecc5963f9289/Img_decompressed_SN1510CG_KVP70_mAs80.02_IE5102_1.2.826.0.1.3680043.8.498.42077097001292254670109155735100319452.dcm
+2025-08-17 22:40:45,664 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN1510CG_KVP70_mAs80.02_IE5102_1.2.826.0.1.3680043.8.498.42077097001292254670109155735100319452.dcm
+2025-08-17 22:40:45,861 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:40:45,966 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.42077097001292254670109155735100319452. Realizando normalización manual min/max.
+2025-08-17 22:40:46,061 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741347332806.1
+2025-08-17 22:40:46,471 - api_main - INFO - Fase 1: Guardado en temp_api_processing/56069e2e-b800-4139-acbd-ecc5963f9289/Img_decompressed_SN1510CG_KVP70_mAs1.49_IE95_1.2.826.0.1.3680043.8.498.19912495609348489290438854539440821312.dcm
+2025-08-17 22:40:46,471 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN1510CG_KVP70_mAs1.49_IE95_1.2.826.0.1.3680043.8.498.19912495609348489290438854539440821312.dcm
+2025-08-17 22:40:46,737 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:40:46,844 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.19912495609348489290438854539440821312. Realizando normalización manual min/max.
+2025-08-17 22:40:46,970 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741347333031.1
+2025-08-17 22:40:47,402 - api_main - INFO - Fase 1: Guardado en temp_api_processing/56069e2e-b800-4139-acbd-ecc5963f9289/Img_decompressed_SN1510CG_KVP70_mAs1.49_IE96_1.2.826.0.1.3680043.8.498.57945161535659486046104765695577368727.dcm
+2025-08-17 22:40:47,403 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN1510CG_KVP70_mAs1.49_IE96_1.2.826.0.1.3680043.8.498.57945161535659486046104765695577368727.dcm
+2025-08-17 22:40:47,651 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:40:47,767 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.57945161535659486046104765695577368727. Realizando normalización manual min/max.
+2025-08-17 22:40:47,886 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741347333234.1
+2025-08-17 22:40:48,420 - api_main - INFO - Fase 1: Guardado en temp_api_processing/56069e2e-b800-4139-acbd-ecc5963f9289/Img_decompressed_SN1510CG_KVP70_mAs1.49_IE95_1.2.826.0.1.3680043.8.498.29907717478482734597185720948609939812.dcm
+2025-08-17 22:40:48,420 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN1510CG_KVP70_mAs1.49_IE95_1.2.826.0.1.3680043.8.498.29907717478482734597185720948609939812.dcm
+2025-08-17 22:40:48,664 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:40:48,862 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.29907717478482734597185720948609939812. Realizando normalización manual min/max.
+2025-08-17 22:40:48,978 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741347333467.1
+2025-08-17 22:40:49,369 - api_main - INFO - Fase 1: Guardado en temp_api_processing/56069e2e-b800-4139-acbd-ecc5963f9289/Img_decompressed_SN1510CG_KVP70_mAs1.49_IE95_1.2.826.0.1.3680043.8.498.84098580509859479073120806072074256744.dcm
+2025-08-17 22:40:49,369 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN1510CG_KVP70_mAs1.49_IE95_1.2.826.0.1.3680043.8.498.84098580509859479073120806072074256744.dcm
+2025-08-17 22:40:49,568 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:40:49,693 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.84098580509859479073120806072074256744. Realizando normalización manual min/max.
+2025-08-17 22:40:49,823 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741347333670.1
+2025-08-17 22:40:50,250 - api_main - INFO - Fase 1: Guardado en temp_api_processing/56069e2e-b800-4139-acbd-ecc5963f9289/Img_decompressed_SN1510CG_KVP70_mAs1.49_IE95_1.2.826.0.1.3680043.8.498.66871867924717070292825843939874960078.dcm
+2025-08-17 22:40:50,250 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN1510CG_KVP70_mAs1.49_IE95_1.2.826.0.1.3680043.8.498.66871867924717070292825843939874960078.dcm
+2025-08-17 22:40:50,456 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:40:50,572 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.66871867924717070292825843939874960078. Realizando normalización manual min/max.
+2025-08-17 22:40:50,670 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741347333906.1
+2025-08-17 22:40:51,104 - api_main - INFO - Fase 1: Guardado en temp_api_processing/56069e2e-b800-4139-acbd-ecc5963f9289/Img_decompressed_SN1510CG_KVP70_mAs2.99_IE192_1.2.826.0.1.3680043.8.498.90451175306841684115204220292795055564.dcm
+2025-08-17 22:40:51,104 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN1510CG_KVP70_mAs2.99_IE192_1.2.826.0.1.3680043.8.498.90451175306841684115204220292795055564.dcm
+2025-08-17 22:40:51,352 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:40:51,469 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.90451175306841684115204220292795055564. Realizando normalización manual min/max.
+2025-08-17 22:40:51,591 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741347334149.1
+2025-08-17 22:40:52,011 - api_main - INFO - Fase 1: Guardado en temp_api_processing/56069e2e-b800-4139-acbd-ecc5963f9289/Img_decompressed_SN1510CG_KVP70_mAs2.99_IE192_1.2.826.0.1.3680043.8.498.47282290399583362948169182296087994148.dcm
+2025-08-17 22:40:52,011 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN1510CG_KVP70_mAs2.99_IE192_1.2.826.0.1.3680043.8.498.47282290399583362948169182296087994148.dcm
+2025-08-17 22:40:52,213 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:40:52,329 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.47282290399583362948169182296087994148. Realizando normalización manual min/max.
+2025-08-17 22:40:52,431 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741347334387.1
+2025-08-17 22:40:52,824 - api_main - INFO - Fase 1: Guardado en temp_api_processing/56069e2e-b800-4139-acbd-ecc5963f9289/Img_decompressed_SN1510CG_KVP70_mAs2.99_IE192_1.2.826.0.1.3680043.8.498.24174774961482711453829204838497888754.dcm
+2025-08-17 22:40:52,824 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN1510CG_KVP70_mAs2.99_IE192_1.2.826.0.1.3680043.8.498.24174774961482711453829204838497888754.dcm
+2025-08-17 22:40:53,039 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:40:53,152 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.24174774961482711453829204838497888754. Realizando normalización manual min/max.
+2025-08-17 22:40:53,251 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741347334611.1
+2025-08-17 22:40:53,651 - api_main - INFO - Fase 1: Guardado en temp_api_processing/56069e2e-b800-4139-acbd-ecc5963f9289/Img_decompressed_SN1510CG_KVP70_mAs2.99_IE192_1.2.826.0.1.3680043.8.498.81827339385102872275348875932425028197.dcm
+2025-08-17 22:40:53,651 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN1510CG_KVP70_mAs2.99_IE192_1.2.826.0.1.3680043.8.498.81827339385102872275348875932425028197.dcm
+2025-08-17 22:40:53,860 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:40:53,977 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.81827339385102872275348875932425028197. Realizando normalización manual min/max.
+2025-08-17 22:40:54,093 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741347334857.1
+2025-08-17 22:40:54,489 - api_main - INFO - Fase 1: Guardado en temp_api_processing/56069e2e-b800-4139-acbd-ecc5963f9289/Img_decompressed_SN1510CG_KVP70_mAs2.99_IE192_1.2.826.0.1.3680043.8.498.68623130330568563215395839534047201229.dcm
+2025-08-17 22:40:54,490 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN1510CG_KVP70_mAs2.99_IE192_1.2.826.0.1.3680043.8.498.68623130330568563215395839534047201229.dcm
+2025-08-17 22:40:54,704 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:40:54,825 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.68623130330568563215395839534047201229. Realizando normalización manual min/max.
+2025-08-17 22:40:55,027 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741347335081.1
+2025-08-17 22:40:55,445 - api_main - INFO - Fase 1: Guardado en temp_api_processing/56069e2e-b800-4139-acbd-ecc5963f9289/Img_decompressed_SN1510CG_KVP70_mAs5.59_IE366_1.2.826.0.1.3680043.8.498.74826471203561566548636079218242785992.dcm
+2025-08-17 22:40:55,445 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN1510CG_KVP70_mAs5.59_IE366_1.2.826.0.1.3680043.8.498.74826471203561566548636079218242785992.dcm
+2025-08-17 22:40:55,736 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:40:55,852 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.74826471203561566548636079218242785992. Realizando normalización manual min/max.
+2025-08-17 22:40:55,983 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741347335304.1
+2025-08-17 22:40:56,379 - api_main - INFO - Fase 1: Guardado en temp_api_processing/56069e2e-b800-4139-acbd-ecc5963f9289/Img_decompressed_SN1510CG_KVP70_mAs5.59_IE365_1.2.826.0.1.3680043.8.498.17497590135267672514674806323032147462.dcm
+2025-08-17 22:40:56,379 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN1510CG_KVP70_mAs5.59_IE365_1.2.826.0.1.3680043.8.498.17497590135267672514674806323032147462.dcm
+2025-08-17 22:40:56,576 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:40:56,676 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.17497590135267672514674806323032147462. Realizando normalización manual min/max.
+2025-08-17 22:40:56,774 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741347335535.1
+2025-08-17 22:40:57,161 - api_main - INFO - Fase 1: Guardado en temp_api_processing/56069e2e-b800-4139-acbd-ecc5963f9289/Img_decompressed_SN1510CG_KVP70_mAs5.59_IE365_1.2.826.0.1.3680043.8.498.80203023928650090016154069507551833916.dcm
+2025-08-17 22:40:57,161 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN1510CG_KVP70_mAs5.59_IE365_1.2.826.0.1.3680043.8.498.80203023928650090016154069507551833916.dcm
+2025-08-17 22:40:57,358 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:40:57,463 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.80203023928650090016154069507551833916. Realizando normalización manual min/max.
+2025-08-17 22:40:57,557 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741347335758.1
+2025-08-17 22:40:57,969 - api_main - INFO - Fase 1: Guardado en temp_api_processing/56069e2e-b800-4139-acbd-ecc5963f9289/Img_decompressed_SN1510CG_KVP70_mAs5.59_IE365_1.2.826.0.1.3680043.8.498.44758243205642312672979380715410478251.dcm
+2025-08-17 22:40:57,970 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN1510CG_KVP70_mAs5.59_IE365_1.2.826.0.1.3680043.8.498.44758243205642312672979380715410478251.dcm
+2025-08-17 22:40:58,191 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:40:58,293 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.44758243205642312672979380715410478251. Realizando normalización manual min/max.
+2025-08-17 22:40:58,390 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741347335967.1
+2025-08-17 22:40:58,789 - api_main - INFO - Fase 1: Guardado en temp_api_processing/56069e2e-b800-4139-acbd-ecc5963f9289/Img_decompressed_SN1510CG_KVP70_mAs5.59_IE364_1.2.826.0.1.3680043.8.498.49586975310449419489276774995114253651.dcm
+2025-08-17 22:40:58,790 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN1510CG_KVP70_mAs5.59_IE364_1.2.826.0.1.3680043.8.498.49586975310449419489276774995114253651.dcm
+2025-08-17 22:40:58,984 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:40:59,084 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.49586975310449419489276774995114253651. Realizando normalización manual min/max.
+2025-08-17 22:40:59,180 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741347336195.1
+2025-08-17 22:40:59,572 - api_main - INFO - Fase 1: Guardado en temp_api_processing/56069e2e-b800-4139-acbd-ecc5963f9289/Img_decompressed_SN1510CG_KVP70_mAs13.02_IE835_1.2.826.0.1.3680043.8.498.48943526829788442354804926754914767532.dcm
+2025-08-17 22:40:59,573 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN1510CG_KVP70_mAs13.02_IE835_1.2.826.0.1.3680043.8.498.48943526829788442354804926754914767532.dcm
+2025-08-17 22:40:59,873 - api_main - INFO - Fase 2: Clase predicha 'MTF'
+2025-08-17 22:40:59,990 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.48943526829788442354804926754914767532. Realizando normalización manual min/max.
+2025-08-17 22:41:00,134 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741347336420.1
+2025-08-17 22:41:00,551 - api_main - INFO - Fase 1: Guardado en temp_api_processing/56069e2e-b800-4139-acbd-ecc5963f9289/Img_decompressed_SN1510CG_KVP70_mAs13.02_IE836_1.2.826.0.1.3680043.8.498.68914111038718082814678052424094916300.dcm
+2025-08-17 22:41:00,551 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN1510CG_KVP70_mAs13.02_IE836_1.2.826.0.1.3680043.8.498.68914111038718082814678052424094916300.dcm
+2025-08-17 22:41:00,758 - api_main - INFO - Fase 2: Clase predicha 'MTF'
+2025-08-17 22:41:00,858 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.68914111038718082814678052424094916300. Realizando normalización manual min/max.
+2025-08-17 22:41:00,954 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741347336643.1
+2025-08-17 22:41:01,353 - api_main - INFO - Fase 1: Guardado en temp_api_processing/56069e2e-b800-4139-acbd-ecc5963f9289/Img_decompressed_SN1510CG_KVP70_mAs13.02_IE835_1.2.826.0.1.3680043.8.498.46598076724191717750502627980757511242.dcm
+2025-08-17 22:41:01,354 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN1510CG_KVP70_mAs13.02_IE835_1.2.826.0.1.3680043.8.498.46598076724191717750502627980757511242.dcm
+2025-08-17 22:41:01,553 - api_main - INFO - Fase 2: Clase predicha 'MTF'
+2025-08-17 22:41:01,653 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.46598076724191717750502627980757511242. Realizando normalización manual min/max.
+2025-08-17 22:41:01,777 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741347336851.1
+2025-08-17 22:41:02,172 - api_main - INFO - Fase 1: Guardado en temp_api_processing/56069e2e-b800-4139-acbd-ecc5963f9289/Img_decompressed_SN1510CG_KVP70_mAs13.02_IE835_1.2.826.0.1.3680043.8.498.95665632336608745585088021554089452590.dcm
+2025-08-17 22:41:02,173 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN1510CG_KVP70_mAs13.02_IE835_1.2.826.0.1.3680043.8.498.95665632336608745585088021554089452590.dcm
+2025-08-17 22:41:02,412 - api_main - INFO - Fase 2: Clase predicha 'MTF'
+2025-08-17 22:41:02,518 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.95665632336608745585088021554089452590. Realizando normalización manual min/max.
+2025-08-17 22:41:02,639 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741347337078.1
+2025-08-17 22:41:03,041 - api_main - INFO - Fase 1: Guardado en temp_api_processing/56069e2e-b800-4139-acbd-ecc5963f9289/Img_decompressed_SN1510CG_KVP70_mAs13.02_IE835_1.2.826.0.1.3680043.8.498.24090900086289382116443310324923239222.dcm
+2025-08-17 22:41:03,041 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN1510CG_KVP70_mAs13.02_IE835_1.2.826.0.1.3680043.8.498.24090900086289382116443310324923239222.dcm
+2025-08-17 22:41:03,260 - api_main - INFO - Fase 2: Clase predicha 'MTF'
+2025-08-17 22:41:03,365 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.24090900086289382116443310324923239222. Realizando normalización manual min/max.
+2025-08-17 22:41:03,464 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741347337292.1
+2025-08-17 22:41:03,859 - api_main - INFO - Fase 1: Guardado en temp_api_processing/56069e2e-b800-4139-acbd-ecc5963f9289/Img_decompressed_SN1510CG_KVP70_mAs3.78_IE186_1.2.826.0.1.3680043.8.498.9085181070563693743542749458468765577.dcm
+2025-08-17 22:41:03,859 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN1510CG_KVP70_mAs3.78_IE186_1.2.826.0.1.3680043.8.498.9085181070563693743542749458468765577.dcm
+2025-08-17 22:41:04,048 - api_main - INFO - Fase 2: Clase predicha 'TOR'
+2025-08-17 22:41:04,163 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.9085181070563693743542749458468765577. Realizando normalización manual min/max.
+2025-08-17 22:41:04,277 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741347337515.1
+2025-08-17 22:41:04,719 - api_main - INFO - Fase 1: Guardado en temp_api_processing/56069e2e-b800-4139-acbd-ecc5963f9289/Img_decompressed_SN1510CG_KVP70_mAs3.78_IE186_1.2.826.0.1.3680043.8.498.76614067159207612764811414908985571475.dcm
+2025-08-17 22:41:04,719 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN1510CG_KVP70_mAs3.78_IE186_1.2.826.0.1.3680043.8.498.76614067159207612764811414908985571475.dcm
+2025-08-17 22:41:04,979 - api_main - INFO - Fase 2: Clase predicha 'TOR'
+2025-08-17 22:41:05,094 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.76614067159207612764811414908985571475. Realizando normalización manual min/max.
+2025-08-17 22:41:05,220 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741347337715.1
+2025-08-17 22:41:05,594 - api_main - INFO - Fase 1: Guardado en temp_api_processing/56069e2e-b800-4139-acbd-ecc5963f9289/Img_decompressed_SN1510CG_KVP70_mAs3.78_IE186_1.2.826.0.1.3680043.8.498.51675163363997772718482335324842277720.dcm
+2025-08-17 22:41:05,594 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN1510CG_KVP70_mAs3.78_IE186_1.2.826.0.1.3680043.8.498.51675163363997772718482335324842277720.dcm
+2025-08-17 22:41:05,831 - api_main - INFO - Fase 2: Clase predicha 'TOR'
+2025-08-17 22:41:05,956 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.51675163363997772718482335324842277720. Realizando normalización manual min/max.
+2025-08-17 22:41:06,059 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741347337941.1
+2025-08-17 22:41:06,470 - api_main - INFO - Fase 1: Guardado en temp_api_processing/56069e2e-b800-4139-acbd-ecc5963f9289/Img_decompressed_SN1510CG_KVP70_mAs3.78_IE186_1.2.826.0.1.3680043.8.498.987449675385137193315470813386444269.dcm
+2025-08-17 22:41:06,470 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN1510CG_KVP70_mAs3.78_IE186_1.2.826.0.1.3680043.8.498.987449675385137193315470813386444269.dcm
+2025-08-17 22:41:06,737 - api_main - INFO - Fase 2: Clase predicha 'TOR'
+2025-08-17 22:41:06,861 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.987449675385137193315470813386444269. Realizando normalización manual min/max.
+2025-08-17 22:41:06,985 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741347338161.1
+2025-08-17 22:41:07,384 - api_main - INFO - Fase 1: Guardado en temp_api_processing/56069e2e-b800-4139-acbd-ecc5963f9289/Img_decompressed_SN1510CG_KVP70_mAs3.78_IE186_1.2.826.0.1.3680043.8.498.79655797409835228887566126447147735682.dcm
+2025-08-17 22:41:07,385 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN1510CG_KVP70_mAs3.78_IE186_1.2.826.0.1.3680043.8.498.79655797409835228887566126447147735682.dcm
+2025-08-17 22:41:07,652 - api_main - INFO - Fase 2: Clase predicha 'TOR'
+2025-08-17 22:41:07,779 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.79655797409835228887566126447147735682. Realizando normalización manual min/max.
+2025-08-17 22:41:07,886 - api_main - INFO - Fase 1: Descomprimiendo 1.3.46.670589.30.41.0.1.128635484509658.1741347338375.1
+2025-08-17 22:41:08,341 - api_main - INFO - Fase 1: Guardado en temp_api_processing/56069e2e-b800-4139-acbd-ecc5963f9289/Img_decompressed_SN1510CG_KVP70_mAs2.79_IE179_1.2.826.0.1.3680043.8.498.33370768093809664029064950739908664794.dcm
+2025-08-17 22:41:08,341 - api_main - INFO - Fase 2: Clasificando Img_decompressed_SN1510CG_KVP70_mAs2.79_IE179_1.2.826.0.1.3680043.8.498.33370768093809664029064950739908664794.dcm
+2025-08-17 22:41:08,546 - api_main - INFO - Fase 2: Clase predicha 'FDT'
+2025-08-17 22:41:08,706 - api_main - WARNING - apply_voi_lut no devolvió un array de 8-bit para 1.2.826.0.1.3680043.8.498.33370768093809664029064950739908664794. Realizando normalización manual min/max.

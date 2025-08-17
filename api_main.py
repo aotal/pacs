@@ -3,14 +3,20 @@ import logging
 import shutil
 import uuid
 from pathlib import Path
-from typing import Optional, Dict, Any
+from typing import Optional, Dict, Any, List
+import zipfile
+import io
+import base64
 
 from PIL import Image as PilImage
 from fastapi import FastAPI, File, UploadFile, HTTPException, Form, Depends
-from fastapi.responses import JSONResponse, FileResponse
+from fastapi.responses import JSONResponse, FileResponse, StreamingResponse
+from fastapi.middleware.cors import CORSMiddleware
 import pydicom
 from pydicom.filewriter import dcmwrite
 from pydicom.uid import ExplicitVRLittleEndian
+# Importación necesaria para el ajuste de contraste
+from pydicom.pixel_data_handlers.util import apply_voi_lut
 import uvicorn
 
 import numpy as np
@@ -23,7 +29,7 @@ try:
     import pandas as pd
     from utils import configurar_logging_aplicacion, clean_filename_part
 except ImportError as e:
-    print(f"Error CRITICAL importando modulos: {e}")
+    print(f"Error CRÍTICO importando módulos: {e}")
     exit()
 
 import joblib
@@ -33,8 +39,20 @@ import torchvision.transforms as transforms
 
 app = FastAPI(
     title="DICOM Processing API",
-    description="An API to process DICOM files through a multi-stage pipeline.",
+    description="Una API para procesar ficheros DICOM a través de un pipeline multi-etapa.",
     version="1.0.0",
+)
+
+origins = [
+    "http://localhost:9002", # La URL de tu frontend en Firebase Studio
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["GET", "POST", "OPTIONS", "PUT", "DELETE"],
+    allow_headers=["*"],
 )
 
 log_file_path = getattr(config, 'BASE_PROJECT_DIR', Path(".")) / "api_workflow.log"
@@ -81,13 +99,13 @@ def get_temp_dir() -> Path:
         shutil.rmtree(temp_dir)
 
 async def save_upload_file(temp_dir: Path, file: UploadFile) -> Path:
-    file_path = temp_dir / file.filename
+    file_path = temp_dir / Path(file.filename).name
     with open(file_path, "wb") as buffer:
         shutil.copyfileobj(file.file, buffer)
     return file_path
 
 async def run_phase_1_decompress(input_path: Path, output_dir: Path) -> Path:
-    logger.info(f"Phase 1: Decompressing {input_path.name}")
+    logger.info(f"Fase 1: Descomprimiendo {input_path.name}")
     ds = pydicom.dcmread(str(input_path), force=True)
     if ds.file_meta.TransferSyntaxUID.is_compressed:
         ds.decompress()
@@ -106,11 +124,11 @@ async def run_phase_1_decompress(input_path: Path, output_dir: Path) -> Path:
     output_filepath = output_dir / new_filename
     ds.file_meta.TransferSyntaxUID = ExplicitVRLittleEndian
     dcmwrite(str(output_filepath), ds)
-    logger.info(f"Phase 1: Saved to {output_filepath}")
+    logger.info(f"Fase 1: Guardado en {output_filepath}")
     return output_filepath
 
 async def run_phase_2_classify(input_path: Path) -> str:
-    logger.info(f"Phase 2: Classifying {input_path.name}")
+    logger.info(f"Fase 2: Clasificando {input_path.name}")
     ds = pydicom.dcmread(str(input_path), force=True)
     pixel_array = ds.pixel_array
     min_val, max_val = np.min(pixel_array), np.max(pixel_array)
@@ -125,11 +143,11 @@ async def run_phase_2_classify(input_path: Path) -> str:
     vector_escalado = SCALER_MODEL.transform(vector_2d)
     prediccion = CLASSIFIER_MODEL.predict(vector_escalado)
     clase_predicha = prediccion[0]
-    logger.info(f"Phase 2: Predicted class '{clase_predicha}'")
+    logger.info(f"Fase 2: Clase predicha '{clase_predicha}'")
     return clase_predicha
 
 async def run_phase_3_process(input_path: Path, classification: str, output_dir: Path) -> Path:
-    logger.info(f"Phase 3: Processing {input_path.name} as '{classification}'")
+    logger.info(f"Fase 3: Procesando {input_path.name} como '{classification}'")
     ds = pydicom.dcmread(str(input_path), force=True)
     slope_linealizacion = None
     rqa_type_para_tags = None
@@ -150,25 +168,138 @@ async def run_phase_3_process(input_path: Path, classification: str, output_dir:
         private_creator_id_linealizacion=getattr(config, 'PRIVATE_CREATOR_ID_LINEALIZATION', "API_LINFO")
     )
     if not output_filepath:
-        raise HTTPException(status_code=500, detail="Phase 3: Failed to process and save DICOM file.")
-    logger.info(f"Phase 3: Saved to {output_filepath}")
+        raise HTTPException(status_code=500, detail="Fase 3: Fallo al procesar y guardar el fichero DICOM.")
+    logger.info(f"Fase 3: Guardado en {output_filepath}")
     return output_filepath
 
 async def run_phase_4_send_pacs(input_path: Path) -> bool:
-    logger.info(f"Phase 4: Sending {input_path.name} to PACS")
+    logger.info(f"Fase 4: Enviando {input_path.name} a PACS")
     success = await pacs_operations.send_single_dicom_file_async(str(input_path), PACS_CONFIG)
-    logger.info(f"Phase 4: PACS send status: {'Success' if success else 'Failure'}")
+    logger.info(f"Fase 4: Estado de envío a PACS: {'Éxito' if success else 'Fallo'}")
     return success
 
-@app.post("/decompress/", response_class=FileResponse)
-async def decompress_dicom_endpoint(temp_dir: Path = Depends(get_temp_dir), file: UploadFile = File(...)):
-    input_path = await save_upload_file(temp_dir, file)
+def create_thumbnail_b64(ds: pydicom.Dataset, size: tuple[int, int] = (128, 128)) -> str:
+    """
+    Crea una miniatura en base64 a partir del pixel_array de un dataset DICOM,
+    aplicando una ventana de visualización (VOI LUT) para un mejor contraste.
+    """
     try:
-        output_path = await run_phase_1_decompress(input_path, temp_dir)
-        return FileResponse(path=output_path, media_type='application/dicom', filename=output_path.name)
+        # Aplica la VOI LUT (Window/Level) si está presente en el DICOM.
+        # Esto ajusta el contraste de forma médicamente apropiada y devuelve un array de 8-bit.
+        img_array_8bit = apply_voi_lut(ds.pixel_array, ds)
+
+        # Si el array resultante no es de 8-bit, normalizamos manualmente como fallback.
+        if img_array_8bit.dtype != np.uint8:
+            logger.warning(f"apply_voi_lut no devolvió un array de 8-bit para {getattr(ds, 'SOPInstanceUID', 'Unknown')}. "
+                           f"Realizando normalización manual min/max.")
+            pixel_array = ds.pixel_array
+            min_val, max_val = np.min(pixel_array), np.max(pixel_array)
+            if max_val == min_val:
+                img_array_8bit = np.zeros(pixel_array.shape, dtype=np.uint8)
+            else:
+                img_array_8bit = np.interp(pixel_array, (min_val, max_val), (0, 255)).astype(np.uint8)
+
+        pil_img = PilImage.fromarray(img_array_8bit)
+        pil_img.thumbnail(size)
+        
+        buffered = io.BytesIO()
+        pil_img.save(buffered, format="PNG")
+        img_str = base64.b64encode(buffered.getvalue()).decode("utf-8")
+        
+        return img_str
     except Exception as e:
-        logger.error(f"Error in /decompress endpoint: {e}", exc_info=True)
+        logger.error(f"Error al crear la miniatura para {getattr(ds, 'SOPInstanceUID', 'Unknown')}: {e}", exc_info=True)
+        # Intentar un fallback simple en caso de que apply_voi_lut falle
+        try:
+            logger.info("Intentando fallback de normalización simple debido a un error previo.")
+            pixel_array = ds.pixel_array
+            min_val, max_val = np.min(pixel_array), np.max(pixel_array)
+            if max_val > min_val:
+                img_array_8bit = np.interp(pixel_array, (min_val, max_val), (0, 255)).astype(np.uint8)
+                pil_img = PilImage.fromarray(img_array_8bit)
+                pil_img.thumbnail(size)
+                buffered = io.BytesIO()
+                pil_img.save(buffered, format="PNG")
+                return base64.b64encode(buffered.getvalue()).decode("utf-8")
+        except Exception as fallback_e:
+            logger.error(f"El fallback de la creación de miniatura también falló: {fallback_e}", exc_info=True)
+
+        return "" # Devolver una cadena vacía si todo falla
+
+@app.post("/decompress/", response_class=StreamingResponse)
+async def decompress_dicom_endpoint(
+    temp_dir: Path = Depends(get_temp_dir),
+    files: List[UploadFile] = File(...)
+):
+    async def process_single_file(file: UploadFile) -> Path:
+        input_path = await save_upload_file(temp_dir, file)
+        return await run_phase_1_decompress(input_path, temp_dir)
+    try:
+        tasks = [process_single_file(file) for file in files]
+        processed_paths = await asyncio.gather(*tasks)
+        zip_buffer = io.BytesIO()
+        with zipfile.ZipFile(zip_buffer, "a", zipfile.ZIP_DEFLATED, False) as zip_file:
+            for path in processed_paths:
+                zip_file.write(path, arcname=path.name)
+        zip_buffer.seek(0)
+        return StreamingResponse(
+            zip_buffer,
+            media_type="application/x-zip-compressed",
+            headers={"Content-Disposition": "attachment; filename=ficheros_descomprimidos.zip"}
+        )
+    except Exception as e:
+        logger.error(f"Error en el endpoint /decompress: {e}", exc_info=True)
         raise HTTPException(status_code=500, detail=str(e))
+
+@app.post("/decompress_and_classify/", response_class=JSONResponse)
+async def decompress_and_classify_endpoint(
+    temp_dir: Path = Depends(get_temp_dir),
+    files: List[UploadFile] = File(...)
+):
+    """
+    Recibe múltiples ficheros DICOM, los descomprime, los clasifica y
+    genera una miniatura en base64 para cada uno.
+    Devuelve un JSON con el nombre del fichero, la clasificación y la miniatura.
+    """
+    
+    async def process_single_file(file: UploadFile) -> Dict[str, Any]:
+        """Procesa un único fichero: descomprime, clasifica y crea miniatura."""
+        original_filename = file.filename
+        try:
+            # Fase 1: Descomprimir
+            input_path = await save_upload_file(temp_dir, file)
+            decompressed_path = await run_phase_1_decompress(input_path, temp_dir)
+            
+            # Fase 2: Clasificar
+            classification = await run_phase_2_classify(decompressed_path)
+            
+            # Nueva Fase: Crear miniatura. Se necesita leer el fichero descomprimido.
+            ds = pydicom.dcmread(str(decompressed_path), force=True)
+            thumbnail_b64 = create_thumbnail_b64(ds)
+
+            return {
+                "filename": original_filename,
+                "classification": classification,
+                "image_b64": thumbnail_b64
+            }
+        except Exception as e:
+            logger.error(f"Fallo completo en el procesamiento de {original_filename}: {e}", exc_info=True)
+            return {
+                "filename": original_filename,
+                "classification": "Error en procesamiento",
+                "image_b64": ""
+            }
+
+    try:
+        tasks = [process_single_file(file) for file in files]
+        results = await asyncio.gather(*tasks)
+        
+        return JSONResponse(content={"results": results})
+
+    except Exception as e:
+        logger.error(f"Error en el endpoint /decompress_and_classify: {e}", exc_info=True)
+        raise HTTPException(status_code=500, detail=str(e))
+
 
 @app.post("/classify/", response_class=JSONResponse)
 async def classify_dicom_endpoint(temp_dir: Path = Depends(get_temp_dir), file: UploadFile = File(...)):
@@ -177,7 +308,7 @@ async def classify_dicom_endpoint(temp_dir: Path = Depends(get_temp_dir), file: 
         classification = await run_phase_2_classify(input_path)
         return JSONResponse(content={"classification": classification, "filename": file.filename})
     except Exception as e:
-        logger.error(f"Error in /classify endpoint: {e}", exc_info=True)
+        logger.error(f"Error en el endpoint /classify: {e}", exc_info=True)
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.post("/process/", response_class=FileResponse)
@@ -191,7 +322,7 @@ async def process_dicom_endpoint(
         output_path = await run_phase_3_process(input_path, classification, temp_dir)
         return FileResponse(path=output_path, media_type='application/dicom', filename=output_path.name)
     except Exception as e:
-        logger.error(f"Error in /process endpoint: {e}", exc_info=True)
+        logger.error(f"Error en el endpoint /process: {e}", exc_info=True)
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.post("/send_pacs/", response_class=JSONResponse)
@@ -201,7 +332,7 @@ async def send_pacs_endpoint(temp_dir: Path = Depends(get_temp_dir), file: Uploa
         success = await run_phase_4_send_pacs(input_path)
         return JSONResponse(content={"pacs_send_success": success, "filename": file.filename})
     except Exception as e:
-        logger.error(f"Error in /send_pacs endpoint: {e}", exc_info=True)
+        logger.error(f"Error en el endpoint /send_pacs: {e}", exc_info=True)
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.post("/full_process/", response_class=JSONResponse)
@@ -213,13 +344,13 @@ async def full_process_endpoint(temp_dir: Path = Depends(get_temp_dir), file: Up
         processed_path = await run_phase_3_process(decompressed_path, classification, temp_dir)
         pacs_success = await run_phase_4_send_pacs(processed_path)
         return JSONResponse(content={
-            "message": "Full process completed.",
+            "message": "Proceso completo finalizado.",
             "filename": file.filename,
             "classification": classification,
             "pacs_send_success": pacs_success,
         })
     except Exception as e:
-        logger.error(f"Error in /full_process endpoint: {e}", exc_info=True)
+        logger.error(f"Error en el endpoint /full_process: {e}", exc_info=True)
         raise HTTPException(status_code=500, detail=str(e))
 
 if __name__ == "__main__":
