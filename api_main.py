@@ -15,7 +15,6 @@ from fastapi.middleware.cors import CORSMiddleware
 import pydicom
 from pydicom.filewriter import dcmwrite
 from pydicom.uid import ExplicitVRLittleEndian
-# Importación necesaria para el ajuste de contraste
 from pydicom.pixel_data_handlers.util import apply_voi_lut
 import uvicorn
 
@@ -179,39 +178,26 @@ async def run_phase_4_send_pacs(input_path: Path) -> bool:
     return success
 
 def create_thumbnail_b64(ds: pydicom.Dataset, size: tuple[int, int] = (128, 128)) -> str:
-    """
-    Crea una miniatura en base64 a partir del pixel_array de un dataset DICOM,
-    aplicando una ventana de visualización (VOI LUT) para un mejor contraste.
-    """
     try:
-        # Aplica la VOI LUT (Window/Level) si está presente en el DICOM.
-        # Esto ajusta el contraste de forma médicamente apropiada y devuelve un array de 8-bit.
         img_array_8bit = apply_voi_lut(ds.pixel_array, ds)
-
-        # Si el array resultante no es de 8-bit, normalizamos manualmente como fallback.
         if img_array_8bit.dtype != np.uint8:
-            logger.warning(f"apply_voi_lut no devolvió un array de 8-bit para {getattr(ds, 'SOPInstanceUID', 'Unknown')}. "
-                           f"Realizando normalización manual min/max.")
+            logger.warning(f"apply_voi_lut no devolvió un array de 8-bit para {getattr(ds, 'SOPInstanceUID', 'Unknown')}. Realizando normalización manual.")
             pixel_array = ds.pixel_array
             min_val, max_val = np.min(pixel_array), np.max(pixel_array)
             if max_val == min_val:
                 img_array_8bit = np.zeros(pixel_array.shape, dtype=np.uint8)
             else:
                 img_array_8bit = np.interp(pixel_array, (min_val, max_val), (0, 255)).astype(np.uint8)
-
         pil_img = PilImage.fromarray(img_array_8bit)
         pil_img.thumbnail(size)
-        
         buffered = io.BytesIO()
         pil_img.save(buffered, format="PNG")
         img_str = base64.b64encode(buffered.getvalue()).decode("utf-8")
-        
         return img_str
     except Exception as e:
         logger.error(f"Error al crear la miniatura para {getattr(ds, 'SOPInstanceUID', 'Unknown')}: {e}", exc_info=True)
-        # Intentar un fallback simple en caso de que apply_voi_lut falle
         try:
-            logger.info("Intentando fallback de normalización simple debido a un error previo.")
+            logger.info("Intentando fallback de normalización simple.")
             pixel_array = ds.pixel_array
             min_val, max_val = np.min(pixel_array), np.max(pixel_array)
             if max_val > min_val:
@@ -223,8 +209,7 @@ def create_thumbnail_b64(ds: pydicom.Dataset, size: tuple[int, int] = (128, 128)
                 return base64.b64encode(buffered.getvalue()).decode("utf-8")
         except Exception as fallback_e:
             logger.error(f"El fallback de la creación de miniatura también falló: {fallback_e}", exc_info=True)
-
-        return "" # Devolver una cadena vacía si todo falla
+        return ""
 
 @app.post("/decompress/", response_class=StreamingResponse)
 async def decompress_dicom_endpoint(
@@ -256,50 +241,46 @@ async def decompress_and_classify_endpoint(
     temp_dir: Path = Depends(get_temp_dir),
     files: List[UploadFile] = File(...)
 ):
-    """
-    Recibe múltiples ficheros DICOM, los descomprime, los clasifica y
-    genera una miniatura en base64 para cada uno.
-    Devuelve un JSON con el nombre del fichero, la clasificación y la miniatura.
-    """
-    
     async def process_single_file(file: UploadFile) -> Dict[str, Any]:
-        """Procesa un único fichero: descomprime, clasifica y crea miniatura."""
         original_filename = file.filename
         try:
-            # Fase 1: Descomprimir
             input_path = await save_upload_file(temp_dir, file)
             decompressed_path = await run_phase_1_decompress(input_path, temp_dir)
-            
-            # Fase 2: Clasificar
             classification = await run_phase_2_classify(decompressed_path)
-            
-            # Nueva Fase: Crear miniatura. Se necesita leer el fichero descomprimido.
             ds = pydicom.dcmread(str(decompressed_path), force=True)
             thumbnail_b64 = create_thumbnail_b64(ds)
 
+            # --- CAMBIO: Extraer datos adicionales del DICOM ---
+            kvp = ds.get('KVP', 'N/A')
+            exposure_uas = float(ds.get('ExposureInuAs', 0.0))
+            mas = round(exposure_uas / 1000.0, 2)
+            ie = ds.get('ExposureIndex', 'N/A')
+            processed_filename = decompressed_path.name
+
             return {
                 "filename": original_filename,
+                "processed_filename": processed_filename,
                 "classification": classification,
-                "image_b64": thumbnail_b64
+                "image_b64": thumbnail_b64,
+                "kvp": kvp,
+                "mas": mas,
+                "ie": ie
             }
         except Exception as e:
             logger.error(f"Fallo completo en el procesamiento de {original_filename}: {e}", exc_info=True)
             return {
                 "filename": original_filename,
-                "classification": "Error en procesamiento",
-                "image_b64": ""
+                "classification": "Error",
+                "image_b64": "",
+                "kvp": "Error", "mas": "Error", "ie": "Error"
             }
-
     try:
         tasks = [process_single_file(file) for file in files]
         results = await asyncio.gather(*tasks)
-        
         return JSONResponse(content={"results": results})
-
     except Exception as e:
         logger.error(f"Error en el endpoint /decompress_and_classify: {e}", exc_info=True)
         raise HTTPException(status_code=500, detail=str(e))
-
 
 @app.post("/classify/", response_class=JSONResponse)
 async def classify_dicom_endpoint(temp_dir: Path = Depends(get_temp_dir), file: UploadFile = File(...)):
