@@ -12,6 +12,7 @@ from PIL import Image as PilImage
 from fastapi import FastAPI, File, UploadFile, HTTPException, Form, Depends
 from fastapi.responses import JSONResponse, FileResponse, StreamingResponse
 from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel, Field
 import pydicom
 from pydicom.filewriter import dcmwrite
 from pydicom.uid import ExplicitVRLittleEndian
@@ -74,13 +75,6 @@ PREPROCESS_TRANSFORM = transforms.Compose([
     transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
 ])
 
-LUT_KERMA_DATA = dicom_processing_pipeline.load_calibration_data(str(config.PATH_LUT_CALIBRATION_CSV))
-DF_CALIB_LINEALIZACION = None
-if getattr(config, 'ENABLE_PHYSICAL_LINEALIZATION_PARAMS', False):
-    DF_CALIB_LINEALIZACION = linealize.obtener_datos_calibracion_vmp_k_linealizacion(
-        str(getattr(config, 'PATH_CSV_LINEALIZACION_FISICA', config.PATH_LUT_CALIBRATION_CSV))
-    )
-
 PACS_CONFIG = {
     "PACS_IP": config.PACS_IP, "PACS_PORT": config.PACS_PORT,
     "PACS_AET": config.PACS_AET, "AE_TITLE": config.CLIENT_AET
@@ -89,49 +83,100 @@ PACS_CONFIG = {
 TEMP_BASE_DIR = Path("temp_api_processing")
 TEMP_BASE_DIR.mkdir(exist_ok=True)
 
+# --- Pydantic Models for new endpoint ---
+class KermaDataItem(BaseModel):
+    mAs: float
+    kerma: float
+
+class ClassifiedFile(BaseModel):
+    id: int
+    name: str
+    processedName: str
+    class_name: str = Field(..., alias='class')
+
+class LinearizationRequest(BaseModel):
+    files: List[ClassifiedFile]
+    kerma_data: List[KermaDataItem]
+    sdd: float
+    sid: float
+    session_id: str
+
 def get_temp_dir() -> Path:
-    temp_dir = TEMP_BASE_DIR / str(uuid.uuid4())
+    session_id = str(uuid.uuid4())
+    temp_dir = TEMP_BASE_DIR / session_id
     temp_dir.mkdir(parents=True, exist_ok=True)
     try:
         yield temp_dir
     finally:
-        shutil.rmtree(temp_dir)
+        pass
 
-async def save_upload_file(temp_dir: Path, file: UploadFile) -> Path:
-    file_path = temp_dir / Path(file.filename).name
-    with open(file_path, "wb") as buffer:
-        shutil.copyfileobj(file.file, buffer)
-    return file_path
+def calculate_vmp_in_roi(ds: pydicom.Dataset, roi_size_cm: float = 4.0) -> float:
+    # --- CORRECCIÓN: Usar SpatialResolution si PixelSpacing no está disponible ---
+    pixel_spacing_val = None
+    if hasattr(ds, 'PixelSpacing') and ds.PixelSpacing:
+        pixel_spacing_val = ds.PixelSpacing
+    elif hasattr(ds, 'SpatialResolution') and ds.SpatialResolution:
+        # SpatialResolution es un solo valor (mm), se usa para ambas dimensiones
+        pixel_spacing_val = [ds.SpatialResolution, ds.SpatialResolution]
 
-async def run_phase_1_decompress(input_path: Path, output_dir: Path) -> Path:
-    logger.info(f"Fase 1: Descomprimiendo {input_path.name}")
-    ds = pydicom.dcmread(str(input_path), force=True)
-    if ds.file_meta.TransferSyntaxUID.is_compressed:
-        ds.decompress()
-    detector_id_fn = ds.get('DetectorID', 'NoDetID')
-    kvp_fn = ds.get('KVP', 'NoKVP')
-    exposure_uas_fn = float(ds.get('ExposureInuAs', 0.0))
-    exposure_index_fn = ds.get('ExposureIndex', 'NoIE')
-    new_filename_base = (
-        f"Img_decompressed_{clean_filename_part(detector_id_fn)}"
-        f"_KVP{clean_filename_part(kvp_fn)}"
-        f"_mAs{round(exposure_uas_fn / 1000.0, 2)}"
-        f"_IE{clean_filename_part(exposure_index_fn)}"
-        f"_{ds.SOPInstanceUID}"
-    )
-    new_filename = new_filename_base[:200] + ".dcm"
-    output_filepath = output_dir / new_filename
-    ds.file_meta.TransferSyntaxUID = ExplicitVRLittleEndian
-    dcmwrite(str(output_filepath), ds)
-    logger.info(f"Fase 1: Guardado en {output_filepath}")
-    return output_filepath
+    if not pixel_spacing_val or len(pixel_spacing_val) < 2:
+        # Usar ds.filename si está disponible para un mejor mensaje de error
+        filename = getattr(ds, 'filename', 'desconocido')
+        raise ValueError(f"El fichero {filename} no contiene 'PixelSpacing' ni 'SpatialResolution', etiquetas necesarias para el cálculo del ROI.")
+
+    roi_size_px_x = int((roi_size_cm * 10) / pixel_spacing_val[0])
+    roi_size_px_y = int((roi_size_cm * 10) / pixel_spacing_val[1])
+    
+    center_x = ds.pixel_array.shape[1] // 2
+    center_y = ds.pixel_array.shape[0] // 2
+    
+    half_roi_x = roi_size_px_x // 2
+    half_roi_y = roi_size_px_y // 2
+    
+    roi = ds.pixel_array[
+        center_y - half_roi_y : center_y + half_roi_y,
+        center_x - half_roi_x : center_x + half_roi_x
+    ]
+    
+    return float(np.mean(roi))
+
+def apply_manual_rescale_tags(ds: pydicom.Dataset, slope: float, intercept: float) -> pydicom.Dataset:
+    ds.RescaleSlope = float(slope)
+    ds.RescaleIntercept = float(intercept)
+    ds.RescaleType = 'K_uGy'
+    if 'ModalityLUTSequence' in ds:
+        del ds.ModalityLUTSequence
+    
+    bits_stored = ds.BitsStored
+    min_pixel_val = 0
+    max_pixel_val = (2**bits_stored) - 1
+    min_output_val = min_pixel_val * ds.RescaleSlope + ds.RescaleIntercept
+    max_output_val = max_pixel_val * ds.RescaleSlope + ds.RescaleIntercept
+    new_ww = max(1.0, max_output_val - min_output_val)
+    new_wc = min_output_val + new_ww / 2.0
+    ds.WindowCenter = float(new_wc)
+    ds.WindowWidth = float(new_ww)
+    return ds
+
+def get_8bit_image_array(ds: pydicom.Dataset) -> np.ndarray:
+    """Función unificada para obtener una imagen de 8-bit desde un DICOM."""
+    try:
+        img_8bit = apply_voi_lut(ds.pixel_array, ds)
+        if img_8bit.dtype != np.uint8:
+            raise ValueError("apply_voi_lut no devolvió uint8")
+        return img_8bit
+    except Exception:
+        pixel_array = ds.pixel_array
+        min_val, max_val = np.min(pixel_array), np.max(pixel_array)
+        if max_val == min_val:
+            return np.zeros(pixel_array.shape, dtype=np.uint8)
+        else:
+            return np.interp(pixel_array, (min_val, max_val), (0, 255)).astype(np.uint8)
 
 async def run_phase_2_classify(input_path: Path) -> str:
-    logger.info(f"Fase 2: Clasificando {input_path.name}")
     ds = pydicom.dcmread(str(input_path), force=True)
-    pixel_array = ds.pixel_array
-    min_val, max_val = np.min(pixel_array), np.max(pixel_array)
-    img_array_8bit = np.interp(pixel_array, (min_val, max_val), (0, 255)).astype(np.uint8)
+    # --- CORRECCIÓN: Usar la función unificada para consistencia ---
+    img_array_8bit = get_8bit_image_array(ds)
     pil_img = PilImage.fromarray(img_array_8bit)
     img_tensor = PREPROCESS_TRANSFORM(pil_img)
     batch_t = torch.unsqueeze(img_tensor, 0)
@@ -142,197 +187,141 @@ async def run_phase_2_classify(input_path: Path) -> str:
     vector_escalado = SCALER_MODEL.transform(vector_2d)
     prediccion = CLASSIFIER_MODEL.predict(vector_escalado)
     clase_predicha = prediccion[0]
-    logger.info(f"Fase 2: Clase predicha '{clase_predicha}'")
     return clase_predicha
-
-async def run_phase_3_process(input_path: Path, classification: str, output_dir: Path) -> Path:
-    logger.info(f"Fase 3: Procesando {input_path.name} como '{classification}'")
-    ds = pydicom.dcmread(str(input_path), force=True)
-    slope_linealizacion = None
-    rqa_type_para_tags = None
-    if DF_CALIB_LINEALIZACION is not None:
-        rqa_type = getattr(config, 'DEFAULT_RQA_TYPE_LINEALIZATION', "RQA5")
-        rqa_factors = getattr(config, 'RQA_FACTORS_PHYSICAL_LINEALIZATION', {})
-        slope_linealizacion = linealize.calculate_linearization_slope(
-            calibration_df=DF_CALIB_LINEALIZACION, rqa_type=rqa_type, rqa_factors_dict=rqa_factors
-        )
-        if slope_linealizacion:
-            rqa_type_para_tags = rqa_type
-    pixel_cal, kerma_cal = LUT_KERMA_DATA
-    output_filepath = dicom_processing_pipeline.process_and_prepare_dicom_for_pacs(
-        ds=ds, clasificacion_baml_mapeada=classification,
-        pixel_values_calib=pixel_cal, kerma_values_calib=kerma_cal,
-        output_base_dir=output_dir, original_filename=input_path.name,
-        linearization_slope_param=slope_linealizacion, rqa_type_param=rqa_type_para_tags,
-        private_creator_id_linealizacion=getattr(config, 'PRIVATE_CREATOR_ID_LINEALIZATION', "API_LINFO")
-    )
-    if not output_filepath:
-        raise HTTPException(status_code=500, detail="Fase 3: Fallo al procesar y guardar el fichero DICOM.")
-    logger.info(f"Fase 3: Guardado en {output_filepath}")
-    return output_filepath
-
-async def run_phase_4_send_pacs(input_path: Path) -> bool:
-    logger.info(f"Fase 4: Enviando {input_path.name} a PACS")
-    success = await pacs_operations.send_single_dicom_file_async(str(input_path), PACS_CONFIG)
-    logger.info(f"Fase 4: Estado de envío a PACS: {'Éxito' if success else 'Fallo'}")
-    return success
 
 def create_thumbnail_b64(ds: pydicom.Dataset, size: tuple[int, int] = (128, 128)) -> str:
     try:
-        img_array_8bit = apply_voi_lut(ds.pixel_array, ds)
-        if img_array_8bit.dtype != np.uint8:
-            logger.warning(f"apply_voi_lut no devolvió un array de 8-bit para {getattr(ds, 'SOPInstanceUID', 'Unknown')}. Realizando normalización manual.")
-            pixel_array = ds.pixel_array
-            min_val, max_val = np.min(pixel_array), np.max(pixel_array)
-            if max_val == min_val:
-                img_array_8bit = np.zeros(pixel_array.shape, dtype=np.uint8)
-            else:
-                img_array_8bit = np.interp(pixel_array, (min_val, max_val), (0, 255)).astype(np.uint8)
+        # --- CORRECCIÓN: Usar la función unificada para consistencia ---
+        img_array_8bit = get_8bit_image_array(ds)
         pil_img = PilImage.fromarray(img_array_8bit)
         pil_img.thumbnail(size)
         buffered = io.BytesIO()
         pil_img.save(buffered, format="PNG")
-        img_str = base64.b64encode(buffered.getvalue()).decode("utf-8")
-        return img_str
+        return base64.b64encode(buffered.getvalue()).decode("utf-8")
     except Exception as e:
-        logger.error(f"Error al crear la miniatura para {getattr(ds, 'SOPInstanceUID', 'Unknown')}: {e}", exc_info=True)
-        try:
-            logger.info("Intentando fallback de normalización simple.")
-            pixel_array = ds.pixel_array
-            min_val, max_val = np.min(pixel_array), np.max(pixel_array)
-            if max_val > min_val:
-                img_array_8bit = np.interp(pixel_array, (min_val, max_val), (0, 255)).astype(np.uint8)
-                pil_img = PilImage.fromarray(img_array_8bit)
-                pil_img.thumbnail(size)
-                buffered = io.BytesIO()
-                pil_img.save(buffered, format="PNG")
-                return base64.b64encode(buffered.getvalue()).decode("utf-8")
-        except Exception as fallback_e:
-            logger.error(f"El fallback de la creación de miniatura también falló: {fallback_e}", exc_info=True)
+        logger.error(f"Error creando miniatura: {e}", exc_info=True)
         return ""
-
-@app.post("/decompress/", response_class=StreamingResponse)
-async def decompress_dicom_endpoint(
-    temp_dir: Path = Depends(get_temp_dir),
-    files: List[UploadFile] = File(...)
-):
-    async def process_single_file(file: UploadFile) -> Path:
-        input_path = await save_upload_file(temp_dir, file)
-        return await run_phase_1_decompress(input_path, temp_dir)
-    try:
-        tasks = [process_single_file(file) for file in files]
-        processed_paths = await asyncio.gather(*tasks)
-        zip_buffer = io.BytesIO()
-        with zipfile.ZipFile(zip_buffer, "a", zipfile.ZIP_DEFLATED, False) as zip_file:
-            for path in processed_paths:
-                zip_file.write(path, arcname=path.name)
-        zip_buffer.seek(0)
-        return StreamingResponse(
-            zip_buffer,
-            media_type="application/x-zip-compressed",
-            headers={"Content-Disposition": "attachment; filename=ficheros_descomprimidos.zip"}
-        )
-    except Exception as e:
-        logger.error(f"Error en el endpoint /decompress: {e}", exc_info=True)
-        raise HTTPException(status_code=500, detail=str(e))
 
 @app.post("/decompress_and_classify/", response_class=JSONResponse)
 async def decompress_and_classify_endpoint(
-    temp_dir: Path = Depends(get_temp_dir),
-    files: List[UploadFile] = File(...)
+    files: List[UploadFile] = File(...),
+    temp_dir: Path = Depends(get_temp_dir)
 ):
     async def process_single_file(file: UploadFile) -> Dict[str, Any]:
         original_filename = file.filename
         try:
-            input_path = await save_upload_file(temp_dir, file)
-            decompressed_path = await run_phase_1_decompress(input_path, temp_dir)
-            classification = await run_phase_2_classify(decompressed_path)
-            ds = pydicom.dcmread(str(decompressed_path), force=True)
-            thumbnail_b64 = create_thumbnail_b64(ds)
+            input_path = temp_dir / original_filename
+            with open(input_path, "wb") as buffer:
+                shutil.copyfileobj(file.file, buffer)
+            
+            ds = pydicom.dcmread(str(input_path), force=True)
+            if ds.file_meta.TransferSyntaxUID.is_compressed:
+                ds.decompress()
 
-            # --- CAMBIO: Extraer datos adicionales del DICOM ---
+            processed_name = f"decom_{uuid.uuid4()}.dcm"
+            processed_path = temp_dir / processed_name
+            ds.save_as(str(processed_path))
+
+            classification = await run_phase_2_classify(processed_path)
+            thumbnail_b64 = create_thumbnail_b64(ds)
+            
             kvp = ds.get('KVP', 'N/A')
             exposure_uas = float(ds.get('ExposureInuAs', 0.0))
             mas = round(exposure_uas / 1000.0, 2)
             ie = ds.get('ExposureIndex', 'N/A')
-            processed_filename = decompressed_path.name
 
             return {
                 "filename": original_filename,
-                "processed_filename": processed_filename,
+                "processedName": processed_name,
                 "classification": classification,
                 "image_b64": thumbnail_b64,
-                "kvp": kvp,
-                "mas": mas,
-                "ie": ie
+                "kvp": kvp, "mas": mas, "ie": ie
             }
         except Exception as e:
-            logger.error(f"Fallo completo en el procesamiento de {original_filename}: {e}", exc_info=True)
-            return {
-                "filename": original_filename,
-                "classification": "Error",
-                "image_b64": "",
-                "kvp": "Error", "mas": "Error", "ie": "Error"
-            }
-    try:
-        tasks = [process_single_file(file) for file in files]
-        results = await asyncio.gather(*tasks)
-        return JSONResponse(content={"results": results})
-    except Exception as e:
-        logger.error(f"Error en el endpoint /decompress_and_classify: {e}", exc_info=True)
-        raise HTTPException(status_code=500, detail=str(e))
+            logger.error(f"Error procesando {original_filename}: {e}", exc_info=True)
+            return {"filename": original_filename, "classification": "Error"}
 
-@app.post("/classify/", response_class=JSONResponse)
-async def classify_dicom_endpoint(temp_dir: Path = Depends(get_temp_dir), file: UploadFile = File(...)):
-    input_path = await save_upload_file(temp_dir, file)
-    try:
-        classification = await run_phase_2_classify(input_path)
-        return JSONResponse(content={"classification": classification, "filename": file.filename})
-    except Exception as e:
-        logger.error(f"Error en el endpoint /classify: {e}", exc_info=True)
-        raise HTTPException(status_code=500, detail=str(e))
+    tasks = [process_single_file(file) for file in files]
+    results = await asyncio.gather(*tasks)
+    return JSONResponse(content={"results": results, "session_id": temp_dir.name})
 
-@app.post("/process/", response_class=FileResponse)
-async def process_dicom_endpoint(
-    temp_dir: Path = Depends(get_temp_dir),
-    classification: str = Form(...),
-    file: UploadFile = File(...)
-):
-    input_path = await save_upload_file(temp_dir, file)
-    try:
-        output_path = await run_phase_3_process(input_path, classification, temp_dir)
-        return FileResponse(path=output_path, media_type='application/dicom', filename=output_path.name)
-    except Exception as e:
-        logger.error(f"Error en el endpoint /process: {e}", exc_info=True)
-        raise HTTPException(status_code=500, detail=str(e))
+@app.post("/process_and_linearize/", response_class=JSONResponse)
+async def process_and_linearize_endpoint(request: LinearizationRequest):
+    session_id = request.session_id
+    session_dir = TEMP_BASE_DIR / session_id
+    if not session_dir.is_dir():
+        raise HTTPException(status_code=404, detail="Session not found.")
+        
+    output_dir = session_dir / "linearized"
+    output_dir.mkdir(exist_ok=True)
 
-@app.post("/send_pacs/", response_class=JSONResponse)
-async def send_pacs_endpoint(temp_dir: Path = Depends(get_temp_dir), file: UploadFile = File(...)):
-    input_path = await save_upload_file(temp_dir, file)
     try:
-        success = await run_phase_4_send_pacs(input_path)
-        return JSONResponse(content={"pacs_send_success": success, "filename": file.filename})
-    except Exception as e:
-        logger.error(f"Error en el endpoint /send_pacs: {e}", exc_info=True)
-        raise HTTPException(status_code=500, detail=str(e))
+        fdt_files = [f for f in request.files if f.class_name == 'FDT']
+        if len(fdt_files) < 2:
+            raise HTTPException(status_code=400, detail=f"Se necesitan al menos 2 imágenes FDT. Se encontraron {len(fdt_files)}.")
 
-@app.post("/full_process/", response_class=JSONResponse)
-async def full_process_endpoint(temp_dir: Path = Depends(get_temp_dir), file: UploadFile = File(...)):
-    input_path = await save_upload_file(temp_dir, file)
-    try:
-        decompressed_path = await run_phase_1_decompress(input_path, temp_dir)
-        classification = await run_phase_2_classify(decompressed_path)
-        processed_path = await run_phase_3_process(decompressed_path, classification, temp_dir)
-        pacs_success = await run_phase_4_send_pacs(processed_path)
-        return JSONResponse(content={
-            "message": "Proceso completo finalizado.",
-            "filename": file.filename,
-            "classification": classification,
-            "pacs_send_success": pacs_success,
-        })
+        kerma_map = {item.mAs: item.kerma for item in request.kerma_data}
+        vmp_points, kerma_points = [], []
+
+        for fdt_file in fdt_files:
+            file_path = session_dir / fdt_file.processedName
+            ds = pydicom.dcmread(str(file_path), force=True)
+            vmp = calculate_vmp_in_roi(ds)
+            file_mas = round(float(ds.get('ExposureInuAs', 0.0)) / 1000.0, 2)
+            
+            if file_mas in kerma_map:
+                kerma_detector = kerma_map[file_mas]
+                kerma_receptor = kerma_detector * (request.sdd**2 / request.sid**2)
+                vmp_points.append(vmp)
+                kerma_points.append(kerma_receptor)
+
+        if len(vmp_points) < 2:
+            raise HTTPException(status_code=400, detail="No se pudieron emparejar suficientes puntos para la regresión.")
+
+        slope, intercept = np.polyfit(vmp_points, kerma_points, 1)
+
+        for file_info in request.files:
+            input_path = session_dir / file_info.processedName
+            output_path = output_dir / f"linearized_{Path(file_info.processedName).name}"
+            ds = pydicom.dcmread(str(input_path))
+            ds = apply_manual_rescale_tags(ds, slope, intercept)
+            ds.save_as(str(output_path))
+
+        return JSONResponse(content={"message": "Linealización completada.", "session_id": session_id})
+    except ValueError as ve:
+        logger.error(f"Error de valor durante la linealización: {ve}", exc_info=True)
+        raise HTTPException(status_code=400, detail=str(ve))
     except Exception as e:
-        logger.error(f"Error en el endpoint /full_process: {e}", exc_info=True)
-        raise HTTPException(status_code=500, detail=str(e))
+        logger.error(f"Error during linearization for session {session_id}: {e}", exc_info=True)
+        raise HTTPException(status_code=500, detail=f"Error en la linealización: {str(e)}")
+
+@app.get("/download_processed_files/{session_id}", response_class=StreamingResponse)
+async def download_processed_files(session_id: str):
+    linearized_dir = TEMP_BASE_DIR / session_id / "linearized"
+    if not linearized_dir.is_dir():
+        raise HTTPException(status_code=404, detail="No se encontraron ficheros.")
+    
+    zip_buffer = io.BytesIO()
+    with zipfile.ZipFile(zip_buffer, "a", zipfile.ZIP_DEFLATED, False) as zip_file:
+        for path in linearized_dir.glob("*.dcm"):
+            zip_file.write(path, arcname=path.name)
+    zip_buffer.seek(0)
+    
+    return StreamingResponse(zip_buffer, media_type="application/x-zip-compressed",
+        headers={"Content-Disposition": f"attachment; filename=ficheros_linealizados.zip"})
+
+@app.post("/send_processed_to_pacs/{session_id}", response_class=JSONResponse)
+async def send_processed_to_pacs(session_id: str):
+    linearized_dir = TEMP_BASE_DIR / session_id / "linearized"
+    if not linearized_dir.is_dir():
+        raise HTTPException(status_code=404, detail="No se encontraron ficheros.")
+    
+    files_to_send = [str(p) for p in linearized_dir.glob("*.dcm")]
+    tasks = [pacs_operations.send_single_dicom_file_async(f, PACS_CONFIG) for f in files_to_send]
+    results = await asyncio.gather(*tasks)
+    
+    success_count = sum(1 for r in results if r)
+    return JSONResponse(content={"message": f"{success_count}/{len(files_to_send)} ficheros enviados."})
 
 if __name__ == "__main__":
-    uvicorn.run("api_main:app", host="0.0.0.0", port=8000, reload=False)
+    uvicorn.run("api_main:app", host="0.0.0.0", port=8000, reload=True)
