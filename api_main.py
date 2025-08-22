@@ -7,6 +7,7 @@ from typing import Optional, Dict, Any, List
 import zipfile
 import io
 import base64
+from datetime import datetime
 
 from PIL import Image as PilImage
 from fastapi import FastAPI, File, UploadFile, HTTPException, Form, Depends
@@ -15,7 +16,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 import pydicom
 from pydicom.filewriter import dcmwrite
-from pydicom.uid import ExplicitVRLittleEndian
+from pydicom.uid import ExplicitVRLittleEndian, generate_uid
 from pydicom.pixel_data_handlers.util import apply_voi_lut
 import uvicorn
 
@@ -44,7 +45,7 @@ app = FastAPI(
 )
 
 origins = [
-    "http://localhost:9002", # La URL de tu frontend en Firebase Studio
+    "http://localhost:9002", # La URL de tu frontend
 ]
 
 app.add_middleware(
@@ -83,7 +84,7 @@ PACS_CONFIG = {
 TEMP_BASE_DIR = Path("temp_api_processing")
 TEMP_BASE_DIR.mkdir(exist_ok=True)
 
-# --- Pydantic Models for new endpoint ---
+# --- Pydantic Models ---
 class KermaDataItem(BaseModel):
     mAs: float
     kerma: float
@@ -111,18 +112,15 @@ def get_temp_dir() -> Path:
         pass
 
 def calculate_vmp_in_roi(ds: pydicom.Dataset, roi_size_cm: float = 4.0) -> float:
-    # --- CORRECCIÓN: Usar SpatialResolution si PixelSpacing no está disponible ---
     pixel_spacing_val = None
     if hasattr(ds, 'PixelSpacing') and ds.PixelSpacing:
         pixel_spacing_val = ds.PixelSpacing
     elif hasattr(ds, 'SpatialResolution') and ds.SpatialResolution:
-        # SpatialResolution es un solo valor (mm), se usa para ambas dimensiones
         pixel_spacing_val = [ds.SpatialResolution, ds.SpatialResolution]
 
     if not pixel_spacing_val or len(pixel_spacing_val) < 2:
-        # Usar ds.filename si está disponible para un mejor mensaje de error
         filename = getattr(ds, 'filename', 'desconocido')
-        raise ValueError(f"El fichero {filename} no contiene 'PixelSpacing' ni 'SpatialResolution', etiquetas necesarias para el cálculo del ROI.")
+        raise ValueError(f"El fichero {filename} no contiene 'PixelSpacing' ni 'SpatialResolution'.")
 
     roi_size_px_x = int((roi_size_cm * 10) / pixel_spacing_val[0])
     roi_size_px_y = int((roi_size_cm * 10) / pixel_spacing_val[1])
@@ -139,6 +137,29 @@ def calculate_vmp_in_roi(ds: pydicom.Dataset, roi_size_cm: float = 4.0) -> float
     ]
     
     return float(np.mean(roi))
+
+def apply_dicom_tags(ds: pydicom.Dataset, classification: str, slope: float, intercept: float) -> pydicom.Dataset:
+    original_patient_id = ds.get("PatientID", "Unknown")
+    new_patient_id = f"L-{original_patient_id}"
+    ds.PatientID = new_patient_id
+    if "PatientName" in ds:
+        ds.PatientName = new_patient_id
+
+    processing_date = datetime.now().strftime("%Y%m%d")
+    comments = (
+        f"Clasificacion: {classification}. "
+        f"Procesado con linealizacion VMP-Kerma. "
+        f"Pendiente: {slope:.6e}, Intercept: {intercept:.6e}. "
+        f"Fecha Proc.: {processing_date}"
+    )
+    ds.ImageComments = comments
+
+    original_series_desc = ds.get("SeriesDescription", "QC Image")
+    ds.SeriesDescription = f"{original_series_desc} [PROCESADO - {classification}]"
+    
+    ds.SOPInstanceUID = generate_uid()
+    
+    return ds
 
 def apply_manual_rescale_tags(ds: pydicom.Dataset, slope: float, intercept: float) -> pydicom.Dataset:
     ds.RescaleSlope = float(slope)
@@ -159,7 +180,6 @@ def apply_manual_rescale_tags(ds: pydicom.Dataset, slope: float, intercept: floa
     return ds
 
 def get_8bit_image_array(ds: pydicom.Dataset) -> np.ndarray:
-    """Función unificada para obtener una imagen de 8-bit desde un DICOM."""
     try:
         img_8bit = apply_voi_lut(ds.pixel_array, ds)
         if img_8bit.dtype != np.uint8:
@@ -175,7 +195,6 @@ def get_8bit_image_array(ds: pydicom.Dataset) -> np.ndarray:
 
 async def run_phase_2_classify(input_path: Path) -> str:
     ds = pydicom.dcmread(str(input_path), force=True)
-    # --- CORRECCIÓN: Usar la función unificada para consistencia ---
     img_array_8bit = get_8bit_image_array(ds)
     pil_img = PilImage.fromarray(img_array_8bit)
     img_tensor = PREPROCESS_TRANSFORM(pil_img)
@@ -191,7 +210,6 @@ async def run_phase_2_classify(input_path: Path) -> str:
 
 def create_thumbnail_b64(ds: pydicom.Dataset, size: tuple[int, int] = (128, 128)) -> str:
     try:
-        # --- CORRECCIÓN: Usar la función unificada para consistencia ---
         img_array_8bit = get_8bit_image_array(ds)
         pil_img = PilImage.fromarray(img_array_8bit)
         pil_img.thumbnail(size)
@@ -207,43 +225,88 @@ async def decompress_and_classify_endpoint(
     files: List[UploadFile] = File(...),
     temp_dir: Path = Depends(get_temp_dir)
 ):
-    async def process_single_file(file: UploadFile) -> Dict[str, Any]:
-        original_filename = file.filename
+    # --- INICIO: LÓGICA DE ORDENACIÓN CRONOLÓGICA ---
+    files_with_timestamps = []
+    files_without_timestamps = []
+
+    for file in files:
         try:
-            input_path = temp_dir / original_filename
-            with open(input_path, "wb") as buffer:
-                shutil.copyfileobj(file.file, buffer)
+            content = await file.read()
+            # Devolvemos el cursor al inicio por si se necesita leer de nuevo
+            await file.seek(0)
+            ds_header = pydicom.dcmread(io.BytesIO(content), stop_before_pixels=True)
+            acq_date = ds_header.get("AcquisitionDate", "")
+            acq_time = ds_header.get("AcquisitionTime", "")
             
-            ds = pydicom.dcmread(str(input_path), force=True)
+            file_data = {"content": content, "filename": file.filename}
+
+            if acq_date and acq_time:
+                time_str = f"{acq_date}{acq_time.split('.')[0]}"
+                timestamp = datetime.strptime(time_str, "%Y%m%d%H%M%S")
+                files_with_timestamps.append((timestamp, file_data))
+            else:
+                logger.warning(f"El fichero '{file.filename}' no tiene etiquetas de fecha/hora.")
+                files_without_timestamps.append(file_data)
+        except Exception as e:
+            logger.error(f"No se pudo leer la cabecera de '{file.filename}': {e}.")
+            content = await file.read()
+            files_without_timestamps.append({"content": content, "filename": file.filename})
+
+    files_with_timestamps.sort(key=lambda item: item[0])
+    sorted_files_data = [file_data for ts, file_data in files_with_timestamps] + files_without_timestamps
+    # --- FIN: LÓGICA DE ORDENACIÓN CRONOLÓGICA ---
+
+    async def process_single_file(
+        file_content: bytes, original_filename: str, file_index: int
+    ) -> Dict[str, Any]:
+        try:
+            ds = pydicom.dcmread(io.BytesIO(file_content), force=True)
             if ds.file_meta.TransferSyntaxUID.is_compressed:
                 ds.decompress()
 
-            processed_name = f"decom_{uuid.uuid4()}.dcm"
+            # --- INICIO: LÓGICA DE RENOMBRADO DESCRIPTIVO ---
+            detector_id_fn = ds.get('DetectorID', 'NoDetID')
+            kvp_fn = ds.get('KVP', 'NoKVP')
+            exposure_uas_fn = float(ds.get('ExposureInuAs', 0.0))
+            mas_fn = round(exposure_uas_fn / 1000.0, 2)
+            exposure_index_fn = ds.get('ExposureIndex', 'NoIE')
+
+            new_filename_base = (
+                f"Img{file_index}"
+                f"_{clean_filename_part(detector_id_fn)}"
+                f"_KVP{clean_filename_part(kvp_fn)}"
+                f"_mAs{mas_fn}"
+                f"_IE{clean_filename_part(exposure_index_fn)}"
+                f"_{ds.SOPInstanceUID}"
+            )
+            processed_name = new_filename_base[:200] + ".dcm"
+            # --- FIN: LÓGICA DE RENOMBRADO DESCRIPTIVO ---
+            
             processed_path = temp_dir / processed_name
             ds.save_as(str(processed_path))
 
             classification = await run_phase_2_classify(processed_path)
             thumbnail_b64 = create_thumbnail_b64(ds)
             
-            kvp = ds.get('KVP', 'N/A')
-            exposure_uas = float(ds.get('ExposureInuAs', 0.0))
-            mas = round(exposure_uas / 1000.0, 2)
-            ie = ds.get('ExposureIndex', 'N/A')
-
             return {
                 "filename": original_filename,
                 "processedName": processed_name,
                 "classification": classification,
                 "image_b64": thumbnail_b64,
-                "kvp": kvp, "mas": mas, "ie": ie
+                "kvp": kvp_fn, "mas": mas_fn, "ie": exposure_index_fn
             }
         except Exception as e:
             logger.error(f"Error procesando {original_filename}: {e}", exc_info=True)
             return {"filename": original_filename, "classification": "Error"}
 
-    tasks = [process_single_file(file) for file in files]
+    # Crear tareas con la lista de ficheros ya ordenada
+    tasks = [
+        process_single_file(file_data["content"], file_data["filename"], index)
+        for index, file_data in enumerate(sorted_files_data, 1)
+    ]
     results = await asyncio.gather(*tasks)
     return JSONResponse(content={"results": results, "session_id": temp_dir.name})
+
 
 @app.post("/process_and_linearize/", response_class=JSONResponse)
 async def process_and_linearize_endpoint(request: LinearizationRequest):
@@ -284,7 +347,10 @@ async def process_and_linearize_endpoint(request: LinearizationRequest):
             input_path = session_dir / file_info.processedName
             output_path = output_dir / f"linearized_{Path(file_info.processedName).name}"
             ds = pydicom.dcmread(str(input_path))
+            
             ds = apply_manual_rescale_tags(ds, slope, intercept)
+            ds = apply_dicom_tags(ds, file_info.class_name, slope, intercept)
+            
             ds.save_as(str(output_path))
 
         return JSONResponse(content={"message": "Linealización completada.", "session_id": session_id})

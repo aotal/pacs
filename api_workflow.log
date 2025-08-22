@@ -5874,3 +5874,6 @@ AttributeError: module 'pynetdicom.events' has no attribute 'STATUS_KEYWORDS'
 2025-08-22 00:50:16,789 - pynetdicom._handlers - INFO - Received Store Response (Status: 0x0000 - Success)
 2025-08-22 00:50:16,812 - pacs_operations - INFO - ÉXITO: linearized_decom_54d868e6-5cfe-4e92-a491-a810463deb3b.dcm enviado correctamente a PACS. Estado: 0x0000
 2025-08-22 00:50:16,815 - pynetdicom.association - INFO - Releasing Association
+2025-08-22 10:45:12,497 - root - INFO - Logging configurado. Nivel: INFO. Archivo de log: C:\Users\aotal\github\pacs\api_workflow.log
+2025-08-22 11:10:23,508 - root - INFO - Logging configurado. Nivel: INFO. Archivo de log: C:\Users\aotal\github\pacs\api_workflow.log
+2025-08-22 11:24:00,690 - root - INFO - Logging configurado. Nivel: INFO. Archivo de log: C:\Users\aotal\github\pacs\api_workflow.log
